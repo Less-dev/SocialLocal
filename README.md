@@ -23,6 +23,7 @@
       1.4.3 [Describa los cambios](#Describa-los-cambios-realizados)
 
 2. [`ESPECIFICACIONES TÉCNICAS`](#especificaciones-técnicas)
+
       2.1 [Arquitectura](#arquitectura)
    
       2.1.2 [Gráfico arquitectura Social Local](#Gráfico-Arquitectura-Social-Local)
