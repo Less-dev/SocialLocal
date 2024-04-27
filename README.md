@@ -1,5 +1,5 @@
-# Social Local
-### Una aplicación para chatear con amigos 💬 en una misma red.
+<h2 align="center">Social Local</h2>
+<h3 align="center">Una aplicación para chatear con amigos 💬 en una misma red</h3>
 
 1. [`CÓMO CONTRIBUIR`](#Contribuciones)  
   1.1 [Bifurque el proyecto](#configuración-del-proyecto)
@@ -98,7 +98,7 @@ git commit -m "Cambios que se hicieron"
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
-## Gráfico Arquitectura Social Local
+<h3 align="center">🧑‍🏫 Gráfico Arquitectura Social Local </h3>
 
 ![grafico_sl](https://github.com/compose-projects-android/SocialLocal/assets/166412593/d98528aa-6a40-4fec-96b6-8bb94a498642)
 
