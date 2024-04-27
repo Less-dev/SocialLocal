@@ -27,7 +27,6 @@ import org.compose_projects.socialLocal.feature.auth.ui.AuthScreen
 import org.compose_projects.socialLocal.feature.home.ui.HomeScreen
 import org.compose_projects.socialLocal.feature.inbox.ui.InboxScreen
 import org.compose_projects.socialLocal.feature.profile.ui.ProfileScreen
-import org.compose_projects.socialLocal.feature.users.ui.UsersScreen
 
 @Composable
 fun MainNavigation() {

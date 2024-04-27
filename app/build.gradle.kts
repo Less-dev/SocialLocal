@@ -81,7 +81,6 @@ android {
 
 dependencies {
     implementation(project(":core-ui"))
-    implementation(project(":feature-users"))
     implementation(project(":feature-home"))
     implementation(project(":feature-auth"))
     implementation(project(":feature-profile"))
