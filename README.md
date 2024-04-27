@@ -102,6 +102,7 @@ git commit -m "Cambios que se hicieron"
 
 ![grafico_sl](https://github.com/compose-projects-android/SocialLocal/assets/166412593/d98528aa-6a40-4fec-96b6-8bb94a498642)
 
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 <h2 align="center">🛠 Tecnologías</h2>
 <p align="center">
   
