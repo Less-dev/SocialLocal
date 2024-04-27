@@ -2,17 +2,26 @@
 ### Una aplicación para chatear con amigos 💬 en una misma red.
 
 1. [`CÓMO CONTRIBUIR`](#Contribuciones)  
-  1.1 [Bifurque el proyecto](#Bifurcar-proyecto)  
+  1.1 [Bifurque el proyecto](#Bifurcar-proyecto)
+     
   1.2 [Descargue el proyecto en su máquina local](#Descargue-el-proyecto)  
+  
   1.3 [Manténgase actualizado con el repositorio principal](#Manténgase-actualizado)
+  
   1.3.1 [Agregue el repositorio remoto a su espacio de trabajo](#Agregue-el-repositorio-remoto)
+  
   1.3.2 [Actualice su espacio de trabajo](#Actualice-su-espacio-de-trabajo)
+  
   1.3.3 [Combine el repositorio remoto con su espacio de trabajo](#combine-el-repositorio-remoto-con-su-espacio-de-trabajo)
+  
   1.4 [Contribuya](#Contribuya)  
+  
   1.4.1 [Busque una issue](#Busque-una-issue-o-problema)  
+  
   1.4.2 [Agregue los cambios](#Agregue-los-cambios)  
+  
   1.4.3 [Describa los cambios](#Describa-los-cambios-realizados)  
-2. [`ESPECIFICACIONES TÉCNICAS`](#Especificaciones-Técnicas)
+3. [`ESPECIFICACIONES TÉCNICAS`](#Especificaciones-Técnicas)
 
 # `Contribuciones`
 
