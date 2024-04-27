@@ -20,8 +20,11 @@
   
       1.4.2 [Agregue los cambios](#agregue-los-cambios)  
   
-      1.4.3 [Describa los cambios](#Describa-los-cambios-realizados)  
+      1.4.3 [Describa los cambios](#Describa-los-cambios-realizados)
+
 3. [`ESPECIFICACIONES TÉCNICAS`](#especificaciones-técnicas)
+
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 # `Contribuciones`
 
