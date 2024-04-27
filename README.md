@@ -22,7 +22,9 @@
   
       1.4.3 [Describa los cambios](#Describa-los-cambios-realizados)
 
-2. [`ESPECIFICACIONES TÉCNICAS`](#especificaciones-técnicas)
+      1.4.4 [Envie los cambios a su repositorio](#pushee-los-cambios)
+
+3. [`ESPECIFICACIONES TÉCNICAS`](#especificaciones-técnicas)
 
       2.1 [Arquitectura](#arquitectura)
    
@@ -81,6 +83,13 @@ git add .
 
 ```
 git commit -m "Cambios que se hicieron"
+```
+
+## Pushee los cambios
+#### Finalmente envie los cambios realizados a su repositorio y haga una PR a el repositorio remoto principal.
+
+```
+git push -u origin <name_your_branch>
 ```
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
