@@ -106,14 +106,23 @@ git commit -m "Cambios que se hicieron"
 <h2 align="center">🛠 Tecnologías</h2>
 <p align="center">
   
-  <img src="https://img.shields.io/badge/-Dagger_Hilt-4285F4?style=flat-square&logo=android&logoColor=white" width="120" height="30" />
-  <a href="https://developer.android.com/topic/libraries/architecture/viewmodel?hl=es-419">
-  <img src="https://img.shields.io/badge/-ViewModel-000000?style=flat-square&logo=android&logoColor=white" width="120" height="30" />  
+  <a href="https://dagger.dev/hilt/">
+    <img src="https://img.shields.io/badge/-Dagger_Hilt-4285F4?style=flat-square&logo=android&logoColor=white" width="120" height="30" />
   </a>
 
-  <img src="https://img.shields.io/badge/-Jetpack_Compose-green?style=flat-square&logo=jetpackcompose&logoColor=black" width="160" height="30" />
-  <img src="https://img.shields.io/badge/-Room-red?style=flat-square&logo=database&logoColor=white" width="80" height="30" />
+  <a href="https://developer.android.com/topic/libraries/architecture/viewmodel?hl=es-419">
+    <img src="https://img.shields.io/badge/-ViewModel-000000?style=flat-square&logo=android&logoColor=white" width="120" height="30" />  
+  </a>
+
+  <a href="https://developer.android.com/develop/ui/compose?hl=es-419">
+    <img src="https://img.shields.io/badge/-Jetpack_Compose-green?style=flat-square&logo=jetpackcompose&logoColor=black" width="160" height="30" />
+  </a>
+
+  <a href="https://developer.android.com/training/data-storage/room?hl=es-419">
+    <img src="https://img.shields.io/badge/-Room-red?style=flat-square&logo=database&logoColor=white" width="80" height="30" />
+  </a>
 
 </p>
 
+#### by: [Less](https://github.com/less-dev/)
 
