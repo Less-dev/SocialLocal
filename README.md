@@ -24,7 +24,9 @@
 
 2. [`ESPECIFICACIONES TÉCNICAS`](#especificaciones-técnicas)
       2.1 [Arquitectura](#arquitectura)
+   
       2.1.2 [Gráfico arquitectura Social Local](#Gráfico-Arquitectura-Social-Local)
+
       2.2 [Tecnologias](#tecnologias)
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
