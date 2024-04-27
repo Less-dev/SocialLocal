@@ -23,7 +23,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import org.compose_projects.socialLocal.feature.auth.ui.AuthScreen
 import org.compose_projects.socialLocal.feature.home.ui.HomeScreen
+import org.compose_projects.socialLocal.feature.inbox.ui.InboxScreen
+import org.compose_projects.socialLocal.feature.profile.ui.ProfileScreen
 import org.compose_projects.socialLocal.feature.users.ui.UsersScreen
 
 @Composable
@@ -31,7 +34,7 @@ fun MainNavigation() {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "main") {
-        composable("main") { HomeScreen() }
+        composable("main") { InboxScreen() }
         // TODO: Add more destinations
     }
 }

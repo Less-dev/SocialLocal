@@ -14,30 +14,24 @@
  * limitations under the License.
  */
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-rootProject.name = "Multimodule template"
+package org.compose_projects.socialLocal.feature.auth.ui
 
-include(":app")
-include(":core-data")
-include(":core-database")
-include(":core-testing")
-include(":core-ui")
-include(":feature-users")
-include(":test-app")
-include(":feature-home")
-include(":feature-auth")
-include(":feature-profile")
-include(":feature-inbox")
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+
+@Composable
+fun AuthScreen() {
+    (0..2).forEach {
+        AuthScreen(it)
+    }
+}
+
+@Composable
+internal fun AuthScreen(iii: Int) {
+    LazyColumn {
+        items(iii){
+            Text(text = it.toString())
+        }
+    }
+}

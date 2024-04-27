@@ -14,30 +14,27 @@
  * limitations under the License.
  */
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-rootProject.name = "Multimodule template"
+package org.compose_projects.socialLocal.feature.inbox.ui
 
-include(":app")
-include(":core-data")
-include(":core-database")
-include(":core-testing")
-include(":core-ui")
-include(":feature-users")
-include(":test-app")
-include(":feature-home")
-include(":feature-auth")
-include(":feature-profile")
-include(":feature-inbox")
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+
+@Composable
+fun InboxScreen() {
+    (0..12).forEach {
+        InboxScreen(it)
+    }
+}
+
+@Composable
+internal fun InboxScreen(aa: Int) {
+    LazyColumn {
+        items(aa){
+            HorizontalDivider()
+            Text(text = it.toString())
+            HorizontalDivider()
+        }
+    }
+}
