@@ -26,7 +26,7 @@
 
       2.1 [Arquitectura](#arquitectura)
    
-      2.1.2 [Gráfico arquitectura Social Local](#Gráfico-Arquitectura-Social-Local)
+      2.1.2 [Gráfico arquitectura Social Local](#-gráfico-arquitectura-social-local-)
 
       2.2 [Tecnologias](#tecnologias)
 
