@@ -30,6 +30,7 @@
 
       2.2 [Tecnologias](#-tecnologías)
 
+      2.3 [UI/UX](#-UI/UX)
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 # `Contribuciones`
@@ -123,6 +124,14 @@ git commit -m "Cambios que se hicieron"
   </a>
 
 </p>
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/74038190/212744287-14f66c13-5458-40dc-9244-8ff533fc8f4a.gif" width="1000">
+</p>
+
+<h3 align="center">🎨 UI/UX</h3>
+
+### Adjuntar imágenes
 
 #### by: [Less](https://github.com/less-dev/)
 
