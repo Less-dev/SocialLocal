@@ -82,6 +82,7 @@ android {
 dependencies {
     implementation(project(":core-ui"))
     implementation(project(":feature-users"))
+    implementation(project(":feature-home"))
 
     // Core Android dependencies
     implementation(libs.androidx.core.ktx)
