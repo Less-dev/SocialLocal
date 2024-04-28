@@ -18,10 +18,14 @@ package org.compose_projects.socialLocal.core.ui
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+//Appearance themes
+val SL_theme_default_BackgroundColor = Color(0xFF00343B)
+val SL_theme_default_TextTopAppBarColor = Color(0xFF82D3E1)
+val SL_theme_default_BackgroundTopAppBarColor = Color.Transparent
+val SL_theme_default_BackgroundBottomAppBarColor = Color(0xFF001F24)
+val SL_theme_default_IconBottomAppBarColor = Color(0xFF004F58)
+val SL_theme_default_BackgroundBottomSheetsColor = Color(0xC1001F24)
+val SL_theme_default_IconsColor = Color(0xFF82D3E1)
+val SL_theme_default_BackgroundButtonsColor = Color(0xFF004F58)
+val SL_theme_default_TextsColor = Color(0xFF001F24)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
