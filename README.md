@@ -1,4 +1,7 @@
 <h2 align="center">Social Local</h2>
+<p align="center">
+<img src="https://github.com/compose-projects-android/SocialLocal/assets/166412593/fd3c3c23-485e-48f2-9a91-984f7dcf3f87" width="150">
+</p>
 <h3 align="center">Una aplicación para chatear con amigos 💬 en una misma red</h3>
 
 1. [`CÓMO CONTRIBUIR`](#Contribuciones)  
