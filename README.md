@@ -35,7 +35,7 @@
 
       2.2 [Tecnologias](#-tecnologías)
 
-      2.3 [UI/UX](#-UI/UX)
+      2.3 [UI/UX](#-Vistas)
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
 
 # `Contribuciones`
@@ -141,10 +141,10 @@ git push -u origin <name_your_branch>
 <img src="https://user-images.githubusercontent.com/74038190/212744287-14f66c13-5458-40dc-9244-8ff533fc8f4a.gif" width="1000">
 </p>
 
-<h3 align="center">🎨 UI/UX</h3>
+<h3 align="center">🎨 Vistas</h3>
 
 #### Adjunto PDF
-[SLscreens.pdf](https://github.com/compose-projects-android/SocialLocal/files/15143159/SLscreens.pdf)
+[screens.pdf](https://github.com/compose-projects-android/SocialLocal/files/15143159/SLscreens.pdf)
 
 
 #### by: [Less](https://github.com/less-dev/)
