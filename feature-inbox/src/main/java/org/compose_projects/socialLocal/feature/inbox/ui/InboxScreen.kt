@@ -16,24 +16,39 @@
 
 package org.compose_projects.socialLocal.feature.inbox.ui
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import org.compose_projects.socialLocal.core.ui.SLColor
+
 
 @Composable
 fun InboxScreen() {
-    (0..12).forEach {
-        InboxScreen(it)
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(SLColor.BackgroundColor),
+        contentAlignment = Alignment.TopCenter,
+    ) {
+        (0..12).forEach {
+            InboxScreen(it)
+        }
     }
+
 }
 
 @Composable
 internal fun InboxScreen(aa: Int) {
     LazyColumn {
-        items(aa){
+        items(aa) {
             HorizontalDivider()
-            Text(text = it.toString())
+            Text(text = it.toString(), color = SLColor.TextsColor)
             HorizontalDivider()
         }
     }
