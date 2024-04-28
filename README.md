@@ -140,7 +140,9 @@ git push -u origin <name_your_branch>
 
 <h3 align="center">🎨 UI/UX</h3>
 
-### Adjuntar imágenes
+#### Adjunto PDF
+[SLscreens.pdf](https://github.com/compose-projects-android/SocialLocal/files/15143159/SLscreens.pdf)
+
 
 #### by: [Less](https://github.com/less-dev/)
 
