@@ -20,16 +20,58 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import org.compose_projects.socialLocal.R
+import org.compose_projects.socialLocal.feature.auth.ui.AuthScreen
+import org.compose_projects.socialLocal.feature.home.ui.HomeScreen
 import org.compose_projects.socialLocal.feature.inbox.ui.InboxScreen
+import org.compose_projects.socialLocal.feature.profile.ui.ProfileScreen
 
 @Composable
 fun MainNavigation() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "main") {
-        composable("main") {
+    NavHost(navController = navController, startDestination = Routes.auth) {
+
+        composable(Routes.auth) {
+            AuthScreen()
+        }
+
+        composable(Routes.globalChat) {
+            HomeScreen()
+        }
+
+        composable(Routes.inbox) {
             InboxScreen()
         }
+
+        composable(Routes.profile) {
+            ProfileScreen()
+        }
+
         // TODO: Add more destinations
     }
+}
+
+
+sealed class Screens(
+    val route: String,
+    val icon: Int,
+    val index: Int
+){
+    data object global_chat: Screens(
+        route = Routes.globalChat,
+        icon = R.drawable.home_ic,
+        index = 0
+    )
+    data object inbox: Screens(
+        route = Routes.inbox,
+        icon = R.drawable.inbox_ic,
+        index = 0
+    )
+
+    data object profile: Screens(
+        route = Routes.globalChat,
+        icon = R.drawable.profile_ic,
+        index = 0
+    )
 }
