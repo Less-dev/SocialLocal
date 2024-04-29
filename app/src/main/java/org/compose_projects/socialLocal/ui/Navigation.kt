@@ -27,11 +27,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarColors
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -45,13 +54,19 @@ import org.compose_projects.socialLocal.feature.auth.ui.AuthScreen
 import org.compose_projects.socialLocal.feature.home.ui.HomeScreen
 import org.compose_projects.socialLocal.feature.inbox.ui.InboxScreen
 import org.compose_projects.socialLocal.feature.profile.ui.ProfileScreen
+import org.compose_projects.socialLocal.ui.CONSTANTS.titleAuth
+import org.compose_projects.socialLocal.ui.CONSTANTS.titleHome
+import org.compose_projects.socialLocal.ui.CONSTANTS.titleInbox
+import org.compose_projects.socialLocal.ui.CONSTANTS.titleProfile
 import org.compose_projects.socialLocal.ui.Screens.Companion.screens
 
 
 @Composable
 fun MainNavigation() {
     val navController = rememberNavController()
+    var titleTopAppBar by remember { mutableStateOf("") }
     Scaffold(
+        topBar = { TopAppBarNavigation(title = titleTopAppBar) },
         bottomBar = { BottomAppNavigation(navController = navController) }
     ) {
         Surface(
@@ -67,18 +82,22 @@ fun MainNavigation() {
                 NavHost(navController = navController, startDestination = Routes.auth) {
 
                     composable(Routes.auth) {
+                        titleTopAppBar = titleAuth
                         AuthScreen()
                     }
 
                     composable(Routes.globalChat) {
+                        titleTopAppBar = titleHome
                         HomeScreen()
                     }
 
                     composable(Routes.inbox) {
+                        titleTopAppBar = titleInbox
                         InboxScreen()
                     }
 
                     composable(Routes.profile) {
+                        titleTopAppBar = titleProfile
                         ProfileScreen()
                     }
 
@@ -90,8 +109,20 @@ fun MainNavigation() {
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomAppNavigation(navController: NavHostController) {
+private fun TopAppBarNavigation(title: String) {
+    TopAppBar(
+        title = { Text(text = title) },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = SLColor.BackgroundTopAppBarColor,
+            titleContentColor = SLColor.TextTopAppBarColor
+        )
+    )
+}
+
+@Composable
+private fun BottomAppNavigation(navController: NavHostController) {
 
     BottomAppBar(
         modifier = Modifier
@@ -118,7 +149,7 @@ fun BottomAppNavigation(navController: NavHostController) {
 }
 
 
-sealed class Screens(
+private sealed class Screens(
     val route: String,
     val icon: Int,
     val index: Int
@@ -140,6 +171,7 @@ sealed class Screens(
         icon = R.drawable.profile_ic,
         index = 0
     )
+
     companion object {
         val screens = listOf(global_chat, inbox, profile)
     }
