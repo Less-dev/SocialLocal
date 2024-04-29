@@ -16,9 +16,14 @@
 
 package org.compose_projects.socialLocal.feature.auth.ui
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun AuthScreen() {
@@ -29,9 +34,11 @@ fun AuthScreen() {
 
 @Composable
 internal fun AuthScreen(iii: Int) {
-    LazyColumn {
-        items(iii){
-            Text(text = it.toString())
+    LazyColumn(
+        Modifier.fillMaxSize()
+    ) {
+        items(iii) {
+            Text(text = it.toString(), color = Color.White)
         }
     }
 }

@@ -18,8 +18,6 @@ package org.compose_projects.socialLocal.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -34,7 +32,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -54,10 +51,10 @@ import org.compose_projects.socialLocal.feature.auth.ui.AuthScreen
 import org.compose_projects.socialLocal.feature.home.ui.HomeScreen
 import org.compose_projects.socialLocal.feature.inbox.ui.InboxScreen
 import org.compose_projects.socialLocal.feature.profile.ui.ProfileScreen
-import org.compose_projects.socialLocal.ui.CONSTANTS.titleAuth
-import org.compose_projects.socialLocal.ui.CONSTANTS.titleHome
-import org.compose_projects.socialLocal.ui.CONSTANTS.titleInbox
-import org.compose_projects.socialLocal.ui.CONSTANTS.titleProfile
+import org.compose_projects.socialLocal.CONSTANTS.titleAuth
+import org.compose_projects.socialLocal.CONSTANTS.titleHome
+import org.compose_projects.socialLocal.CONSTANTS.titleInbox
+import org.compose_projects.socialLocal.CONSTANTS.titleProfile
 import org.compose_projects.socialLocal.ui.Screens.Companion.screens
 
 
@@ -120,6 +117,7 @@ private fun TopAppBarNavigation(title: String) {
         )
     )
 }
+
 
 @Composable
 private fun BottomAppNavigation(navController: NavHostController) {
