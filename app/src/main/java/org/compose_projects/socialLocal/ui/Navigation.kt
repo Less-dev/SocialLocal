@@ -45,6 +45,7 @@ import org.compose_projects.socialLocal.feature.auth.ui.AuthScreen
 import org.compose_projects.socialLocal.feature.home.ui.HomeScreen
 import org.compose_projects.socialLocal.feature.inbox.ui.InboxScreen
 import org.compose_projects.socialLocal.feature.profile.ui.ProfileScreen
+import org.compose_projects.socialLocal.ui.Screens.Companion.screens
 
 
 @Composable
@@ -91,11 +92,6 @@ fun MainNavigation() {
 
 @Composable
 fun BottomAppNavigation(navController: NavHostController) {
-    val screens = listOf<Screens>(
-        Screens.global_chat,
-        Screens.inbox,
-        Screens.profile
-    )
 
     BottomAppBar(
         modifier = Modifier
@@ -140,8 +136,11 @@ sealed class Screens(
     )
 
     data object profile : Screens(
-        route = Routes.globalChat,
+        route = Routes.profile,
         icon = R.drawable.profile_ic,
         index = 0
     )
+    companion object {
+        val screens = listOf(global_chat, inbox, profile)
+    }
 }
