@@ -14,24 +14,7 @@
  * limitations under the License.
  */
 
-package org.compose_projects.socialLocal.ui
-
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import dagger.hilt.android.AndroidEntryPoint
+package org.compose_projects.socialLocal.core.ui
 
 
-@AndroidEntryPoint
-class MainActivity : ComponentActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-
-        setContent {
-            MainNavigation()
-        }
-    }
-}
+val SLColor = SLTheme.defaultStyle

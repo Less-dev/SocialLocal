@@ -19,13 +19,13 @@ package org.compose_projects.socialLocal.core.ui
 import androidx.compose.ui.graphics.Color
 
 //Appearance themes
-val SL_theme_default_BackgroundColor = Color(0xFF00343B)
-val SL_theme_default_TextTopAppBarColor = Color(0xFF82D3E1)
-val SL_theme_default_BackgroundTopAppBarColor = Color.Transparent
-val SL_theme_default_BackgroundBottomAppBarColor = Color(0xFF001F24)
-val SL_theme_default_IconBottomAppBarColor = Color(0xFF004F58)
-val SL_theme_default_BackgroundBottomSheetsColor = Color(0xC1001F24)
-val SL_theme_default_IconsColor = Color(0xFF82D3E1)
-val SL_theme_default_BackgroundButtonsColor = Color(0xFF004F58)
-val SL_theme_default_TextsColor = Color(0xFF001F24)
+internal val SL_theme_default_BackgroundColor = Color(0xFF00343B)
+internal val SL_theme_default_TextTopAppBarColor = Color(0xFF82D3E1)
+internal val SL_theme_default_BackgroundTopAppBarColor = Color.Transparent
+internal val SL_theme_default_BackgroundBottomAppBarColor = Color(0xFF001F24)
+internal val SL_theme_default_IconBottomAppBarColor = Color(0xFF004F58)
+internal val SL_theme_default_BackgroundBottomSheetsColor = Color(0xC1001F24)
+internal val SL_theme_default_IconsColor = Color(0xFF82D3E1)
+internal val SL_theme_default_BackgroundButtonsColor = Color(0xFF004F58)
+internal val SL_theme_default_TextsColor = Color(0xFF001F24)
 

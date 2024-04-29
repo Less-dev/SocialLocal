@@ -20,6 +20,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import org.compose_projects.socialLocal.core.ui.SLColor
+
 
 @Composable
 fun InboxScreen() {
@@ -31,9 +33,9 @@ fun InboxScreen() {
 @Composable
 internal fun InboxScreen(aa: Int) {
     LazyColumn {
-        items(aa){
+        items(aa) {
             HorizontalDivider()
-            Text(text = it.toString())
+            Text(text = it.toString(), color = SLColor.TextsColor)
             HorizontalDivider()
         }
     }
