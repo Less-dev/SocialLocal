@@ -17,4 +17,5 @@
   -->
 
 <resources>
+    <color name="backgroundBottomAppBarColor">#02040E</color>
 </resources>
