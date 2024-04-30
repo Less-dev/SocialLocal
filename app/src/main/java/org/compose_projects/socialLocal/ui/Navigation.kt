@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -129,13 +130,17 @@ private fun TopAppBarNavigation(title: String) {
 private fun BottomAppNavigation(navController: NavHostController, view: String) {
 
     BottomAppBar(
-        modifier = Modifier.height(100.dp),
-        containerColor = SLColor.BackgroundBottomAppBarColor
+        modifier = Modifier.height(120.dp)
+            .systemBarsPadding()
+        ,
+        containerColor = SLColor.BackgroundBottomAppBarColor,
+
     ) {
         LazyRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
+
             items(screens) { screen ->
                 val backgroundIcon =
                     if (view == screen.title) SLColor.BackgroundIconButtonAppBarColor else SLColor.BackgroundTopAppBarColor
@@ -148,14 +153,12 @@ private fun BottomAppNavigation(navController: NavHostController, view: String) 
                         backgroundIcon
                     )
                 ) {
-
                     Icon(
                         painter = painterResource(id = screen.icon),
                         contentDescription = screen.title,
                         tint = if (view == screen.title) SLColor.IconSelectedBottomAppBarColor else SLColor.IconUnSelectedBottomAppBarColor,
                         modifier = Modifier.size(25.dp)
                     )
-
                 }
 
             }
