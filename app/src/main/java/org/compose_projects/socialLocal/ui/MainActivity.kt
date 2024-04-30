@@ -20,7 +20,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.core.content.ContextCompat
 import dagger.hilt.android.AndroidEntryPoint
+import org.compose_projects.socialLocal.R
 
 
 @AndroidEntryPoint
@@ -30,8 +32,10 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        setContent {
+        setContent{
+            window.navigationBarColor = ContextCompat.getColor(this, R.color.backgroundBottomAppBarColor)
             MainNavigation()
         }
     }
 }
+

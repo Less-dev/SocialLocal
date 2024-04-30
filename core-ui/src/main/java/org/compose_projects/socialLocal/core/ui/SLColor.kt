@@ -18,3 +18,4 @@ package org.compose_projects.socialLocal.core.ui
 
 
 val SLColor = SLTheme.defaultStyle
+
