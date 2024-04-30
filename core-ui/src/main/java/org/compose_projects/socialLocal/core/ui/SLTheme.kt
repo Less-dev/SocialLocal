@@ -2,7 +2,7 @@ package org.compose_projects.socialLocal.core.ui
 
 import androidx.compose.ui.graphics.Color
 
-object SLTheme {
+internal object SLTheme {
     val defaultStyle: SLThemeConfig
         get() = object: SLThemeConfig{
             override val BackgroundColor: Color
