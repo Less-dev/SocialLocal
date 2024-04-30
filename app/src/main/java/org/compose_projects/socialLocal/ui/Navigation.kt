@@ -16,7 +16,6 @@
 
 package org.compose_projects.socialLocal.ui
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -32,6 +31,7 @@ import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -43,9 +43,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -139,25 +137,31 @@ private fun BottomAppNavigation(navController: NavHostController, view: String) 
             horizontalArrangement = Arrangement.SpaceAround
         ) {
             items(screens) { screen ->
+                val backgroundIcon =
+                    if (view == screen.title) SLColor.BackgroundIconButtonAppBarColor else SLColor.BackgroundTopAppBarColor
 
-                val backgroundIcon = if (view == screen.title) SLColor.BackgroundIconButtonAppBarColor else SLColor.BackgroundTopAppBarColor
+                IconButton(
+                    onClick = {
+                        navController.navigate(screen.route)
+                    },
+                    colors = IconButtonDefaults.iconButtonColors(
+                        backgroundIcon
+                    )
+                ) {
 
-                IconButton(onClick = {
-                    navController.navigate(screen.route)
-                }) {
-                    Box(modifier = Modifier.background(backgroundIcon)) {
-                        Icon(
-                            painter = painterResource(id = screen.icon),
-                            contentDescription = screen.title,  // Accesibilidad mejorada
-                            tint = SLColor.IconBottomAppBarColor
-                        )
-                    }
+                    Icon(
+                        painter = painterResource(id = screen.icon),
+                        contentDescription = screen.title,
+                        tint = if (view == screen.title) SLColor.IconSelectedBottomAppBarColor else SLColor.IconUnSelectedBottomAppBarColor,
+                        modifier = Modifier.size(25.dp)
+                    )
+
                 }
+
             }
         }
     }
 }
-
 
 
 private sealed class Screens(
@@ -169,21 +173,21 @@ private sealed class Screens(
     data object global_chat : Screens(
         route = Routes.globalChat,
         icon = R.drawable.home_ic,
-        title = Routes.globalChat,
+        title = titleHome,
         index = 0
     )
 
     data object inbox : Screens(
         route = Routes.inbox,
         icon = R.drawable.inbox_ic,
-        title = Routes.inbox,
+        title = titleInbox,
         index = 0
     )
 
     data object profile : Screens(
         route = Routes.profile,
         icon = R.drawable.profile_ic,
-        title = Routes.profile,
+        title = titleProfile,
         index = 0
     )
 
