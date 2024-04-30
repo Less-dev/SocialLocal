@@ -15,6 +15,8 @@ internal object SLTheme {
                 get() = SL_theme_default_BackgroundBottomAppBarColor
             override val IconBottomAppBarColor: Color
                 get() = SL_theme_default_IconBottomAppBarColor
+            override val BackgroundIconButtonAppBarColor: Color
+                get() = SL_theme_default_backgroundIconBottomAppBarColor
             override val BackgroundBottomSheetsColor: Color
                 get() = SL_theme_default_BackgroundBottomSheetsColor
             override val IconsColor: Color

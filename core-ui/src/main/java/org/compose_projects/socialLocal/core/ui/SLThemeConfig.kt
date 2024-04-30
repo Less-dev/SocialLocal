@@ -24,6 +24,7 @@ interface SLThemeConfig {
     val BackgroundTopAppBarColor: Color
     val BackgroundBottomAppBarColor: Color
     val IconBottomAppBarColor: Color
+    val BackgroundIconButtonAppBarColor: Color
     val BackgroundBottomSheetsColor: Color
     val IconsColor: Color
     val BackgroundButtonsColor: Color

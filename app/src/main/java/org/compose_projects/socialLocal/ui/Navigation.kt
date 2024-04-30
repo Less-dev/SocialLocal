@@ -16,14 +16,18 @@
 
 package org.compose_projects.socialLocal.ui
 
+import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -34,11 +38,14 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -62,9 +69,10 @@ import org.compose_projects.socialLocal.ui.Screens.Companion.screens
 fun MainNavigation() {
     val navController = rememberNavController()
     var titleTopAppBar by remember { mutableStateOf("") }
+
     Scaffold(
         topBar = { TopAppBarNavigation(title = titleTopAppBar) },
-        bottomBar = { BottomAppNavigation(navController = navController) }
+        bottomBar = { BottomAppNavigation(navController = navController, view = titleTopAppBar) }
     ) {
         Surface(
             modifier = Modifier.fillMaxSize(),
@@ -120,53 +128,62 @@ private fun TopAppBarNavigation(title: String) {
 
 
 @Composable
-private fun BottomAppNavigation(navController: NavHostController) {
+private fun BottomAppNavigation(navController: NavHostController, view: String) {
 
     BottomAppBar(
-        modifier = Modifier
-            .height(100.dp),
+        modifier = Modifier.height(100.dp),
         containerColor = SLColor.BackgroundBottomAppBarColor
     ) {
-
         LazyRow(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            items(screens) {
-                IconButton(onClick = { navController.navigate(it.route) }) {
-                    Icon(
-                        painter = painterResource(id = it.icon),
-                        contentDescription = null,
-                        tint = SLColor.IconBottomAppBarColor
-                    )
+            items(screens) { screen ->
+
+                val backgroundIcon = if (view == screen.title) SLColor.BackgroundIconButtonAppBarColor else SLColor.BackgroundTopAppBarColor
+
+                IconButton(onClick = {
+                    navController.navigate(screen.route)
+                }) {
+                    Box(modifier = Modifier.background(backgroundIcon)) {
+                        Icon(
+                            painter = painterResource(id = screen.icon),
+                            contentDescription = screen.title,  // Accesibilidad mejorada
+                            tint = SLColor.IconBottomAppBarColor
+                        )
+                    }
                 }
             }
         }
-
     }
 }
+
 
 
 private sealed class Screens(
     val route: String,
     val icon: Int,
+    val title: String,
     val index: Int
 ) {
     data object global_chat : Screens(
         route = Routes.globalChat,
         icon = R.drawable.home_ic,
+        title = Routes.globalChat,
         index = 0
     )
 
     data object inbox : Screens(
         route = Routes.inbox,
         icon = R.drawable.inbox_ic,
+        title = Routes.inbox,
         index = 0
     )
 
     data object profile : Screens(
         route = Routes.profile,
         icon = R.drawable.profile_ic,
+        title = Routes.profile,
         index = 0
     )
 
