@@ -32,8 +32,8 @@ internal val SL_theme_default_BackgroundButtonsColor = Color(0xFF004F58)
 internal val SL_theme_default_TextsColor = Color(0xFF001F24)
 
 //black
-internal val SL_theme_black_BackgroundColor = Color(0xFF00343B)
-internal val SL_theme_black_TextTopAppBarColor = Color(0xFF82D3E1)
+internal val SL_theme_black_BackgroundColor = Color(0xFF000C0E)
+internal val SL_theme_black_TextTopAppBarColor = Color(0xFFFFFFFF)
 internal val SL_theme_black_BackgroundTopAppBarColor = Color.Transparent
 internal val SL_theme_black_BackgroundBottomAppBarColor = Color(backgroundBottomAppBarColor)
 internal val SL_theme_black_IconSelectedBottomAppBarColor = Color(0xFF82D3E1)

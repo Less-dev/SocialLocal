@@ -68,6 +68,7 @@ import org.compose_projects.socialLocal.ui.Screens.Companion.screens
 fun MainNavigation() {
     val navController = rememberNavController()
     var titleTopAppBar by remember { mutableStateOf("") }
+    val currentColor by SLColor
 
     Scaffold(
         topBar = { TopAppBarNavigation(title = titleTopAppBar) },
@@ -75,7 +76,7 @@ fun MainNavigation() {
     ) {
         Surface(
             modifier = Modifier.fillMaxSize(),
-            color = SLColor.BackgroundColor
+            color = currentColor.BackgroundColor
         ) {
             Box(
                 modifier = Modifier
@@ -116,11 +117,13 @@ fun MainNavigation() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopAppBarNavigation(title: String) {
+    val currentColor by SLColor
+
     TopAppBar(
         title = { Text(text = title) },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = SLColor.BackgroundTopAppBarColor,
-            titleContentColor = SLColor.TextTopAppBarColor
+            containerColor = currentColor.BackgroundTopAppBarColor,
+            titleContentColor = currentColor.TextTopAppBarColor
         )
     )
 }
@@ -128,12 +131,13 @@ private fun TopAppBarNavigation(title: String) {
 
 @Composable
 private fun BottomAppNavigation(navController: NavHostController, view: String) {
+    val currentColor by SLColor
 
     BottomAppBar(
         modifier = Modifier.height(120.dp)
             .systemBarsPadding()
         ,
-        containerColor = SLColor.BackgroundBottomAppBarColor,
+        containerColor = currentColor.BackgroundBottomAppBarColor,
 
     ) {
         LazyRow(
@@ -143,7 +147,7 @@ private fun BottomAppNavigation(navController: NavHostController, view: String) 
 
             items(screens) { screen ->
                 val backgroundIcon =
-                    if (view == screen.title) SLColor.BackgroundIconButtonAppBarColor else SLColor.BackgroundTopAppBarColor
+                    if (view == screen.title) currentColor.BackgroundIconButtonAppBarColor else currentColor.BackgroundTopAppBarColor
 
                 IconButton(
                     onClick = {
@@ -156,7 +160,7 @@ private fun BottomAppNavigation(navController: NavHostController, view: String) 
                     Icon(
                         painter = painterResource(id = screen.icon),
                         contentDescription = screen.title,
-                        tint = if (view == screen.title) SLColor.IconSelectedBottomAppBarColor else SLColor.IconUnSelectedBottomAppBarColor,
+                        tint = if (view == screen.title) currentColor.IconSelectedBottomAppBarColor else currentColor.IconUnSelectedBottomAppBarColor,
                         modifier = Modifier.size(25.dp)
                     )
                 }

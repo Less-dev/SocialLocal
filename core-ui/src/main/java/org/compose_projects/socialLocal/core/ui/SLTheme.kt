@@ -32,7 +32,7 @@ internal object SLTheme {
     val blackStyle: SLThemeConfig
         get() = object: SLThemeConfig{
             override val BackgroundColor: Color
-                get() = SL_theme_default_BackgroundColor
+                get() = SL_theme_black_BackgroundColor
             override val TextTopAppBarColor: Color
                 get() = SL_theme_black_TextTopAppBarColor
             override val BackgroundTopAppBarColor: Color
