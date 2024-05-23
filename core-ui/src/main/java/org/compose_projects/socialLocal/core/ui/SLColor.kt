@@ -16,6 +16,16 @@
 
 package org.compose_projects.socialLocal.core.ui
 
+import androidx.compose.runtime.mutableStateOf
 
-val SLColor = SLTheme.defaultStyle
 
+var SLColor = mutableStateOf(SLTheme.defaultStyle)
+val SLThemes = mutableListOf(
+    SLTheme.defaultStyle,
+    SLTheme.blackStyle
+)
+
+object SLThemesList {
+    val default = SLThemes[0]
+    val black = SLThemes[1]
+}
