@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package org.compose_projects.socialLocal.core.ui
+package org.compose_projects.socialLocal.core.ui.colorPreferences
 
 import androidx.compose.ui.graphics.Color
+import org.compose_projects.socialLocal.core.ui.colorPreferences.backgroundBottomAppBarColor
 
 //Appearance themes
 internal val SL_theme_default_BackgroundColor = Color(0xFF00343B)
