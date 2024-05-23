@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.compose_projects.socialLocal.core.ui
+package org.compose_projects.socialLocal.core.ui.colorPreferences
 
 import androidx.compose.ui.graphics.Color
 

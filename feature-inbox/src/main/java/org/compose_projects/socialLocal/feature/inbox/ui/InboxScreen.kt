@@ -21,7 +21,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import org.compose_projects.socialLocal.core.ui.SLColor
+import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 
 
 @Composable
