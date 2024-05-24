@@ -60,6 +60,9 @@ dependencies {
     // Core Android dependencies
     implementation(libs.androidx.core.ktx)
 
+    //CPA-COMPONENTS
+    //implementation("com.github.compose-projects-android:CPA-Components:1.0.1-alpha")
+
     // Compose
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.tooling.preview)

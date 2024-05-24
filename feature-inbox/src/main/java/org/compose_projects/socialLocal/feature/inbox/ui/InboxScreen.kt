@@ -16,29 +16,51 @@
 
 package org.compose_projects.socialLocal.feature.inbox.ui
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.HorizontalDivider
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 
 
 @Composable
 fun InboxScreen() {
-    (0..12).forEach {
-        InboxScreen(it)
-    }
+    LazyColumnWithState()
 }
 
 @Composable
-internal fun InboxScreen(aa: Int) {
-    val currentColor by SLColor
-    LazyColumn {
-        items(aa) {
-            HorizontalDivider()
-            Text(text = it.toString(), color = currentColor.TextsColor)
-            HorizontalDivider()
+fun LazyColumnWithState() {
+    val listState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+    val itemsList = List(121) { "Item $it" }
+
+    LaunchedEffect(Unit) {
+        coroutineScope.launch {
+            listState.scrollToItem(itemsList.size - 1)
+        }
+    }
+
+    LazyColumn(
+        state = listState,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        items(itemsList) { item ->
+            Text(
+                text = item,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                textAlign = TextAlign.Center
+            )
         }
     }
 }

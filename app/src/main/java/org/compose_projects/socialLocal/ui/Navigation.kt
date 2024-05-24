@@ -48,6 +48,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import org.compose_projects.components.cpa_textfield.CPATextField
 import org.compose_projects.socialLocal.R
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 import org.compose_projects.socialLocal.feature.auth.ui.AuthScreen
@@ -58,6 +59,10 @@ import org.compose_projects.socialLocal.CONSTANTS.titleAuth
 import org.compose_projects.socialLocal.CONSTANTS.titleHome
 import org.compose_projects.socialLocal.CONSTANTS.titleInbox
 import org.compose_projects.socialLocal.CONSTANTS.titleProfile
+import org.compose_projects.socialLocal.ui.Routes.auth
+import org.compose_projects.socialLocal.ui.Routes.globalChat
+import org.compose_projects.socialLocal.ui.Routes.inbox
+import org.compose_projects.socialLocal.ui.Routes.profile
 import org.compose_projects.socialLocal.ui.Screens.Companion.screens
 
 
@@ -81,24 +86,24 @@ fun MainNavigation() {
                     .padding(it)
             ) {
 
-                NavHost(navController = navController, startDestination = Routes.auth) {
+                NavHost(navController = navController, startDestination = inbox) {
 
-                    composable(Routes.auth) {
+                    composable(auth) {
                         titleTopAppBar = titleAuth
                         AuthScreen()
                     }
 
-                    composable(Routes.globalChat) {
+                    composable(globalChat) {
                         titleTopAppBar = titleHome
                         HomeScreen()
                     }
 
-                    composable(Routes.inbox) {
+                    composable(inbox) {
                         titleTopAppBar = titleInbox
                         InboxScreen()
                     }
 
-                    composable(Routes.profile) {
+                    composable(profile) {
                         titleTopAppBar = titleProfile
                         ProfileScreen()
                     }
@@ -131,7 +136,8 @@ private fun BottomAppNavigation(navController: NavHostController, view: String) 
     val currentColor by SLColor
 
     BottomAppBar(
-        modifier = Modifier.height(120.dp)
+        modifier = Modifier
+            .height(120.dp)
             .systemBarsPadding()
         ,
         containerColor = currentColor.BackgroundBottomAppBarColor,

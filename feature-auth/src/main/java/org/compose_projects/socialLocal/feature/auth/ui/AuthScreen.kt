@@ -16,6 +16,7 @@
 
 package org.compose_projects.socialLocal.feature.auth.ui
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
@@ -25,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLThemesList
+import org.compose_projects.socialLocal.core.ui.components.ChatBubbles
 
 @Composable
 fun AuthScreen() {
@@ -42,10 +44,16 @@ internal fun AuthScreen(iii: Int) {
             Text(text = it.toString(), color = Color.White)
         }
     }
-    Button(
-        onClick = { SLColor.value = if (SLColor.value == SLThemesList.default) SLThemesList.black else SLThemesList.default }
-    ) {
-        Text(if (SLColor.value == SLThemesList.default) "Cambiar a negro" else "Cambiar a claro")
+    Column {
+        Button(
+            onClick = { SLColor.value = if (SLColor.value == SLThemesList.default) SLThemesList.black else SLThemesList.default }
+        ) {
+            Text(if (SLColor.value == SLThemesList.default) "Cambiar a negro" else "Cambiar a claro")
+        }
+
     }
+
+
+
 
 }
