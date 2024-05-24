@@ -37,12 +37,16 @@ internal object SLTheme {
                 get() = SL_theme_default_backgroundIconBottomAppBarColor
             override val BackgroundBottomSheetsColor: Color
                 get() = SL_theme_default_BackgroundBottomSheetsColor
+            override val BackgroundChatBubbles: Color
+                get() = SL_theme_default_BackgroundChatBubbles
             override val IconsColor: Color
                 get() = SL_theme_default_IconsColor
             override val BackgroundButtonsColor: Color
                 get() = SL_theme_default_BackgroundButtonsColor
-            override val TextsColor: Color
-                get() = SL_theme_default_TextsColor
+            override val TextsColor1: Color
+                get() = SL_theme_default_TextsColor1
+            override val TextsColor2: Color
+                get() = SL_theme_default_TextsColor2
         }
 
     val blackStyle: SLThemeConfig
@@ -63,11 +67,15 @@ internal object SLTheme {
                 get() = SL_theme_black_backgroundIconBottomAppBarColor
             override val BackgroundBottomSheetsColor: Color
                 get() = SL_theme_black_BackgroundBottomSheetsColor
+            override val BackgroundChatBubbles: Color
+                get() = SL_theme_black_BackgroundChatBubbles
             override val IconsColor: Color
                 get() = SL_theme_black_IconsColor
             override val BackgroundButtonsColor: Color
                 get() = SL_theme_black_BackgroundButtonsColor
-            override val TextsColor: Color
-                get() = SL_theme_black_TextsColor
+            override val TextsColor1: Color
+                get() = SL_theme_black_TextsColor1
+            override val TextsColor2: Color
+                get() = SL_theme_black_TextsColor2
         }
 }

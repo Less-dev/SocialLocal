@@ -48,7 +48,7 @@ fun ChatBubbles(message: String, left: Boolean) {
             Column(
                 modifier = Modifier
                     .background(
-                        color = currentColor.BackgroundBottomSheetsColor,
+                        color = currentColor.BackgroundChatBubbles,
                         shape = RoundedCornerShape(
                             4.dp,
                             4.dp,
@@ -59,7 +59,7 @@ fun ChatBubbles(message: String, left: Boolean) {
             ) {
                 Text(
                     message,
-                    color = Color.White.copy(0.85F),
+                    color = currentColor.TextsColor2,
                     modifier = Modifier.padding(5.dp),
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold
@@ -70,13 +70,13 @@ fun ChatBubbles(message: String, left: Boolean) {
         Row(Modifier.height(IntrinsicSize.Max)) {
             Column(
                 modifier = Modifier.background(
-                    color = currentColor.BackgroundBottomSheetsColor,
+                    color = currentColor.BackgroundChatBubbles,
                     shape = RoundedCornerShape(4.dp, 4.dp, 0.dp, 4.dp)
                 )
             ) {
                 Text(
                     message,
-                    color = Color.White.copy(0.85F),
+                    color = currentColor.TextsColor2,
                     modifier = Modifier.padding(5.dp),
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold

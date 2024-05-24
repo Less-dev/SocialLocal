@@ -17,7 +17,6 @@
 package org.compose_projects.socialLocal.core.ui.colorPreferences
 
 import androidx.compose.ui.graphics.Color
-import org.compose_projects.socialLocal.core.ui.colorPreferences.backgroundBottomAppBarColor
 
 //Appearance themes
 internal val SL_theme_default_BackgroundColor = Color(0xFF00343B)
@@ -28,9 +27,11 @@ internal val SL_theme_default_IconSelectedBottomAppBarColor = Color(0xFF82D3E1)
 internal val SL_theme_default_IconUnSelectedBottomAppBarColor = Color(0xFF004F58)
 internal val SL_theme_default_backgroundIconBottomAppBarColor = Color(0xFF005968)
 internal val SL_theme_default_BackgroundBottomSheetsColor = Color(0xC1001F24)
+internal val SL_theme_default_BackgroundChatBubbles = Color(0xFF004F58)
 internal val SL_theme_default_IconsColor = Color(0xFF82D3E1)
 internal val SL_theme_default_BackgroundButtonsColor = Color(0xFF004F58)
-internal val SL_theme_default_TextsColor = Color(0xFF001F24)
+internal val SL_theme_default_TextsColor1 = Color(0xFF001F24)
+internal val SL_theme_default_TextsColor2 = Color(0xD9C1D2D5)
 
 //black
 internal val SL_theme_black_BackgroundColor = Color(0xFF000C0E)
@@ -41,7 +42,9 @@ internal val SL_theme_black_IconSelectedBottomAppBarColor = Color(0xFF82D3E1)
 internal val SL_theme_black_IconUnSelectedBottomAppBarColor = Color(0xFF004F58)
 internal val SL_theme_black_backgroundIconBottomAppBarColor = Color(0xFF005968)
 internal val SL_theme_black_BackgroundBottomSheetsColor = Color(0xC1001F24)
+internal val SL_theme_black_BackgroundChatBubbles = Color(0xFF004F58)
 internal val SL_theme_black_IconsColor = Color(0xFF82D3E1)
 internal val SL_theme_black_BackgroundButtonsColor = Color(0xFF004F58)
-internal val SL_theme_black_TextsColor = Color(0xFF001F24)
+internal val SL_theme_black_TextsColor1 = Color(0xFF001F24)
+internal val SL_theme_black_TextsColor2 = Color(0xD9C1D2D5)
 
