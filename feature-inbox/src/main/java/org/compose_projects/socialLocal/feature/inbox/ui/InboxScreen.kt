@@ -16,8 +16,12 @@
 
 package org.compose_projects.socialLocal.feature.inbox.ui
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -26,15 +30,97 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.ChatBubbles
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message1
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message10
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message11
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message12
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message2
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message3
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message4
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message5
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message6
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message7
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message8
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message9
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages_example
 
 
 @Composable
 fun InboxScreen() {
-    LazyColumnWithState()
+    val messages: List<messages_example> = listOf(
+        message1,
+        message2,
+        message3,
+        message4,
+        message5,
+        message6,
+        message7,
+        message8,
+        message9,
+        message10,
+        message11,
+        message12,
+        message4,
+        message5,
+        message6,
+        message7,
+        message8,
+        message9,
+        message1,
+        message2,
+        message3,
+        message4,
+        message5,
+        message6,
+        message7,
+        message8,
+        message9,
+        message10,
+        message11,
+        message12,
+        message4,
+        message5,
+        message6,
+        message7,
+        message8,
+        message9,
+    )
+    val listState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+
+    LaunchedEffect(Unit) {
+        coroutineScope.launch {
+            listState.scrollToItem(messages.lastIndex)
+        }
+    }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(5.dp)
+    ) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(15.dp),
+            horizontalAlignment = Alignment.End,
+            verticalArrangement = Arrangement.Top
+        ) {
+            items(messages) {
+                ChatBubbles(message = it.message, left = it.left)
+                Spacer(modifier = Modifier.height(10.dp))
+            }
+        }
+
+    }
+    //LazyColumnWithState()
 }
 
 @Composable
@@ -43,9 +129,10 @@ fun LazyColumnWithState() {
     val coroutineScope = rememberCoroutineScope()
     val itemsList = List(121) { "Item $it" }
 
+    //Automatic Scroll
     LaunchedEffect(Unit) {
         coroutineScope.launch {
-            listState.scrollToItem(itemsList.size - 1)
+            listState.scrollToItem(itemsList.lastIndex)
         }
     }
 

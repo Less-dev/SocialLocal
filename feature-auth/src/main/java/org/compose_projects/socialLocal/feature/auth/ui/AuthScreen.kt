@@ -26,7 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLThemesList
-import org.compose_projects.socialLocal.core.ui.components.ChatBubbles
 
 @Composable
 fun AuthScreen() {
