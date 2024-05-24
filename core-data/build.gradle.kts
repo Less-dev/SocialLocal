@@ -26,7 +26,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 24
 
         testInstrumentationRunner = "org.compose_projects.socialLocal.core.testing.HiltTestRunner"
         consumerProguardFiles("consumer-rules.pro")
