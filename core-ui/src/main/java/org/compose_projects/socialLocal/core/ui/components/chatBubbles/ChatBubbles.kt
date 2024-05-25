@@ -53,7 +53,9 @@ import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 
 @Composable
 fun Bubbles(
-    message: String,
+    message: String? = null,
+    image: String? = null,
+    video: String? = null,
     hour: String,
     left: Boolean
 ) {
@@ -79,13 +81,42 @@ fun Bubbles(
                 hour = hour,
                 left = left
             ) {
-                Text(
-                    message,
-                    color = currentColor.TextsColor2,
-                    modifier = Modifier.padding(5.dp),
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold,
-                )
+
+                if (message != null) {
+                    Text(
+                        message,
+                        color = currentColor.TextsColor2,
+                        modifier = Modifier.padding(5.dp),
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
+                } else if (image != null) {
+                    Box(
+                        modifier = Modifier
+                            .size(300.dp)
+                            .padding(8.dp)
+                            .clip(
+                                RoundedCornerShape(10.dp)
+                            )
+                            .background(color = currentColor.BackgroundColor.copy(alpha = 0.8F))
+                            .align(Alignment.CenterVertically)
+                    ) {
+
+                        Image(
+                            painter = painterResource(
+                                id = images.random()
+                            ),
+                            contentDescription = null,
+                            contentScale = ContentScale.FillBounds,
+                            modifier = Modifier.fillMaxSize()
+
+                        )
+
+                    }
+                }
+                else if (video != null) {
+                    //visualice video
+                }
             }
 
         } else {
@@ -93,16 +124,6 @@ fun Bubbles(
                 hour = hour,
                 left = left
             ) {
-                /*
-                Text(
-                    message,
-                    color = currentColor.TextsColor2,
-                    modifier = Modifier.padding(5.dp),
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-                 */
-
                 Box(
                     modifier = Modifier
                         .size(300.dp)
@@ -202,7 +223,6 @@ private fun TriangleChatBubbles(left: Boolean) {
             .fillMaxHeight()
     ) {}
 }
-
 
 private class TriangleEdgeShape(
     private val sizeTriangle: Int,
