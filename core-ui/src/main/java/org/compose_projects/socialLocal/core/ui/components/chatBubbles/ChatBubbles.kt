@@ -25,7 +25,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -184,9 +183,9 @@ fun CurrentContent(
     } else if (image != null) {
 
         val imageUri = when (image) {
-            imageURIs.uri1 -> R.drawable.meme1
-            imageURIs.uri2 -> R.drawable.meme2
-            imageURIs.uri3 -> R.drawable.meme3
+            images_chat.uri1 -> R.drawable.meme1
+            images_chat.uri2 -> R.drawable.meme2
+            images_chat.uri3 -> R.drawable.meme3
             else -> {
                 R.drawable.meme1
             }
