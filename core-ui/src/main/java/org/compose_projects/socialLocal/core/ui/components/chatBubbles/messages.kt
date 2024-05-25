@@ -13,8 +13,8 @@ object messages {
     val message2: messages_example
         get() = object: messages_example {
             override val index: Int = 2
-            override val message: String = "Hola Less, soy carlos, gracias."
-            override val image: String? = null
+            override val message: String? = null
+            override val image: String? = imageURIs.uri1
             override val hour: String = "19:55 PM"
             override val left: Boolean = true
         }
@@ -39,8 +39,8 @@ object messages {
     val message5: messages_example
         get() = object: messages_example {
             override val index: Int = 5
-            override val message: String = "ok"
-            override val image: String? = null
+            override val message: String? = null
+            override val image: String? = imageURIs.uri2
             override val hour: String = "20:02 PM"
             override val left: Boolean = true
         }
@@ -88,8 +88,8 @@ object messages {
     val message11: messages_example
         get() = object: messages_example {
             override val index: Int = 11
-            override val message: String = "Vale!"
-            override val image: String? = null
+            override val message: String? = null
+            override val image: String? = imageURIs.uri3
             override val hour: String = "20:10 PM"
             override val left: Boolean = true
         }
@@ -103,5 +103,10 @@ object messages {
             override val left: Boolean = true
         }
 
+}
 
+object imageURIs {
+    const val uri1 = "/media/socialLocal/chat_global/image1.png"
+    const val uri2 = "/media/socialLocal/chat_global/image2.png"
+    const val uri3 = "/media/socialLocal/chat_global/image3.png"
 }
