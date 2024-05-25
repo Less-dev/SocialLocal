@@ -28,7 +28,8 @@ import androidx.compose.ui.unit.sp
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 
 @Composable
-fun ChatBubbles(message: String, left: Boolean) {
+fun Bubbles(message: String, left: Boolean) {
+
     val currentColor by SLColor
 
     Row(

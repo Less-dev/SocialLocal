@@ -30,12 +30,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.ChatBubbles
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.Bubbles
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message1
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message10
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message11
@@ -113,7 +112,7 @@ fun InboxScreen() {
             verticalArrangement = Arrangement.Top
         ) {
             items(messages) {
-                ChatBubbles(message = it.message, left = it.left)
+                Bubbles(message = it.message, left = it.left)
                 Spacer(modifier = Modifier.height(10.dp))
             }
         }
