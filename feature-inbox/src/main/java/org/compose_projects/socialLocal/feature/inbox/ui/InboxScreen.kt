@@ -32,7 +32,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.Bubbles
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.imageURIs
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message1
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message10
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message11
