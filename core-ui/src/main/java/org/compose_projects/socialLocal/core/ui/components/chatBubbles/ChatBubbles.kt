@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
@@ -28,6 +27,7 @@ import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 
 @Composable
 fun ChatBubbles(message: String, left: Boolean) {
+
     val currentColor by SLColor
 
     if (left) {
@@ -36,7 +36,7 @@ fun ChatBubbles(message: String, left: Boolean) {
             Column(
                 modifier = Modifier
                     .background(
-                        color = currentColor.BackgroundBottomSheetsColor.copy(alpha = 0.5F),
+                        color = currentColor.BackgroundTriangleChatBubblesLeft,
                         shape = TriangleEdgeShape(offset = 15, left = left)
                     )
                     .width(8.dp)
@@ -48,7 +48,7 @@ fun ChatBubbles(message: String, left: Boolean) {
             Column(
                 modifier = Modifier
                     .background(
-                        color = currentColor.BackgroundChatBubbles,
+                        color = currentColor.BackgroundChatBubblesLeft,
                         shape = RoundedCornerShape(
                             4.dp,
                             4.dp,
@@ -68,9 +68,10 @@ fun ChatBubbles(message: String, left: Boolean) {
         }
     } else {
         Row(Modifier.height(IntrinsicSize.Max)) {
+
             Column(
                 modifier = Modifier.background(
-                    color = currentColor.BackgroundChatBubbles,
+                    color = currentColor.BackgroundChatBubblesRight,
                     shape = RoundedCornerShape(4.dp, 4.dp, 0.dp, 4.dp)
                 )
             ) {
@@ -82,17 +83,16 @@ fun ChatBubbles(message: String, left: Boolean) {
                     fontWeight = FontWeight.Bold
                 )
             }
+            //triangle right
             Column(
                 modifier = Modifier
                     .background(
-                        color = currentColor.BackgroundBottomSheetsColor.copy(alpha = 0.5F),
+                        color = currentColor.BackgroundTriangleChatBubblesRight,
                         shape = TriangleEdgeShape(15, left = left)
                     )
                     .width(8.dp)
                     .fillMaxHeight()
-            ) {
-
-            }
+            ) {}
         }
     }
 }
