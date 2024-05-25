@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -69,20 +70,95 @@ fun Bubbles(
         if (left) {
             TriangleChatBubbles(left = left)
             ContentBubbles(
-                hour = hour,
-                left = left
+                left = left,
+                title = {
+                    CurrentTitle(
+                        imageProfile = "",
+                        hour = hour,
+                        left = left
+                    )
+                }
             ) {
                 CurrentContent(message, image, video)
             }
 
         } else {
             ContentBubbles(
-                hour = hour,
-                left = left
+                left = left,
+                title = {
+                    CurrentTitle(
+                        imageProfile = "",
+                        hour = hour,
+                        left = left
+                    )
+                }
             ) {
                 CurrentContent(message, image, video)
             }
             TriangleChatBubbles(left = left)
+        }
+    }
+}
+
+
+@Composable
+private fun CurrentTitle(
+    imageProfile: String,
+    hour: String,
+    left: Boolean
+) {
+
+    val currentColor by SLColor
+
+    if (left) {
+        Row(
+            modifier = Modifier.width(IntrinsicSize.Max),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+
+            Text(
+                hour,
+                color = currentColor.TextsColor2,
+                fontSize = 9.5.sp,
+                fontWeight = FontWeight.Light,
+                modifier = Modifier
+                    .padding(top = 2.dp, start = 4.dp)
+            )
+
+            Text(
+                "Pedro",
+                color = currentColor.TextsColor2,
+                fontSize = 9.5.sp,
+                fontWeight = FontWeight.Light,
+                modifier = Modifier
+                    .padding(end = 4.dp, top = 2.dp)
+            )
+        }
+    } else {
+        Row(
+            modifier = Modifier.width(IntrinsicSize.Max),
+            verticalAlignment = Alignment.Top,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                "Juan",
+                color = currentColor.TextsColor2,
+                fontSize = 9.5.sp,
+                fontWeight = FontWeight.Light,
+                modifier = Modifier
+                    .padding(top = 2.dp, start = 4.dp)
+            )
+
+            Text(
+                hour,
+                color = currentColor.TextsColor2,
+                fontSize = 9.5.sp,
+                fontWeight = FontWeight.Light,
+                modifier = Modifier
+                    .padding(end = 4.dp, top = 2.dp)
+            )
+
         }
     }
 }
@@ -147,8 +223,8 @@ fun CurrentContent(
 
 @Composable
 private fun ContentBubbles(
-    hour: String,
     left: Boolean,
+    title: @Composable () -> Unit,
     content: @Composable () -> Unit
 ) {
 
@@ -162,17 +238,7 @@ private fun ContentBubbles(
                     shape = RoundedCornerShape(4.dp, 4.dp, 4.dp, 0.dp)
                 )
         ) {
-
-            Text(
-                hour,
-                color = currentColor.TextsColor2,
-                fontSize = 9.5.sp,
-                fontWeight = FontWeight.Light,
-                modifier = Modifier
-                    .align(Alignment.Start)
-                    .padding(top = 2.dp, start = 4.dp)
-            )
-
+            title()
             content()
         }
     } else {
@@ -183,17 +249,7 @@ private fun ContentBubbles(
                     shape = RoundedCornerShape(4.dp, 4.dp, 0.dp, 4.dp)
                 )
         ) {
-
-            Text(
-                hour,
-                color = currentColor.TextsColor2,
-                fontSize = 9.5.sp,
-                fontWeight = FontWeight.Light,
-                modifier = Modifier
-                    .align(Alignment.End)
-                    .padding(end = 4.dp, top = 2.dp)
-            )
-
+            title()
             content()
         }
     }
