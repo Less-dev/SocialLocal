@@ -60,17 +60,6 @@ fun Bubbles(
     left: Boolean
 ) {
 
-    val currentColor by SLColor
-
-    val images = listOf(
-        R.drawable.meme1,
-        R.drawable.meme2,
-        R.drawable.meme3
-    )
-
-
-
-
     Row(
         modifier = Modifier
             .height(IntrinsicSize.Max)
@@ -79,55 +68,11 @@ fun Bubbles(
     ) {
         if (left) {
             TriangleChatBubbles(left = left)
-
             ContentBubbles(
                 hour = hour,
                 left = left
             ) {
-
-                if (message != null) {
-                    Text(
-                        message,
-                        color = currentColor.TextsColor2,
-                        modifier = Modifier.padding(5.dp),
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                    )
-                } else if (image != null) {
-
-                    val imageUri = when(image) {
-                        imageURIs.uri1 -> R.drawable.meme1
-                        imageURIs.uri2 -> R.drawable.meme2
-                        imageURIs.uri3 -> R.drawable.meme3
-                        else -> {R.drawable.meme1}
-                    }
-
-                    Box(
-                        modifier = Modifier
-                            .size(300.dp)
-                            .padding(8.dp)
-                            .clip(
-                                RoundedCornerShape(10.dp)
-                            )
-                            .background(color = currentColor.BackgroundColor.copy(alpha = 0.8F))
-                            .align(Alignment.CenterVertically)
-                    ) {
-
-                        Image(
-                            painter = painterResource(
-                                id = imageUri
-                            ),
-                            contentDescription = null,
-                            contentScale = ContentScale.FillBounds,
-                            modifier = Modifier.fillMaxSize()
-
-                        )
-
-                    }
-                }
-                else if (video != null) {
-                    //visualice video
-                }
+                CurrentContent(message, image, video)
             }
 
         } else {
@@ -135,53 +80,68 @@ fun Bubbles(
                 hour = hour,
                 left = left
             ) {
-                if (message != null) {
-                    Text(
-                        message,
-                        color = currentColor.TextsColor2,
-                        modifier = Modifier.padding(5.dp),
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                    )
-                } else if (image != null) {
-
-                    val imageUri = when(image) {
-                        imageURIs.uri1 -> R.drawable.meme1
-                        imageURIs.uri2 -> R.drawable.meme2
-                        imageURIs.uri3 -> R.drawable.meme3
-                        else -> {R.drawable.meme1}
-                    }
-
-                    Box(
-                        modifier = Modifier
-                            .size(300.dp)
-                            .padding(8.dp)
-                            .clip(
-                                RoundedCornerShape(10.dp)
-                            )
-                            .background(color = currentColor.BackgroundColor.copy(alpha = 0.8F))
-                            .align(Alignment.CenterVertically)
-                    ) {
-
-                        Image(
-                            painter = painterResource(
-                                id = imageUri
-                            ),
-                            contentDescription = null,
-                            contentScale = ContentScale.FillBounds,
-                            modifier = Modifier.fillMaxSize()
-
-                        )
-
-                    }
-                }
-                else if (video != null) {
-                    //visualice video
-                }
+                CurrentContent(message, image, video)
             }
             TriangleChatBubbles(left = left)
         }
     }
+}
+
+
+@Composable
+fun CurrentContent(
+    message: String? = null,
+    image: String? = null,
+    video: String? = null,
+) {
+
+    val currentColor by SLColor
+
+    if (message != null) {
+        Text(
+            message,
+            color = currentColor.TextsColor2,
+            modifier = Modifier.padding(5.dp),
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold,
+        )
+    } else if (image != null) {
+
+        val imageUri = when (image) {
+            imageURIs.uri1 -> R.drawable.meme1
+            imageURIs.uri2 -> R.drawable.meme2
+            imageURIs.uri3 -> R.drawable.meme3
+            else -> {
+                R.drawable.meme1
+            }
+        }
+
+        Box(
+            modifier = Modifier
+                .size(300.dp)
+                .padding(8.dp)
+                .clip(
+                    RoundedCornerShape(10.dp)
+                )
+                .background(color = currentColor.BackgroundColor.copy(alpha = 0.8F))
+        ) {
+
+            Image(
+                painter = painterResource(
+                    id = imageUri
+                ),
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds,
+                modifier = Modifier.fillMaxSize()
+
+            )
+
+        }
+    } else if (video != null) {
+        //visualice video
+    }
+
+
 }
 
 
