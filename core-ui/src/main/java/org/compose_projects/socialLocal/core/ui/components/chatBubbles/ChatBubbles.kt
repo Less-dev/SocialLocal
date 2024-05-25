@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2022 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.compose_projects.socialLocal.core.ui.components.chatBubbles
 
 import androidx.compose.foundation.Image
@@ -22,7 +38,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
@@ -37,9 +52,19 @@ import org.compose_projects.socialLocal.core.ui.R
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 
 @Composable
-fun Bubbles(message: String, hour: String, left: Boolean) {
+fun Bubbles(
+    message: String,
+    hour: String,
+    left: Boolean
+) {
 
     val currentColor by SLColor
+
+    val images = listOf(
+        R.drawable.meme1,
+        R.drawable.meme2,
+        R.drawable.meme3
+    )
 
     Row(
         modifier = Modifier
@@ -78,20 +103,24 @@ fun Bubbles(message: String, hour: String, left: Boolean) {
                 )
                  */
 
-                Box(modifier = Modifier
-                    .size(300.dp)
-                    .padding(8.dp)
-                    .clip(
-                        RoundedCornerShape(10.dp)
-                    )
-                    .background(color = currentColor.BackgroundColor.copy(alpha = 0.8F)).
-                    align(Alignment.CenterVertically)
-                     ){
+                Box(
+                    modifier = Modifier
+                        .size(300.dp)
+                        .padding(8.dp)
+                        .clip(
+                            RoundedCornerShape(10.dp)
+                        )
+                        .background(color = currentColor.BackgroundColor.copy(alpha = 0.8F))
+                        .align(Alignment.CenterVertically)
+                ) {
 
                     Image(
-                        painter = painterResource(id = R.drawable.meme),
+                        painter = painterResource(
+                            id = images.random()
+                        ),
                         contentDescription = null,
-                        contentScale = ContentScale.FillBounds
+                        contentScale = ContentScale.FillBounds,
+                        modifier = Modifier.fillMaxSize()
 
                     )
 
@@ -175,7 +204,10 @@ private fun TriangleChatBubbles(left: Boolean) {
 }
 
 
-private class TriangleEdgeShape(private val sizeTriangle: Int, private val left: Boolean) : Shape {
+private class TriangleEdgeShape(
+    private val sizeTriangle: Int,
+    private val left: Boolean
+) : Shape {
 
     override fun createOutline(
         size: Size,
