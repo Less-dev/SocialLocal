@@ -112,40 +112,16 @@ fun InboxScreen() {
             verticalArrangement = Arrangement.Top
         ) {
             items(messages) {
-                Bubbles(message = it.message, left = it.left)
+                Bubbles(
+                    message = it.message,
+                    left = it.left,
+                    hour = it.hour
+                )
                 Spacer(modifier = Modifier.height(10.dp))
             }
         }
 
     }
-    //LazyColumnWithState()
+
 }
 
-@Composable
-fun LazyColumnWithState() {
-    val listState = rememberLazyListState()
-    val coroutineScope = rememberCoroutineScope()
-    val itemsList = List(121) { "Item $it" }
-
-    //Automatic Scroll
-    LaunchedEffect(Unit) {
-        coroutineScope.launch {
-            listState.scrollToItem(itemsList.lastIndex)
-        }
-    }
-
-    LazyColumn(
-        state = listState,
-        modifier = Modifier.fillMaxSize()
-    ) {
-        items(itemsList) { item ->
-            Text(
-                text = item,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                textAlign = TextAlign.Center
-            )
-        }
-    }
-}

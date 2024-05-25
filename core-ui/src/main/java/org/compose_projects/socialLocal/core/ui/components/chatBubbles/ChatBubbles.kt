@@ -14,7 +14,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Outline
@@ -28,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 
 @Composable
-fun Bubbles(message: String, left: Boolean) {
+fun Bubbles(message: String, hour: String, left: Boolean) {
 
     val currentColor by SLColor
 
@@ -44,53 +46,34 @@ fun Bubbles(message: String, left: Boolean) {
                 modifier = Modifier
                     .background(
                         color = currentColor.BackgroundTriangleChatBubblesLeft,
-                        shape = TriangleEdgeShape(offset = 15, left = left)
+                        shape = TriangleEdgeShape(15, left)
                     )
                     .width(8.dp)
                     .fillMaxHeight()
-            ) {
-            }
+            ) {}
 
-            // Columna para el mensaje
-            Column(
-                modifier = Modifier
-                    .background(
-                        color = currentColor.BackgroundChatBubblesLeft,
-                        shape = RoundedCornerShape(4.dp, 4.dp, 4.dp, 0.dp)
-                    )
-            ) {
-                Text(
-                    message,
-                    color = currentColor.TextsColor2,
-                    modifier = Modifier.padding(5.dp),
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+            // Content
+            ContentBubbles(
+                message = message,
+                hour = hour,
+                left = left
+            )
+
         } else {
-            // Columna para el mensaje
-            Column(
-                modifier = Modifier
-                    .background(
-                        color = currentColor.BackgroundChatBubblesRight,
-                        shape = RoundedCornerShape(4.dp, 4.dp, 0.dp, 4.dp)
-                    )
-            ) {
-                Text(
-                    message,
-                    color = currentColor.TextsColor2,
-                    modifier = Modifier.padding(5.dp),
-                    fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
+
+            // Content
+            ContentBubbles(
+                message = message,
+                hour = hour,
+                left = left
+            )
 
             // Columna para el triángulo
             Column(
                 modifier = Modifier
                     .background(
                         color = currentColor.BackgroundTriangleChatBubblesRight,
-                        shape = TriangleEdgeShape(15, left = left)
+                        shape = TriangleEdgeShape(15, left)
                     )
                     .width(8.dp)
                     .fillMaxHeight()
@@ -100,8 +83,71 @@ fun Bubbles(message: String, left: Boolean) {
 }
 
 
+@Composable
+private fun ContentBubbles(message: String, hour: String, left: Boolean) {
 
-class TriangleEdgeShape(private val offset: Int, private val left: Boolean) : Shape {
+    val currentColor by SLColor
+
+    if (left) {
+        Column(
+            modifier = Modifier
+                .background(
+                    color = currentColor.BackgroundChatBubblesLeft,
+                    shape = RoundedCornerShape(4.dp, 4.dp, 4.dp, 0.dp)
+                )
+        ) {
+
+            Text(
+                hour,
+                color = currentColor.TextsColor2,
+                fontSize = 9.5.sp,
+                fontWeight = FontWeight.Light,
+                modifier = Modifier
+                    .align(Alignment.Start)
+                    .padding(top = 2.dp, start = 3.dp)
+            )
+
+            Text(
+                message,
+                color = currentColor.TextsColor2,
+                modifier = Modifier.padding(5.dp),
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
+    } else {
+        Column(
+            modifier = Modifier
+                .background(
+                    color = currentColor.BackgroundChatBubblesRight,
+                    shape = RoundedCornerShape(4.dp, 4.dp, 0.dp, 4.dp)
+                )
+        ) {
+
+            Text(
+                hour,
+                color = currentColor.TextsColor2,
+                fontSize = 9.5.sp,
+                fontWeight = FontWeight.Light,
+                modifier = Modifier
+                    .align(Alignment.End)
+                    .padding(end = 3.dp, top = 2.dp)
+            )
+
+
+            Text(
+                message,
+                color = currentColor.TextsColor2,
+                modifier = Modifier.padding(5.dp),
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold,
+            )
+        }
+    }
+}
+
+
+private class TriangleEdgeShape(private val offset: Int, private val left: Boolean) : Shape {
 
     override fun createOutline(
         size: Size,
