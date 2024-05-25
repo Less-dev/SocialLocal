@@ -4,10 +4,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -27,11 +29,15 @@ import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 
 @Composable
 fun ChatBubbles(message: String, left: Boolean) {
-
     val currentColor by SLColor
 
-    if (left) {
-        Row(Modifier.height(IntrinsicSize.Max)) {
+    Row(
+        modifier = Modifier
+            .height(IntrinsicSize.Max)
+            .fillMaxWidth(),
+        horizontalArrangement = if (left) Arrangement.Start else Arrangement.End
+    ) {
+        if (left) {
             // Columna para el triángulo
             Column(
                 modifier = Modifier
@@ -49,12 +55,7 @@ fun ChatBubbles(message: String, left: Boolean) {
                 modifier = Modifier
                     .background(
                         color = currentColor.BackgroundChatBubblesLeft,
-                        shape = RoundedCornerShape(
-                            4.dp,
-                            4.dp,
-                            4.dp,
-                            0.dp
-                        )
+                        shape = RoundedCornerShape(4.dp, 4.dp, 4.dp, 0.dp)
                     )
             ) {
                 Text(
@@ -65,15 +66,14 @@ fun ChatBubbles(message: String, left: Boolean) {
                     fontWeight = FontWeight.Bold
                 )
             }
-        }
-    } else {
-        Row(Modifier.height(IntrinsicSize.Max)) {
-
+        } else {
+            // Columna para el mensaje
             Column(
-                modifier = Modifier.background(
-                    color = currentColor.BackgroundChatBubblesRight,
-                    shape = RoundedCornerShape(4.dp, 4.dp, 0.dp, 4.dp)
-                )
+                modifier = Modifier
+                    .background(
+                        color = currentColor.BackgroundChatBubblesRight,
+                        shape = RoundedCornerShape(4.dp, 4.dp, 0.dp, 4.dp)
+                    )
             ) {
                 Text(
                     message,
@@ -83,7 +83,8 @@ fun ChatBubbles(message: String, left: Boolean) {
                     fontWeight = FontWeight.Bold
                 )
             }
-            //triangle right
+
+            // Columna para el triángulo
             Column(
                 modifier = Modifier
                     .background(
@@ -96,6 +97,7 @@ fun ChatBubbles(message: String, left: Boolean) {
         }
     }
 }
+
 
 
 class TriangleEdgeShape(private val offset: Int, private val left: Boolean) : Shape {

@@ -110,7 +110,6 @@ fun InboxScreen() {
             modifier = Modifier
                 .fillMaxSize()
                 .padding(15.dp),
-            horizontalAlignment = Alignment.End,
             verticalArrangement = Arrangement.Top
         ) {
             items(messages) {
