@@ -37,8 +37,14 @@ internal object SLTheme {
                 get() = SL_theme_default_backgroundIconBottomAppBarColor
             override val BackgroundBottomSheetsColor: Color
                 get() = SL_theme_default_BackgroundBottomSheetsColor
-            override val BackgroundChatBubbles: Color
-                get() = SL_theme_default_BackgroundChatBubbles
+            override val BackgroundChatBubblesLeft: Color
+                get() = SL_theme_default_BackgroundChatBubblesLeft
+            override val BackgroundChatBubblesRight: Color
+                get() = SL_theme_default_BackgroundChatBubblesRight
+            override val BackgroundTriangleChatBubblesLeft: Color
+                get() = SL_theme_default_BackgroundTriangleChatBubblesLeft
+            override val BackgroundTriangleChatBubblesRight: Color
+                get() = SL_theme_default_BackgroundTriangleChatBubblesRight
             override val IconsColor: Color
                 get() = SL_theme_default_IconsColor
             override val BackgroundButtonsColor: Color
@@ -67,8 +73,14 @@ internal object SLTheme {
                 get() = SL_theme_black_backgroundIconBottomAppBarColor
             override val BackgroundBottomSheetsColor: Color
                 get() = SL_theme_black_BackgroundBottomSheetsColor
-            override val BackgroundChatBubbles: Color
-                get() = SL_theme_black_BackgroundChatBubbles
+            override val BackgroundChatBubblesLeft: Color
+                get() = SL_theme_black_BackgroundChatBubblesLeft
+            override val BackgroundChatBubblesRight: Color
+                get() = SL_theme_black_BackgroundChatBubblesRight
+            override val BackgroundTriangleChatBubblesLeft: Color
+                get() = SL_theme_black_BackgroundTriangleChatBubblesLeft
+            override val BackgroundTriangleChatBubblesRight: Color
+                get() = SL_theme_black_BackgroundTriangleChatBubblesRight
             override val IconsColor: Color
                 get() = SL_theme_black_IconsColor
             override val BackgroundButtonsColor: Color
