@@ -11,11 +11,15 @@ import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PreviewProfile(state: Boolean, onDismissRequest: () -> Unit) {
+fun PreviewProfile(
+    state: Boolean,
+    nameProfile: String,
+    onDismissRequest: () -> Unit
+) {
 
     val currentColor by SLColor
 
-    if (state){
+    if (state) {
         ModalBottomSheet(
             onDismissRequest = {
                 onDismissRequest()
@@ -24,9 +28,9 @@ fun PreviewProfile(state: Boolean, onDismissRequest: () -> Unit) {
             modifier = Modifier.fillMaxHeight(0.9F)
         ) {
             // content
-            ContentPreview()
+            ContentPreview(nameProfile = nameProfile)
         }
     }
-    
+
 }
 

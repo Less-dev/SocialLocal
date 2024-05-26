@@ -100,8 +100,8 @@ fun HomeScreen() {
     }
 
     var showProfile by remember { mutableStateOf(false) }
+    var nameProfile by remember { mutableStateOf("") }
 
-    val context = LocalContext.current
 
     Box(
         modifier = Modifier
@@ -125,19 +125,22 @@ fun HomeScreen() {
                     hour = it.hour,
                     imageProfile = it.imageProfile,
                     nameProfile = it.nameProfile
-                ){
-
+                ) {
                     showProfile = true
+                    nameProfile = it.nameProfile
                 }
                 Spacer(modifier = Modifier.height(10.dp))
             }
         }
 
     }
-    PreviewProfile(state = showProfile) {
+    PreviewProfile(
+        state = showProfile,
+        nameProfile = nameProfile
+    ) {
         showProfile = false
     }
-    
+
 }
 
 
