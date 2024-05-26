@@ -27,8 +27,13 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.Bubbles
@@ -96,6 +101,10 @@ fun InboxScreen() {
         }
     }
 
+    var showProfile by remember { mutableStateOf(false) }
+
+    val context = LocalContext.current
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -115,8 +124,13 @@ fun InboxScreen() {
                     image = it.image,
                     //video = it.video,
                     left = it.left,
-                    hour = it.hour
-                )
+                    hour = it.hour,
+                    imageProfile = it.imageProfile,
+                    nameProfile = it.nameProfile
+                ){
+
+                    showProfile = true
+                }
                 Spacer(modifier = Modifier.height(10.dp))
             }
         }
@@ -124,4 +138,6 @@ fun InboxScreen() {
     }
 
 }
+
+
 

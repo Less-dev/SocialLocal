@@ -16,23 +16,135 @@
 
 package org.compose_projects.socialLocal.feature.home.ui
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.coroutines.launch
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.Bubbles
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages_example
+import org.compose_projects.socialLocal.core.ui.components.prev_profile.PreviewProfile
 import org.compose_projects.socialLocal.feature.home.ui.HomeUiState.Loading
 import org.compose_projects.socialLocal.feature.home.ui.HomeUiState.Error
 import org.compose_projects.socialLocal.feature.home.ui.HomeUiState.Success
+
+@Composable
+fun HomeScreen() {
+    val messages: List<messages_example> = listOf(
+        messages.message1,
+        messages.message2,
+        messages.message3,
+        messages.message4,
+        messages.message5,
+        messages.message6,
+        messages.message7,
+        messages.message8,
+        messages.message9,
+        messages.message10,
+        messages.message11,
+        messages.message12,
+        messages.message4,
+        messages.message5,
+        messages.message6,
+        messages.message7,
+        messages.message8,
+        messages.message9,
+        messages.message1,
+        messages.message2,
+        messages.message3,
+        messages.message4,
+        messages.message5,
+        messages.message6,
+        messages.message7,
+        messages.message8,
+        messages.message9,
+        messages.message10,
+        messages.message11,
+        messages.message12,
+        messages.message4,
+        messages.message5,
+        messages.message6,
+        messages.message7,
+        messages.message8,
+        messages.message9,
+    )
+    val listState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+
+    LaunchedEffect(Unit) {
+        coroutineScope.launch {
+            listState.scrollToItem(messages.lastIndex)
+        }
+    }
+
+    var showProfile by remember { mutableStateOf(false) }
+    var nameProfile by remember { mutableStateOf("") }
+
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(5.dp)
+    ) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(15.dp),
+            verticalArrangement = Arrangement.Top
+        ) {
+            items(messages) {
+
+                Bubbles(
+                    message = it.message,
+                    image = it.image,
+                    //video = it.video,
+                    left = it.left,
+                    hour = it.hour,
+                    imageProfile = it.imageProfile,
+                    nameProfile = it.nameProfile
+                ) {
+                    showProfile = true
+                    nameProfile = it.nameProfile
+                }
+                Spacer(modifier = Modifier.height(10.dp))
+            }
+        }
+
+    }
+    PreviewProfile(
+        state = showProfile,
+        nameProfile = nameProfile
+    ) {
+        showProfile = false
+    }
+
+}
+
+
+/*
 
 @Composable
 fun HomeScreen(modifier: Modifier = Modifier, homeViewModel: HomeViewModel = hiltViewModel()) {
@@ -64,3 +176,4 @@ internal fun HomeScreen(
     }
 
 }
+ */
