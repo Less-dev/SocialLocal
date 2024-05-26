@@ -86,7 +86,7 @@ fun MainNavigation() {
                     .padding(it)
             ) {
 
-                NavHost(navController = navController, startDestination = inbox) {
+                NavHost(navController = navController, startDestination = globalChat) {
 
                     composable(auth) {
                         titleTopAppBar = titleAuth

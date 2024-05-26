@@ -21,6 +21,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -67,7 +68,8 @@ fun Bubbles(
     hour: String,
     imageProfile: String,
     nameProfile: String,
-    left: Boolean
+    left: Boolean,
+    onClickProfile: () -> Unit
 ) {
 
     var size by remember { mutableStateOf(IntSize.Zero) }
@@ -86,7 +88,8 @@ fun Bubbles(
                     CurrentTitle(
                         imageProfile = imageProfile,
                         hour = hour,
-                        nameProfile = nameProfile
+                        nameProfile = nameProfile,
+                        onClickProfile = { onClickProfile() }
                     )
                 }
             ) {
@@ -100,7 +103,8 @@ fun Bubbles(
                     CurrentTitle(
                         imageProfile = imageProfile,
                         hour = hour,
-                        nameProfile = nameProfile
+                        nameProfile = nameProfile,
+                        onClickProfile = { onClickProfile() }
                     )
                 }
             ) {
@@ -117,6 +121,7 @@ private fun CurrentTitle(
     imageProfile: String,
     nameProfile: String,
     hour: String,
+    onClickProfile: () -> Unit
 ) {
 
     val currentColor by SLColor
@@ -142,7 +147,8 @@ private fun CurrentTitle(
             contentDescription = null,
             modifier = Modifier
                 .clip(RoundedCornerShape(50.dp))
-                .size(20.dp),
+                .size(20.dp)
+                .clickable { onClickProfile() },
             contentScale = ContentScale.FillBounds
         )
         Spacer(modifier = Modifier.width(5.dp))
@@ -151,7 +157,9 @@ private fun CurrentTitle(
             nameProfile,
             color = currentColor.TextsColor2,
             fontSize = 11.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .clickable { onClickProfile() }
         )
 
         Spacer(modifier = Modifier.width(15.dp))
