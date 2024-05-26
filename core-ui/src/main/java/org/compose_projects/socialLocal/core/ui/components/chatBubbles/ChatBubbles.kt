@@ -16,6 +16,7 @@
 
 package org.compose_projects.socialLocal.core.ui.components.chatBubbles
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,6 +26,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,7 +35,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,9 +48,11 @@ import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -57,8 +65,12 @@ fun Bubbles(
     image: String? = null,
     video: String? = null,
     hour: String,
+    imageProfile: String,
+    nameProfile: String,
     left: Boolean
 ) {
+
+    var size by remember { mutableStateOf(IntSize.Zero) }
 
     Row(
         modifier = Modifier
@@ -72,9 +84,9 @@ fun Bubbles(
                 left = left,
                 title = {
                     CurrentTitle(
-                        imageProfile = "",
+                        imageProfile = imageProfile,
                         hour = hour,
-                        left = left
+                        nameProfile = nameProfile
                     )
                 }
             ) {
@@ -86,9 +98,9 @@ fun Bubbles(
                 left = left,
                 title = {
                     CurrentTitle(
-                        imageProfile = "",
+                        imageProfile = imageProfile,
                         hour = hour,
-                        left = left
+                        nameProfile = nameProfile
                     )
                 }
             ) {
@@ -103,62 +115,54 @@ fun Bubbles(
 @Composable
 private fun CurrentTitle(
     imageProfile: String,
+    nameProfile: String,
     hour: String,
-    left: Boolean
 ) {
 
     val currentColor by SLColor
 
-    if (left) {
-        Row(
-            modifier = Modifier.width(IntrinsicSize.Max),
-            verticalAlignment = Alignment.Top,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
+    val images_profile = when (imageProfile) {
+        images_profiles.uri1 -> R.drawable.image_profile1
+        images_profiles.uri2 -> R.drawable.image_profile2
+        images_profiles.uri3 -> R.drawable.image_profile3
+        images_profiles.uri4 -> R.drawable.image_profile4
+        else -> R.drawable.image_profile2
+    }
 
-            Text(
-                hour,
-                color = currentColor.TextsColor2,
-                fontSize = 9.5.sp,
-                fontWeight = FontWeight.Light,
-                modifier = Modifier
-                    .padding(top = 2.dp, start = 4.dp)
-            )
 
-            Text(
-                "Pedro",
-                color = currentColor.TextsColor2,
-                fontSize = 9.5.sp,
-                fontWeight = FontWeight.Light,
-                modifier = Modifier
-                    .padding(end = 4.dp, top = 2.dp)
-            )
-        }
-    } else {
-        Row(
-            modifier = Modifier.width(IntrinsicSize.Max),
-            verticalAlignment = Alignment.Top,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                "Juan",
-                color = currentColor.TextsColor2,
-                fontSize = 9.5.sp,
-                fontWeight = FontWeight.Light,
-                modifier = Modifier
-                    .padding(top = 2.dp, start = 4.dp)
-            )
+    Row(
+        modifier = Modifier
+            .width(IntrinsicSize.Max)
+            .padding(top = 3.dp, start = 4.dp, bottom = 3.dp, end = 3.dp),
+        verticalAlignment = Alignment.Top
+    ) {
 
-            Text(
-                hour,
-                color = currentColor.TextsColor2,
-                fontSize = 9.5.sp,
-                fontWeight = FontWeight.Light,
-                modifier = Modifier
-                    .padding(end = 4.dp, top = 2.dp)
-            )
+        Image(
+            painter = painterResource(id = images_profile),
+            contentDescription = null,
+            modifier = Modifier
+                .clip(RoundedCornerShape(50.dp))
+                .size(20.dp),
+            contentScale = ContentScale.FillBounds
+        )
+        Spacer(modifier = Modifier.width(5.dp))
 
-        }
+        Text(
+            nameProfile,
+            color = currentColor.TextsColor2,
+            fontSize = 11.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+        Spacer(modifier = Modifier.width(15.dp))
+
+        Text(
+            "martes - $hour",
+            color = currentColor.TextsColor2,
+            fontSize = 9.5.sp,
+            fontWeight = FontWeight.Light
+        )
+
     }
 }
 
@@ -171,6 +175,9 @@ fun CurrentContent(
 ) {
 
     val currentColor by SLColor
+
+
+
 
     if (message != null) {
         Text(
@@ -229,13 +236,22 @@ private fun ContentBubbles(
 
     val currentColor by SLColor
 
+    var size by remember { mutableStateOf(IntSize.Zero) }
+
+    LaunchedEffect(size) {
+        Log.d("prueba2", "El tamaño del componente\n Heigh: ${size.height} y Width: ${size.width}")
+    }
+
     if (left) {
         Column(
             modifier = Modifier
                 .background(
                     color = currentColor.BackgroundChatBubblesLeft,
-                    shape = RoundedCornerShape(4.dp, 4.dp, 4.dp, 0.dp)
+                    shape = RoundedCornerShape(8.dp, 8.dp, 8.dp, 0.dp)
                 )
+                .onGloballyPositioned {
+                    size = it.size
+                }
         ) {
             title()
             content()
@@ -245,7 +261,7 @@ private fun ContentBubbles(
             modifier = Modifier
                 .background(
                     color = currentColor.BackgroundChatBubblesRight,
-                    shape = RoundedCornerShape(4.dp, 4.dp, 0.dp, 4.dp)
+                    shape = RoundedCornerShape(8.dp, 8.dp, 0.dp, 8.dp)
                 )
         ) {
             title()

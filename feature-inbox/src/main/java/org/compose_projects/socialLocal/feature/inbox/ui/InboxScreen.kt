@@ -115,7 +115,9 @@ fun InboxScreen() {
                     image = it.image,
                     //video = it.video,
                     left = it.left,
-                    hour = it.hour
+                    hour = it.hour,
+                    imageProfile = it.imageProfile,
+                    nameProfile = it.nameProfile
                 )
                 Spacer(modifier = Modifier.height(10.dp))
             }
