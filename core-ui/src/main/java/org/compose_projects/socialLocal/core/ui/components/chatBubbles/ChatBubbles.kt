@@ -184,9 +184,6 @@ fun CurrentContent(
 
     val currentColor by SLColor
 
-
-
-
     if (message != null) {
         Text(
             message,

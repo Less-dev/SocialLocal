@@ -13,7 +13,7 @@ import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 @Composable
 fun PreviewProfile(
     state: Boolean,
-    nameProfile: String,
+    contentProfile: ContentProfile,
     onDismissRequest: () -> Unit
 ) {
 
@@ -28,7 +28,7 @@ fun PreviewProfile(
             modifier = Modifier.fillMaxHeight(0.9F)
         ) {
             // content
-            ContentPreview(nameProfile = nameProfile)
+            ContentPreview(contentProfile = contentProfile)
         }
     }
 
