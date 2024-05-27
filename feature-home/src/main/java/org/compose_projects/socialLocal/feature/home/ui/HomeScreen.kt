@@ -45,7 +45,9 @@ import kotlinx.coroutines.launch
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.Bubbles
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages_example
+import org.compose_projects.socialLocal.core.ui.components.prev_profile.ContentProfile
 import org.compose_projects.socialLocal.core.ui.components.prev_profile.PreviewProfile
+import org.compose_projects.socialLocal.core.ui.components.prev_profile.ScaleImageProfile
 import org.compose_projects.socialLocal.feature.home.ui.HomeUiState.Loading
 import org.compose_projects.socialLocal.feature.home.ui.HomeUiState.Error
 import org.compose_projects.socialLocal.feature.home.ui.HomeUiState.Success
@@ -100,7 +102,11 @@ fun HomeScreen() {
     }
 
     var showProfile by remember { mutableStateOf(false) }
+    var scaleImage by remember { mutableStateOf(false) }
+
     var nameProfile by remember { mutableStateOf("") }
+    var imageProfile by remember { mutableStateOf("") }
+    var descriptionProfile by remember { mutableStateOf("") }
 
 
     Box(
@@ -128,6 +134,8 @@ fun HomeScreen() {
                 ) {
                     showProfile = true
                     nameProfile = it.nameProfile
+                    imageProfile = it.imageProfile
+                    descriptionProfile = if (it.descriptionProfile != null ) it.descriptionProfile.toString() else "Sin Descripción"
                 }
                 Spacer(modifier = Modifier.height(10.dp))
             }
@@ -136,10 +144,15 @@ fun HomeScreen() {
     }
     PreviewProfile(
         state = showProfile,
-        nameProfile = nameProfile
+        contentProfile = ContentProfile(
+            name = nameProfile,
+            image = imageProfile,
+            description = descriptionProfile
+        ),
     ) {
         showProfile = false
     }
+
 
 }
 

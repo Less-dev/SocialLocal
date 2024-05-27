@@ -52,6 +52,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.LayoutDirection
@@ -184,9 +185,6 @@ fun CurrentContent(
 
     val currentColor by SLColor
 
-
-
-
     if (message != null) {
         Text(
             message,
@@ -194,6 +192,7 @@ fun CurrentContent(
             modifier = Modifier.padding(5.dp),
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Justify
         )
     } else if (image != null) {
 

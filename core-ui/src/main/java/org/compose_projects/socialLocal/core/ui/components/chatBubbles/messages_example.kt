@@ -6,6 +6,7 @@ interface messages_example {
     val imageProfile: String
     val nameProfile: String
     val hour: String
+    val descriptionProfile: String?
     val message: String?
     val image: String?
     val video: String?
