@@ -132,7 +132,7 @@ fun HomeScreen() {
                     showProfile = true
                     nameProfile = it.nameProfile
                     imageProfile = it.imageProfile
-                    descriptionProfile = if (it.message != null ) it.message.toString() else "Sin Descripción"
+                    descriptionProfile = if (it.descriptionProfile != null ) it.descriptionProfile.toString() else "Sin Descripción"
                 }
                 Spacer(modifier = Modifier.height(10.dp))
             }
