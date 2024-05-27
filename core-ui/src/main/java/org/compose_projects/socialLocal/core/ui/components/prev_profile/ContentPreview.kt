@@ -57,7 +57,6 @@ internal fun ContentPreview(contentProfile: ContentProfile) {
         CurrentContent(contentProfile = contentProfile)
     }
 
-
 }
 
 

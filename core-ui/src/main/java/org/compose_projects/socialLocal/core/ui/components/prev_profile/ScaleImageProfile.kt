@@ -48,6 +48,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import org.compose_projects.socialLocal.core.ui.R
+import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.images_profiles
 
 
@@ -83,7 +84,7 @@ fun ScaleImageProfile(
                     modifier = Modifier
                         .padding(it)
                         .fillMaxSize(),
-                    profileImage = painterResource(id = image_profile)
+                    image = contentProfile.image
                 )
             }
         }
@@ -93,6 +94,9 @@ fun ScaleImageProfile(
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun TopAppBar(userName: String, onDismissImage: () -> Unit) {
+
+    val currentColor by SLColor
+
     TopAppBar(
         title = { Text(text = userName) },
         navigationIcon = {
@@ -105,9 +109,9 @@ private fun TopAppBar(userName: String, onDismissImage: () -> Unit) {
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = Color.Black,
-            navigationIconContentColor = Color.White,
-            titleContentColor = Color.White
+            containerColor = currentColor.BackgroundBottomAppBarColor,
+            navigationIconContentColor = currentColor.IconsColor,
+            titleContentColor = currentColor.TextsColor2
         )
     )
 }
@@ -115,15 +119,26 @@ private fun TopAppBar(userName: String, onDismissImage: () -> Unit) {
 @Composable
 private fun ImageScaled(
     modifier: Modifier,
-    profileImage: Painter
+    image: String
 ) {
+
+    val currentColor by SLColor
+
     var offsetX by remember { mutableFloatStateOf(0f) }
     var offsetY by remember { mutableFloatStateOf(0f) }
     var scale by remember { mutableFloatStateOf(1f) }
 
+    val image_profile = when (image) {
+        images_profiles.uri1 -> R.drawable.image_profile1
+        images_profiles.uri2 -> R.drawable.image_profile2
+        images_profiles.uri3 -> R.drawable.image_profile3
+        images_profiles.uri4 -> R.drawable.image_profile4
+        else -> R.drawable.image_profile2
+    }
+
     Box(
         modifier = modifier
-            .background(Color.Black)
+            .background(currentColor.BackgroundBottomAppBarColor)
             .pointerInput(Unit) {
                 detectTransformGestures { _, pan, zoom, _ ->
                     scale = maxOf(1f, minOf(scale * zoom, 5f))
@@ -138,7 +153,7 @@ private fun ImageScaled(
         contentAlignment = Alignment.Center
     ) {
         Image(
-            painter = profileImage,
+            painter = painterResource(id = image_profile),
             contentDescription = null,
             contentScale = ContentScale.Fit,
             modifier = Modifier
