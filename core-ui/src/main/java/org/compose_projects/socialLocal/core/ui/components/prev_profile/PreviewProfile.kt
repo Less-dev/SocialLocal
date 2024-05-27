@@ -42,7 +42,7 @@ fun PreviewProfile(
             onDismissRequest = {
                 onDismissRequest()
             },
-            containerColor = currentColor.BackgroundColor,
+            containerColor = currentColor.BackgroundBottomAppBarColor,
             modifier = Modifier.fillMaxHeight(0.9F)
         ) {
             // content
