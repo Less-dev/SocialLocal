@@ -156,7 +156,7 @@ private fun CurrentTitle(
 
         Text(
             nameProfile,
-            color = currentColor.TextsColor2,
+            color = currentColor.ColorTitles,
             fontSize = 11.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
@@ -167,7 +167,7 @@ private fun CurrentTitle(
 
         Text(
             "martes - $hour",
-            color = currentColor.TextsColor2,
+            color = currentColor.ColorTitles,
             fontSize = 9.5.sp,
             fontWeight = FontWeight.Light
         )
@@ -188,7 +188,7 @@ fun CurrentContent(
     if (message != null) {
         Text(
             message,
-            color = currentColor.TextsColor2,
+            color = currentColor.ColorParagraphs,
             modifier = Modifier.padding(5.dp),
             fontSize = 12.sp,
             fontWeight = FontWeight.Bold,
