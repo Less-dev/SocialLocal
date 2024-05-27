@@ -17,6 +17,7 @@
 package org.compose_projects.socialLocal.core.ui.components.prev_profile
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,6 +31,9 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -45,6 +49,7 @@ import org.compose_projects.socialLocal.core.ui.components.chatBubbles.images_pr
 
 @Composable
 internal fun ContentPreview(contentProfile: ContentProfile) {
+
     Column(
         verticalArrangement = Arrangement.Top,
         modifier = Modifier.padding(10.dp)
@@ -52,6 +57,8 @@ internal fun ContentPreview(contentProfile: ContentProfile) {
         CurrentTitle(nameProfile = contentProfile.name)
         CurrentContent(contentProfile = contentProfile)
     }
+
+
 }
 
 
@@ -74,7 +81,7 @@ private fun CurrentTitle(nameProfile: String) {
 
 @Composable
 private fun CurrentContent(
-    contentProfile: ContentProfile
+    contentProfile: ContentProfile,
 ) {
     CurrentImageProfile(imageProfile = contentProfile.image)
     CurrentDescriptionProfile(descriptionProfile = contentProfile.description)
@@ -82,6 +89,8 @@ private fun CurrentContent(
 
 @Composable
 private fun CurrentImageProfile(imageProfile: String) {
+
+    var scaleImage by remember { mutableStateOf(false) }
 
     val image_profile = when (imageProfile) {
         images_profiles.uri1 -> R.drawable.image_profile1
@@ -104,8 +113,13 @@ private fun CurrentImageProfile(imageProfile: String) {
                 .clip(
                     CircleShape
                 )
+                .clickable { scaleImage = true }
         )
     }
+    ScaleImageProfile(state = scaleImage) {
+        scaleImage = false
+    }
+
 
 }
 
