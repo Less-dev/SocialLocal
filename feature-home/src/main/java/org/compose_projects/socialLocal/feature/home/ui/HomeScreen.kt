@@ -18,7 +18,6 @@ package org.compose_projects.socialLocal.feature.home.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -26,9 +25,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -37,20 +33,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.launch
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.Bubbles
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages_example
 import org.compose_projects.socialLocal.core.ui.components.prev_profile.ContentProfile
 import org.compose_projects.socialLocal.core.ui.components.prev_profile.PreviewProfile
-import org.compose_projects.socialLocal.core.ui.components.prev_profile.ScaleImageProfile
-import org.compose_projects.socialLocal.feature.home.ui.HomeUiState.Loading
-import org.compose_projects.socialLocal.feature.home.ui.HomeUiState.Error
-import org.compose_projects.socialLocal.feature.home.ui.HomeUiState.Success
 
 @Composable
 fun HomeScreen() {
@@ -102,8 +91,6 @@ fun HomeScreen() {
     }
 
     var showProfile by remember { mutableStateOf(false) }
-    var scaleImage by remember { mutableStateOf(false) }
-
     var nameProfile by remember { mutableStateOf("") }
     var imageProfile by remember { mutableStateOf("") }
     var descriptionProfile by remember { mutableStateOf("") }

@@ -27,7 +27,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -83,16 +82,16 @@ private fun CurrentTitle(nameProfile: String) {
 private fun CurrentContent(
     contentProfile: ContentProfile,
 ) {
-    CurrentImageProfile(imageProfile = contentProfile.image)
+    CurrentImageProfile(contentProfile = contentProfile)
     CurrentDescriptionProfile(descriptionProfile = contentProfile.description)
 }
 
 @Composable
-private fun CurrentImageProfile(imageProfile: String) {
+private fun CurrentImageProfile(contentProfile: ContentProfile) {
 
     var scaleImage by remember { mutableStateOf(false) }
 
-    val image_profile = when (imageProfile) {
+    val image_profile = when (contentProfile.image) {
         images_profiles.uri1 -> R.drawable.image_profile1
         images_profiles.uri2 -> R.drawable.image_profile2
         images_profiles.uri3 -> R.drawable.image_profile3
@@ -116,10 +115,14 @@ private fun CurrentImageProfile(imageProfile: String) {
                 .clickable { scaleImage = true }
         )
     }
-    ScaleImageProfile(state = scaleImage) {
+
+
+    ScaleImageProfile(
+        state = scaleImage,
+        contentProfile = contentProfile
+    ) {
         scaleImage = false
     }
-
 
 }
 
