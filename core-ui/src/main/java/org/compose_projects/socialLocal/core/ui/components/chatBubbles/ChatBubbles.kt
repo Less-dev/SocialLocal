@@ -148,7 +148,7 @@ private fun CurrentTitle(
             contentDescription = null,
             modifier = Modifier
                 .clip(RoundedCornerShape(50.dp))
-                .size(20.dp)
+                .size(25.dp)
                 .clickable { onClickProfile() },
             contentScale = ContentScale.FillBounds
         )

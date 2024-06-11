@@ -50,93 +50,12 @@ import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message8
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message9
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages_example
+import org.compose_projects.socialLocal.core.ui.components.videoPlayer.VideoScreen
 
 
 @Composable
 fun InboxScreen() {
-    val messages: List<messages_example> = listOf(
-        message1,
-        message2,
-        message3,
-        message4,
-        message5,
-        message6,
-        message7,
-        message8,
-        message9,
-        message10,
-        message11,
-        message12,
-        message4,
-        message5,
-        message6,
-        message7,
-        message8,
-        message9,
-        message1,
-        message2,
-        message3,
-        message4,
-        message5,
-        message6,
-        message7,
-        message8,
-        message9,
-        message10,
-        message11,
-        message12,
-        message4,
-        message5,
-        message6,
-        message7,
-        message8,
-        message9,
-    )
-    val listState = rememberLazyListState()
-    val coroutineScope = rememberCoroutineScope()
-
-    LaunchedEffect(Unit) {
-        coroutineScope.launch {
-            listState.scrollToItem(messages.lastIndex)
-        }
-    }
-
-    var showProfile by remember { mutableStateOf(false) }
-
-    val context = LocalContext.current
-
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(5.dp)
-    ) {
-        LazyColumn(
-            state = listState,
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(15.dp),
-            verticalArrangement = Arrangement.Top
-        ) {
-            items(messages) {
-
-                Bubbles(
-                    message = it.message,
-                    image = it.image,
-                    //video = it.video,
-                    left = it.left,
-                    hour = it.hour,
-                    imageProfile = it.imageProfile,
-                    nameProfile = it.nameProfile
-                ){
-
-                    showProfile = true
-                }
-                Spacer(modifier = Modifier.height(10.dp))
-            }
-        }
-
-    }
-
+    VideoScreen()
 }
 
 
