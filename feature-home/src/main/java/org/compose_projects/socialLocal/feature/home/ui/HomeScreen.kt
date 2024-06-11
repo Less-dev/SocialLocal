@@ -113,11 +113,12 @@ fun HomeScreen() {
                 Bubbles(
                     message = it.message,
                     image = it.image,
+                    video = it.video,
                     //video = it.video,
                     left = it.left,
                     hour = it.hour,
                     imageProfile = it.imageProfile,
-                    nameProfile = it.nameProfile
+                    nameProfile = it.nameProfile,
                 ) {
                     showProfile = true
                     nameProfile = it.nameProfile

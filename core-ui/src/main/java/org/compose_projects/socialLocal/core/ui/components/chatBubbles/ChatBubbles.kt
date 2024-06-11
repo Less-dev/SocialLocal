@@ -17,6 +17,7 @@
 package org.compose_projects.socialLocal.core.ui.components.chatBubbles
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,6 +37,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -50,6 +53,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -183,6 +187,7 @@ fun CurrentContent(
     video: String? = null,
 ) {
 
+    val context = LocalContext.current
     val currentColor by SLColor
 
     if (message != null) {
@@ -228,6 +233,29 @@ fun CurrentContent(
         }
     } else if (video != null) {
         //visualice video
+        Box(
+            modifier = Modifier
+                .size(300.dp)
+                .padding(8.dp)
+                .clip(
+                    RoundedCornerShape(10.dp)
+                )
+                .background(
+                    color = currentColor.BackgroundColor.copy(alpha = 0.8F)
+                )
+        ) {
+
+            Icon(
+                painter = painterResource(id = R.drawable.play_ic),
+                contentDescription = null,
+                modifier = Modifier
+                    .clickable { Toast.makeText(context, "Abriendo Video", Toast.LENGTH_SHORT).show() }
+                    .align(Alignment.Center)
+                    .size(80.dp),
+                tint = currentColor.IconsColor
+            )
+
+        }
     }
 
 
