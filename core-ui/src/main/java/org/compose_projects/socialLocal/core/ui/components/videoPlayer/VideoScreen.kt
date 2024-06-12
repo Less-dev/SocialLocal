@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -29,7 +30,6 @@ import io.sanghun.compose.video.uri.VideoPlayerMediaItem
 import org.compose_projects.socialLocal.core.ui.R
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 
-
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun VideoScreen(
@@ -38,20 +38,23 @@ fun VideoScreen(
     onDismissRequest: () -> Unit,
     videoViewModel: VideoViewModel = viewModel()
 ) {
-
     val mediaItemList = videoViewModel.mediaItemList.collectAsState().value
 
     if (state) {
         Dialog(
             onDismissRequest = { onDismissRequest() },
-            properties = DialogProperties(usePlatformDefaultWidth = false)
+            properties = DialogProperties(
+                usePlatformDefaultWidth = false,
+                decorFitsSystemWindows = false
+            )
         ) {
             Scaffold(
                 topBar = {
                     TopAppBar(state = state) {
                         onDismissRequest()
                     }
-                }
+                },
+                contentWindowInsets = WindowInsets(0)
             ) {
                 Box(
                     modifier = Modifier
@@ -68,6 +71,7 @@ fun VideoScreen(
         }
     }
 }
+
 
 
 @Composable
@@ -92,7 +96,7 @@ private fun Video(
             showBackTrackButton = true,
             showNextTrackButton = true,
             showRepeatModeButton = false,
-            showFullScreenButton = true,
+            showFullScreenButton = false, //true - issue unresolving
             controllerShowTimeMilliSeconds = 5_000,
             controllerAutoShow = true,
         ),

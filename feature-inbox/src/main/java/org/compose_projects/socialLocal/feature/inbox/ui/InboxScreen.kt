@@ -55,6 +55,7 @@ import org.compose_projects.socialLocal.core.ui.components.videoPlayer.VideoScre
 
 @Composable
 fun InboxScreen() {
+    VideoScreen(state = true, onDismissRequest = { /*TODO*/ } )
 
 }
 
