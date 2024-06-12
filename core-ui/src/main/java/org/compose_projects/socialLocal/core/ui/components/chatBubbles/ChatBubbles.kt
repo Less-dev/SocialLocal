@@ -64,6 +64,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.compose_projects.socialLocal.core.ui.R
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
+import org.compose_projects.socialLocal.core.ui.components.videoPlayer.VideoScreen
 
 @Composable
 fun Bubbles(
@@ -189,6 +190,7 @@ fun CurrentContent(
 
     val context = LocalContext.current
     val currentColor by SLColor
+    var stateVisibilityVideo by remember { mutableStateOf(false) }
 
     if (message != null) {
         Text(
@@ -249,7 +251,7 @@ fun CurrentContent(
                 painter = painterResource(id = R.drawable.play_ic),
                 contentDescription = null,
                 modifier = Modifier
-                    .clickable { Toast.makeText(context, "Abriendo Video", Toast.LENGTH_SHORT).show() }
+                    .clickable { stateVisibilityVideo = true }
                     .align(Alignment.Center)
                     .size(80.dp),
                 tint = currentColor.IconsColor
@@ -257,6 +259,11 @@ fun CurrentContent(
 
         }
     }
+
+    //show Screen Video Player
+    VideoScreen(state = stateVisibilityVideo,
+        onDismissRequest = { stateVisibilityVideo = false }
+    )
 
 
 }
@@ -270,7 +277,6 @@ private fun ContentBubbles(
 ) {
 
     val currentColor by SLColor
-
     var size by remember { mutableStateOf(IntSize.Zero) }
 
     LaunchedEffect(size) {
