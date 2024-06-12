@@ -30,15 +30,16 @@ import org.compose_projects.socialLocal.core.ui.R
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun VideoScreen(
     state: Boolean,
+    mediaItems: List<VideoPlayerMediaItem>? = null,
     onDismissRequest: () -> Unit,
     videoViewModel: VideoViewModel = viewModel()
 ) {
 
     val mediaItemList = videoViewModel.mediaItemList.collectAsState().value
-
 
     if (state) {
         Dialog(
@@ -55,13 +56,12 @@ fun VideoScreen(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(it)
                 ) {
                     Video(
                         modifier = Modifier
                             .fillMaxSize()
                             .align(Alignment.Center),
-                        mediaItems = mediaItemList
+                        mediaItems = mediaItems ?: mediaItemList
                     )
                 }
             }
@@ -80,7 +80,7 @@ private fun Video(
         handleLifecycle = true,
         autoPlay = true,
         usePlayerController = true,
-        enablePip = true,
+        enablePip = false,
         handleAudioFocus = true,
         controllerConfig = VideoPlayerControllerConfig(
             showSpeedAndPitchOverlay = false,
@@ -91,7 +91,7 @@ private fun Video(
             showBackwardIncrementButton = true,
             showBackTrackButton = true,
             showNextTrackButton = true,
-            showRepeatModeButton = true,
+            showRepeatModeButton = false,
             showFullScreenButton = true,
             controllerShowTimeMilliSeconds = 5_000,
             controllerAutoShow = true,

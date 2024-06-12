@@ -17,7 +17,6 @@
 package org.compose_projects.socialLocal.core.ui.components.chatBubbles
 
 import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,8 +37,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -62,9 +61,11 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import org.compose_projects.socialLocal.core.ui.R
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 import org.compose_projects.socialLocal.core.ui.components.videoPlayer.VideoScreen
+import org.compose_projects.socialLocal.core.ui.components.videoPlayer.viewModels.ChatGlobal
 
 @Composable
 fun Bubbles(
@@ -186,11 +187,13 @@ fun CurrentContent(
     message: String? = null,
     image: String? = null,
     video: String? = null,
+    chatGlobal: ChatGlobal = viewModel()
 ) {
 
     val context = LocalContext.current
     val currentColor by SLColor
-    var stateVisibilityVideo by remember { mutableStateOf(false) }
+    val stateVisibilityVideo = chatGlobal.stateVisibility.collectAsState().value
+    val mediaItems = chatGlobal.mediaItem.collectAsState().value
 
     if (message != null) {
         Text(
@@ -251,7 +254,7 @@ fun CurrentContent(
                 painter = painterResource(id = R.drawable.play_ic),
                 contentDescription = null,
                 modifier = Modifier
-                    .clickable { stateVisibilityVideo = true }
+                    .clickable { chatGlobal.changeStateValue(true) }
                     .align(Alignment.Center)
                     .size(80.dp),
                 tint = currentColor.IconsColor
@@ -262,9 +265,9 @@ fun CurrentContent(
 
     //show Screen Video Player
     VideoScreen(state = stateVisibilityVideo,
-        onDismissRequest = { stateVisibilityVideo = false }
+        //mediaItems = mediaItems,
+        onDismissRequest = { chatGlobal.changeStateValue(false) }
     )
-
 
 }
 
