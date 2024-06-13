@@ -139,13 +139,7 @@ fun HomeScreen() {
             }
         }
 
-        BottomChat(
-            modifier = Modifier
-                .fillMaxWidth(0.95F)
-                .height(45.dp)
-                .align(Alignment.BottomCenter)
-
-        )
+        BottomChat(modifier = Modifier.align(Alignment.BottomCenter))
 
     }
     PreviewProfile(
