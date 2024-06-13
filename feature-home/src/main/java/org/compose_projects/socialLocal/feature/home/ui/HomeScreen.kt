@@ -139,7 +139,14 @@ fun HomeScreen() {
             }
         }
 
-        BottomChat(modifier = Modifier.align(Alignment.BottomCenter))
+        //add: updated the actions for each item
+        BottomChat(modifier = Modifier.align(Alignment.BottomCenter),
+            emojiAction = {},
+            fileAction = {},
+            cameraAction = {},
+            microphoneAction = {},
+            sendAction = {}
+        )
 
     }
     PreviewProfile(

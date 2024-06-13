@@ -17,6 +17,7 @@
 package org.compose_projects.socialLocal.core.ui.components.bottomChat
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -48,9 +49,11 @@ import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
 @Composable
 fun BottomChat(
     modifier: Modifier = Modifier,
-    cameraAction: (() -> Unit)? = null,
-    fileAction: (() -> Unit)? = null,
-    microphoneAction: (() -> Unit)? = null,
+    emojiAction: () -> Unit,
+    fileAction: () -> Unit,
+    cameraAction: () -> Unit,
+    microphoneAction: () -> Unit,
+    sendAction: () -> Unit,
     bottomChatViewModel: BottomChatViewModel = viewModel()
 ) {
     val value = bottomChatViewModel.text.collectAsState().value
@@ -68,8 +71,17 @@ fun BottomChat(
             modifier = modifier.fillMaxWidth(0.87F),
             shape = RoundedCornerShape(15.dp),
             placeholder = { Label() },
-            leadingIcon = { LeadingIcon() },
-            trailingIcon = { TrailingIcon() }
+            leadingIcon = {
+                LeadingIcon(
+                    emojiAction = {}
+                )
+            },
+            trailingIcon = {
+                TrailingIcon(
+                    fileAction = {},
+                    cameraAction = {}
+                )
+            }
         )
         //add: Icon for send todo multimedia
         SendMultimedia(
@@ -101,33 +113,34 @@ private val modifier = Modifier.size(30.dp)
 private val tint = currentColor.IconsColor
 
 @Composable
-private fun LeadingIcon() {
+private fun LeadingIcon(emojiAction: () -> Unit) {
     Icon(
         painter = painterResource(id = R.drawable.emoji_ic),
         contentDescription = null,
-        modifier = modifier,
+        modifier = modifier.clickable { emojiAction() },
         tint = tint
     )
 }
 
 
 @Composable
-private fun TrailingIcon() {
+private fun TrailingIcon(fileAction: () -> Unit, cameraAction: () -> Unit) {
 
     Row(modifier = Modifier.padding(end = 5.dp)) {
         Icon(
             painter = painterResource(id = R.drawable.file_ic),
             contentDescription = null,
-            modifier = modifier,
-            tint = tint
-        )
+            modifier = modifier.clickable { fileAction() },
+            tint = tint,
+
+            )
 
         Spacer(modifier = Modifier.width(5.dp))
 
         Icon(
             painter = painterResource(id = R.drawable.camera_ic),
             contentDescription = null,
-            modifier = modifier,
+            modifier = modifier.clickable { cameraAction() },
             tint = tint
         )
     }
