@@ -55,21 +55,21 @@ android {
 dependencies {
     //video
     implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation("io.sanghun:compose-video:1.2.0")
-    implementation("androidx.media3:media3-exoplayer:1.1.0") // [Required] androidx.media3 ExoPlayer dependency
-    implementation("androidx.media3:media3-session:1.1.0") // [Required] MediaSession Extension dependency
-    implementation("androidx.media3:media3-ui:1.1.0") // [Required] Base Player UI
+    implementation(libs.compose.video)
+    implementation(libs.androidx.media3.exoplayer) // [Required] androidx.media3 ExoPlayer dependency
+    implementation(libs.androidx.media3.session) // [Required] MediaSession Extension dependency
+    implementation(libs.androidx.media3.ui) // [Required] Base Player UI
 
+    //picker emojis
+    implementation(libs.androidx.emoji2.emojipicker)
+
+    //compose Bom
     val composeBom = platform(libs.androidx.compose.bom)
-
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
     // Core Android dependencies
     implementation(libs.androidx.core.ktx)
-
-    //CPA-COMPONENTS
-    //implementation("com.github.compose-projects-android:CPA-Components:1.0.1-alpha")
 
     // Compose
     implementation(libs.androidx.compose.ui)

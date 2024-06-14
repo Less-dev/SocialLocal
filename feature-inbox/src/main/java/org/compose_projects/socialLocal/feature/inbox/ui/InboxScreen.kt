@@ -16,46 +16,13 @@
 
 package org.compose_projects.socialLocal.feature.inbox.ui
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.launch
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.Bubbles
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message1
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message10
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message11
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message12
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message2
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message3
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message4
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message5
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message6
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message7
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message8
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages.message9
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages_example
-import org.compose_projects.socialLocal.core.ui.components.videoPlayer.VideoScreen
+
 
 
 @Composable
 fun InboxScreen() {
-    VideoScreen(state = true, onDismissRequest = { /*TODO*/ } )
+    //ComposeEmojiPickerDemo()
 
 }
 
