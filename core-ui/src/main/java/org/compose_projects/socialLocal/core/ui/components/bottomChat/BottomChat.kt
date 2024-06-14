@@ -73,21 +73,21 @@ fun BottomChat(
             placeholder = { Label() },
             leadingIcon = {
                 LeadingIcon(
-                    emojiAction = {}
+                    emojiAction = { emojiAction() }
                 )
             },
             trailingIcon = {
                 TrailingIcon(
-                    fileAction = {},
-                    cameraAction = {}
+                    fileAction = { fileAction() },
+                    cameraAction = { cameraAction() }
                 )
             }
         )
         //add: Icon for send todo multimedia
         SendMultimedia(
             microphone = value.isEmpty(),
-            sendAction = {},
-            microphoneAction = {}
+            sendAction = { sendAction() },
+            microphoneAction = { microphoneAction() }
         )
 
     }
@@ -160,25 +160,15 @@ fun SendMultimedia(
         .padding(10.dp)
 
     IconButton(
-        onClick = { microphoneAction() }, modifier = Modifier
+        onClick = { if (microphone) microphoneAction() else sendAction() }, modifier = Modifier
             .size(100.dp)
             .padding(3.dp)
     ) {
-        if (microphone) {
-            Icon(
-                painter = painterResource(id = R.drawable.microphone_ic),
-                contentDescription = null,
-                modifier = modifierSendMultimedia,
-                tint = tint
-            )
-        } else {
-            Icon(
-                painter = painterResource(id = R.drawable.send_ic),
-                contentDescription = null,
-                modifier = modifierSendMultimedia,
-                tint = tint
-            )
-        }
+        Icon(
+            painter = painterResource(id = if (microphone) R.drawable.microphone_ic else R.drawable.send_ic),
+            contentDescription = null,
+            modifier = modifierSendMultimedia,
+            tint = tint
+        )
     }
-
 }

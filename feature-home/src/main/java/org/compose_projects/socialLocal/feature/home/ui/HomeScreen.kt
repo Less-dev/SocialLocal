@@ -16,6 +16,8 @@
 
 package org.compose_projects.socialLocal.feature.home.ui
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,6 +41,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.BottomChat
@@ -102,6 +105,8 @@ fun HomeScreen() {
     var imageProfile by remember { mutableStateOf("") }
     var descriptionProfile by remember { mutableStateOf("") }
 
+    val context = LocalContext.current
+
 
     Box(
         modifier = Modifier
@@ -141,11 +146,11 @@ fun HomeScreen() {
 
         //add: updated the actions for each item
         BottomChat(modifier = Modifier.align(Alignment.BottomCenter),
-            emojiAction = {},
-            fileAction = {},
-            cameraAction = {},
-            microphoneAction = {},
-            sendAction = {}
+            emojiAction = { /*todo*/ },
+            fileAction = { /*todo*/ },
+            cameraAction = { /*todo*/ },
+            microphoneAction = { /*todo*/},
+            sendAction = { /*todo*/ }
         )
 
     }
@@ -161,6 +166,7 @@ fun HomeScreen() {
     }
 
 }
+
 
 
 /*
