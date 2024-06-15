@@ -43,6 +43,7 @@ import kotlinx.coroutines.launch
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.BottomChat
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.BottomChatViewModel
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.actions.EmojiAction
+import org.compose_projects.socialLocal.core.ui.components.bottomChat.actions.FileAction
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.Bubbles
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages_example
@@ -149,7 +150,7 @@ fun HomeScreen(bottomChatViewModel: BottomChatViewModel = viewModel()) {
         }
 
         //add: updated the actions for each item
-        BottomChat(modifier = Modifier.align(Alignment.BottomCenter),
+        BottomChat(modifier = Modifier.align(Alignment.BottomCenter).padding(horizontal = 4.dp),
             emojiAction = {
                 emojiState = true
                 keyboardController?.hide()
@@ -160,6 +161,8 @@ fun HomeScreen(bottomChatViewModel: BottomChatViewModel = viewModel()) {
             sendAction = { sendState = true }
         )
 
+
+        //Actions for bottomChat
         EmojiAction(
             modifier = Modifier
                 .fillMaxWidth()
@@ -174,6 +177,10 @@ fun HomeScreen(bottomChatViewModel: BottomChatViewModel = viewModel()) {
         ) {
             emojiState = false
             keyboardController?.show()
+        }
+
+        FileAction(state = fileState) {
+            fileState = false
         }
 
     }

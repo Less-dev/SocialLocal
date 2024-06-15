@@ -98,6 +98,7 @@ fun BottomChat(
         )
     }
 
+    //i build the focused text input
     LaunchedEffect(Unit) {
         focusRequester.requestFocus()
     }
