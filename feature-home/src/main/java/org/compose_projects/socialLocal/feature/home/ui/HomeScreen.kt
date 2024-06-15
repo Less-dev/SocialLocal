@@ -36,9 +36,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.BottomChat
+import org.compose_projects.socialLocal.core.ui.components.bottomChat.BottomChatViewModel
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.actions.EmojiAction
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.Bubbles
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages
@@ -47,7 +50,7 @@ import org.compose_projects.socialLocal.core.ui.components.prev_profile.ContentP
 import org.compose_projects.socialLocal.core.ui.components.prev_profile.PreviewProfile
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(bottomChatViewModel: BottomChatViewModel = viewModel()) {
     val messages: List<messages_example> = listOf(
         messages.message1,
         messages.message2,
@@ -107,14 +110,14 @@ fun HomeScreen() {
     var microphoneState by remember { mutableStateOf(false) }
     var sendState by remember { mutableStateOf(false) }
 
+    //keyboard up or down
+    val keyboardController = LocalSoftwareKeyboardController.current
 
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(5.dp)
     ) {
-
         LazyColumn(
             state = listState,
             modifier = Modifier
@@ -147,21 +150,30 @@ fun HomeScreen() {
 
         //add: updated the actions for each item
         BottomChat(modifier = Modifier.align(Alignment.BottomCenter),
-            emojiAction = { emojiState = true },
+            emojiAction = {
+                emojiState = true
+                keyboardController?.hide()
+            },
             fileAction = { fileState = true },
             cameraAction = { cameraState = true },
             microphoneAction = { microphoneState = true },
             sendAction = { sendState = true }
         )
 
-
         EmojiAction(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(0.4F)
-                .align(Alignment.BottomCenter), state = emojiState
+                .fillMaxHeight(0.45F)
+                .align(Alignment.BottomCenter),
+            state = emojiState,
+            emoji = {
+                bottomChatViewModel.addEmojiForText(it)
+                emojiState = false
+                keyboardController?.show()
+            }
         ) {
             emojiState = false
+            keyboardController?.show()
         }
 
     }
@@ -177,7 +189,9 @@ fun HomeScreen() {
         showProfile = false
     }
 
-    //actions bottomChat
+    LaunchedEffect(Unit) {
+        keyboardController?.hide()
+    }
 
 
 }

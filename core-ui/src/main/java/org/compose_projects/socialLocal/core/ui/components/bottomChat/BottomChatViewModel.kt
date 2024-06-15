@@ -30,4 +30,9 @@ class BottomChatViewModel: ViewModel() {
         viewModelScope.launch {
             _text.value = input
         }
+
+    fun addEmojiForText(emoji: String) =
+        viewModelScope.launch {
+            _text.value += emoji
+        }
 }
