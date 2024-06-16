@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2022 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package org.compose_projects.socialLocal.feature.multimedia
 
 object CONSTANTS {
@@ -29,13 +45,6 @@ object CONSTANTS {
     internal const val MOV = ".mov"
     internal const val WMV = ".wmv"
 
-    // Audio
-    internal const val MP3 = ".mp3"
-    internal const val WAV = ".wav"
-    internal const val AAC = ".aac"
-    internal const val FLAC = ".flac"
-    internal const val OGG = ".ogg"
-
     // Documents
     internal const val DOC = ".doc"
     internal const val DOCX = ".docx"
@@ -43,6 +52,13 @@ object CONSTANTS {
     internal const val TXT = ".txt"
     internal const val RTF = ".rtf"
     internal const val ODT = ".odt"
+
+    // Audio
+    internal const val MP3 = ".mp3"
+    internal const val WAV = ".wav"
+    internal const val AAC = ".aac"
+    internal const val FLAC = ".flac"
+    internal const val OGG = ".ogg"
 
     // spreadsheets
     internal const val XLS = ".xls"

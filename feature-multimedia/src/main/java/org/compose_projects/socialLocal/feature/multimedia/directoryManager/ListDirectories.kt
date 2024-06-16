@@ -18,7 +18,7 @@ private fun tree(dir: File, indent: String = ""): String  {
     return treeBuilder.toString()
 }
 
-fun listAppDirectories(context: Context, appName: String): String {
+internal fun listAppDirectories(context: Context, appName: String): String {
     val baseDir = File(
         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
         appName
