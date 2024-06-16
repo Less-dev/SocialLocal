@@ -1,13 +1,13 @@
 package org.compose_projects.socialLocal.feature.multimedia.directoryManager
 
 import android.content.Context
-import org.compose_projects.socialLocal.feature.multimedia.directoryManager.CONSTANTS.appname
-import org.compose_projects.socialLocal.feature.multimedia.directoryManager.CONSTANTS.audios
-import org.compose_projects.socialLocal.feature.multimedia.directoryManager.CONSTANTS.chatglobal
-import org.compose_projects.socialLocal.feature.multimedia.directoryManager.CONSTANTS.chatinbox
-import org.compose_projects.socialLocal.feature.multimedia.directoryManager.CONSTANTS.documents
-import org.compose_projects.socialLocal.feature.multimedia.directoryManager.CONSTANTS.images
-import org.compose_projects.socialLocal.feature.multimedia.directoryManager.CONSTANTS.videos
+import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.appname
+import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.audios
+import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.chatglobal
+import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.chatinbox
+import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.documents
+import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.images
+import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.videos
 
 internal fun configDirectories(context: Context) {
     //creating full directories of Social Local
