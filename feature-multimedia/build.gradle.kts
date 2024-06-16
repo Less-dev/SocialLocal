@@ -19,9 +19,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
 }
-
 android {
-    namespace = "org.compose_projects.socialLocal.core.ui"
+    namespace = "org.compose_projects.socialLocal.feature.multimedia"
     compileSdk = 34
 
     defaultConfig {
@@ -32,7 +31,6 @@ android {
     }
 
     buildFeatures {
-        compose = true
         aidl = false
         buildConfig = false
         renderScript = false
@@ -53,33 +51,7 @@ android {
 }
 
 dependencies {
-    //video
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
-    implementation(libs.compose.video)
-    implementation(libs.androidx.media3.exoplayer) // [Required] androidx.media3 ExoPlayer dependency
-    implementation(libs.androidx.media3.session) // [Required] MediaSession Extension dependency
-    implementation(libs.androidx.media3.ui) // [Required] Base Player UI
-
-    //picker emojis
-    implementation(libs.androidx.emoji2.emojipicker)
-
-    //feature multimedia
-    implementation(project(":feature-multimedia"))
-
-    //compose Bom
-    val composeBom = platform(libs.androidx.compose.bom)
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
 
     // Core Android dependencies
     implementation(libs.androidx.core.ktx)
-
-    // Compose
-    implementation(libs.androidx.compose.ui)
-    implementation(libs.androidx.compose.ui.tooling.preview)
-    implementation(libs.androidx.compose.material3)
-    implementation(libs.androidx.activity.compose)
-
-    // Tooling
-    debugImplementation(libs.androidx.compose.ui.tooling)
 }

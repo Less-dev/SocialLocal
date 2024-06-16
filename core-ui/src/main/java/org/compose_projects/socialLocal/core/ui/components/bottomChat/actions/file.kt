@@ -30,8 +30,7 @@ import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.launch
 
 
-
-const val TAG = "prueba1"
+private const val TAG = "prueba1"
 @Composable
 fun FileAction(state: Boolean, onDismissRequest: () -> Unit ) {
     val context = LocalContext.current
