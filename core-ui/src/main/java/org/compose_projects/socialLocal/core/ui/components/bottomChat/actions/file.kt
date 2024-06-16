@@ -20,7 +20,6 @@ import android.net.Uri
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -28,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.launch
+import org.compose_projects.socialLocal.feature.multimedia.MultimediaManager
 
 
 private const val TAG = "prueba1"
@@ -36,6 +36,17 @@ fun FileAction(state: Boolean, onDismissRequest: () -> Unit ) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val uri = remember { mutableStateOf<Uri?>(null) }
+
+
+    LaunchedEffect(Unit) {
+        this.launch {
+            MultimediaManager().apply {
+                this.createDirectories(context = context)
+            }
+        }
+    }
+
+
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
