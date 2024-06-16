@@ -27,17 +27,33 @@ fun createAppDirectories(
     if (!audioDir.exists()) audioDir.mkdirs()
     if (!documentsDir.exists()) documentsDir.mkdirs()
 
-    createChatDirectories(imagesDir, media)
-    createChatDirectories(videosDir, media)
-    createChatDirectories(audioDir, media)
-    createChatDirectories(documentsDir, media)
+    createChatDirectories(
+        parentDir = imagesDir,
+        cg = media.chatGlobal,
+        ci = media.chatInbox
+    )
+    createChatDirectories(
+        parentDir = videosDir,
+        cg = media.chatGlobal,
+        ci = media.chatInbox
+    )
+    createChatDirectories(
+        parentDir = audioDir,
+        cg = media.chatGlobal,
+        ci = media.chatInbox
+    )
+    createChatDirectories(
+        parentDir = documentsDir,
+        cg = media.chatGlobal,
+        ci = media.chatInbox
+    )
 
 }
 
 
-private fun createChatDirectories(parentDir: File, media: media) {
-    val chatGlobal = File(parentDir, media.chatGlobal)
-    val chatInbox = File(parentDir, media.chatInbox)
+private fun createChatDirectories(parentDir: File, cg: String, ci: String) {
+    val chatGlobal = File(parentDir, cg)
+    val chatInbox = File(parentDir, ci)
 
     if (!chatGlobal.exists()) chatGlobal.mkdirs()
     if (!chatInbox.exists()) chatInbox.mkdirs()

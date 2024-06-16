@@ -22,9 +22,11 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import kotlinx.coroutines.launch
 import org.compose_projects.socialLocal.feature.multimedia.MultimediaManager
@@ -37,14 +39,22 @@ fun FileAction(state: Boolean, onDismissRequest: () -> Unit ) {
     val coroutineScope = rememberCoroutineScope()
     val uri = remember { mutableStateOf<Uri?>(null) }
 
+    var directories by remember {
+        mutableStateOf("")
+    }
+
 
     LaunchedEffect(Unit) {
         this.launch {
-            MultimediaManager().apply {
-                this.createDirectories(context = context)
+            MultimediaManager(context).apply {
+                this.createDirectories()
+                directories = this.treeOfDirectories()
             }
+
+            Log.d(TAG, directories)
         }
     }
+
 
 
 
