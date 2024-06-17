@@ -53,6 +53,7 @@ import org.compose_projects.socialLocal.core.ui.components.prev_profile.PreviewP
 
 
 private const val chatglobal = "Chat Global"
+private const val chatinbox = "Chats Privados"
 
 @Composable
 fun HomeScreen(bottomChatViewModel: BottomChatViewModel = viewModel()) {

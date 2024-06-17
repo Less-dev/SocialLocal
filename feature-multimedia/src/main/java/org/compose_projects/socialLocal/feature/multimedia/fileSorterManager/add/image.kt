@@ -16,33 +16,50 @@
 
 package org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add
 
+import android.content.Context
 import android.net.Uri
-import android.os.Environment
 import android.util.Log
-import org.compose_projects.socialLocal.feature.multimedia.directoryManager.media
+import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.chatglobal
+import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.chatinbox
 import java.io.File
-import java.io.FileWriter
+import java.io.FileOutputStream
 import java.io.IOException
+import java.io.InputStream
 
 private const val TAG = "prueba4"
-private const val sampleFile = "file.txt"
-internal fun Image(uri: Uri, typeChat: String) {
+private const val sampleFile = "sampleImage.jpg"
 
-    //test
-    //Log.d(TAG, "Chat: $typeChat, uri -> $uri")
+fun Image(context: Context, uri: Uri, typeChat: String, parentDirCG: File, parentDirCI: File) {
+    when(typeChat) {
+        chatglobal -> SaveImage(context = context, parentDir = parentDirCG, uri = uri)
+        chatinbox ->  SaveImage(context = context, parentDir = parentDirCI, uri = uri)
+    }
+}
 
-    val newFile = File("parentDir", sampleFile)
+
+
+private fun SaveImage(context: Context, parentDir: File, uri: Uri) {
+    val newFile = File(parentDir, sampleFile)
     if (!newFile.exists()) {
         try {
             newFile.createNewFile()
-            // Write content in the file
-            val fileWriter = FileWriter(newFile)
-            fileWriter.write("Contenido del archivo")
-            fileWriter.close()
+            val inputStream: InputStream? = context.contentResolver.openInputStream(uri)
+            if (inputStream != null) {
+                val outputStream = FileOutputStream(newFile)
+                val buffer = ByteArray(1024)
+                var bytesRead: Int
+                while (inputStream.read(buffer).also { bytesRead = it } != -1) {
+                    outputStream.write(buffer, 0, bytesRead)
+                }
+                inputStream.close()
+                outputStream.close()
+                Log.d(TAG, "Se creó el archivo $sampleFile correctamente")
+            } else {
+                Log.e(TAG, "No se pudo abrir el InputStream de la URI")
+            }
         } catch (e: IOException) {
             e.printStackTrace()
+            Log.e(TAG, "Error: $e")
         }
     }
-
-
 }
