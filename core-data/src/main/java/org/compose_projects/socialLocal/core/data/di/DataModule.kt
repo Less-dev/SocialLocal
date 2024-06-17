@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import org.compose_projects.socialLocal.core.data.UsersRepository
 import org.compose_projects.socialLocal.core.data.DefaultUsersRepository
+import org.compose_projects.socialLocal.core.data.MultimediaRepository
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -36,6 +37,12 @@ interface DataModule {
     fun bindsUsersRepository(
         usersRepository: DefaultUsersRepository
     ): UsersRepository
+
+    @Singleton
+    @Binds
+    fun bindsMultimediaRepository(
+        multimediaRepository: MultimediaRepository
+    ): MultimediaRepository
 }
 
 class FakeUsersRepository @Inject constructor() : UsersRepository {

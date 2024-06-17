@@ -1,3 +1,5 @@
+package org.compose_projects.socialLocal.core.database
+
 /*
  * Copyright (C) 2022 The Android Open Source Project
  *
@@ -14,13 +16,26 @@
  * limitations under the License.
  */
 
-package org.compose_projects.socialLocal.core.database
+import androidx.room.Dao
+import androidx.room.Entity
+import androidx.room.Insert
+import androidx.room.PrimaryKey
+import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
-import androidx.room.Database
-import androidx.room.RoomDatabase
+@Entity
+data class Multimedia(
+    val file: String
+) {
+    @PrimaryKey(autoGenerate = true)
+    var uid: Int = 0
+}
 
-@Database(entities = [Users::class, Multimedia::class], version = 1)
-abstract class AppDatabase : RoomDatabase() {
-    abstract fun usersDao(): UsersDao
-    abstract fun multimediaDao(): MultimediaDao
+@Dao
+interface MultimediaDao {
+    @Query("SELECT * FROM Multimedia")
+    fun getMultimedia(): Flow<List<Multimedia>>
+
+    @Insert
+    suspend fun insertMedia(item: Multimedia)
 }
