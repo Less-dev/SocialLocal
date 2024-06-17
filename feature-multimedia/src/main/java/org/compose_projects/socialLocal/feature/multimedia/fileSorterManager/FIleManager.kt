@@ -48,8 +48,11 @@ internal class FileManager(
     )
 
     fun addVideo() = Video(
+        context = context,
         uri = uri,
         typeChat = typeChat,
+        parentDirCG = providerPaths.PathVideosCG(),
+        parentDirCI = providerPaths.PathVideosCI(),
         nameFile = nameFile
     )
 

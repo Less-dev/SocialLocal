@@ -21,6 +21,7 @@ import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.appname
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.chatglobal
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.chatinbox
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.images
+import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.videos
 import java.io.File
 
 internal class ProviderPaths {
@@ -41,5 +42,17 @@ internal class ProviderPaths {
         val imagesDir = File(baseDir, images)
         val chatInboxDir = File(imagesDir, chatinbox)
         return chatInboxDir
+    }
+
+    internal fun PathVideosCG(): File {
+        val videosDir = File(baseDir, videos)
+        val chatGlobalDir = File(videosDir, chatglobal)
+        return chatGlobalDir
+    }
+
+    internal fun PathVideosCI(): File {
+        val videosDir = File(baseDir, videos)
+        val chatGlobalDir = File(videosDir, chatinbox)
+        return chatGlobalDir
     }
 }
