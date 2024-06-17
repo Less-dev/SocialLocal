@@ -16,6 +16,33 @@
 
 package org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add
 
-fun Image(uri: String, typeChat: String) {
+import android.net.Uri
+import android.os.Environment
+import android.util.Log
+import org.compose_projects.socialLocal.feature.multimedia.directoryManager.media
+import java.io.File
+import java.io.FileWriter
+import java.io.IOException
+
+private const val TAG = "prueba4"
+private const val sampleFile = "file.txt"
+internal fun Image(uri: Uri, typeChat: String) {
+
+    //test
+    //Log.d(TAG, "Chat: $typeChat, uri -> $uri")
+
+    val newFile = File("parentDir", sampleFile)
+    if (!newFile.exists()) {
+        try {
+            newFile.createNewFile()
+            // Write content in the file
+            val fileWriter = FileWriter(newFile)
+            fileWriter.write("Contenido del archivo")
+            fileWriter.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
 
 }

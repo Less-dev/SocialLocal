@@ -16,18 +16,17 @@
 
 package org.compose_projects.socialLocal.feature.multimedia.fileSorterManager
 
+import android.net.Uri
 import org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add.Audio
 import org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add.Document
 import org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add.Image
 import org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add.Video
 
-class FileManager(private val uri: String, private val typeChat: String) {
-
+internal class FileManager(private val uri: Uri, private val typeChat: String) {
 
     fun addImage() = Image(uri, typeChat)
     fun addVideo() = Video(uri, typeChat)
     fun addDocument() = Document(uri, typeChat)
     fun addAudio() = Audio(uri, typeChat)
-
 
 }

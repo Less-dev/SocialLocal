@@ -16,6 +16,8 @@
 
 package org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add
 
-fun Document(uri: String, typeChat: String) {
+import android.net.Uri
+
+internal fun Document(uri: Uri, typeChat: String) {
 
 }

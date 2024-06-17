@@ -17,6 +17,7 @@
 package org.compose_projects.socialLocal.feature.multimedia
 
 import android.content.Context
+import android.net.Uri
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.appname
 import org.compose_projects.socialLocal.feature.multimedia.directoryManager.configDirectories
 import org.compose_projects.socialLocal.feature.multimedia.directoryManager.listAppDirectories
@@ -27,9 +28,9 @@ class MultimediaManager(private val context: Context) {
     fun treeOfDirectories() = listAppDirectories(context = context, appName = appname)
 
     //features for add files in the device
-    fun addImage(uri: String, typeChat: String) = FileManager(uri = uri, typeChat = typeChat).addImage()
-    fun addVideo(uri: String, typeChat: String) = FileManager(uri = uri, typeChat = typeChat).addVideo()
-    fun addDocument(uri: String, typeChat: String) = FileManager(uri = uri, typeChat = typeChat).addDocument()
-    fun addAudio(uri: String, typeChat: String) = FileManager(uri = uri, typeChat = typeChat).addAudio()
+    fun addImage(uri: Uri, typeChat: String) = FileManager(uri = uri, typeChat = typeChat).addImage()
+    fun addVideo(uri: Uri, typeChat: String) = FileManager(uri = uri, typeChat = typeChat).addVideo()
+    fun addDocument(uri: Uri, typeChat: String) = FileManager(uri = uri, typeChat = typeChat).addDocument()
+    fun addAudio(uri: Uri, typeChat: String) = FileManager(uri = uri, typeChat = typeChat).addAudio()
 
 }

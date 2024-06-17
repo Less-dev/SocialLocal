@@ -35,22 +35,24 @@ import org.compose_projects.socialLocal.feature.multimedia.MultimediaManager
 private const val TAG = "prueba1"
 
 @Composable
-fun FileAction(state: Boolean, onDismissRequest: () -> Unit) {
+fun FileAction(state: Boolean, typeChat: String, onDismissRequest: () -> Unit) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val uri = remember { mutableStateOf<Uri?>(null) }
+
 
     /*
         var directories by remember { mutableStateOf("") }
     */
 
+    val multimediaManager: MultimediaManager = MultimediaManager(context)
+
     LaunchedEffect(Unit) {
         this.launch {
-            MultimediaManager(context).apply {
+            multimediaManager.apply {
                 this.createDirectories()
                 //directories = this.treeOfDirectories()
             }
-
             //Log.d(TAG, directories)
         }
     }
@@ -62,7 +64,11 @@ fun FileAction(state: Boolean, onDismissRequest: () -> Unit) {
         //If the user has not selected any file, the file URI remains the same.
         if (result != null) {
             uri.value = result
+            multimediaManager.apply {
+                this.addImage(result, typeChat)
+            }
             onDismissRequest()
+
         } else {
             onDismissRequest()
         }

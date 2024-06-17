@@ -16,6 +16,8 @@
 
 package org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add
 
-fun Video(uri: String, typeChat: String) {
+import android.net.Uri
+
+internal fun Video(uri: Uri, typeChat: String) {
 
 }
