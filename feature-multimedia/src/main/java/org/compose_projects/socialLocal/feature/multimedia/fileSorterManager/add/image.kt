@@ -27,19 +27,38 @@ import java.io.IOException
 import java.io.InputStream
 
 private const val TAG = "prueba4"
-private const val sampleFile = "sampleImage.jpg"
+internal fun Image(
+    context: Context,
+    uri: Uri,
+    typeChat: String,
+    parentDirCG: File,
+    parentDirCI: File,
+    nameFile: String
+) {
 
-fun Image(context: Context, uri: Uri, typeChat: String, parentDirCG: File, parentDirCI: File) {
-    when(typeChat) {
-        chatglobal -> SaveImage(context = context, parentDir = parentDirCG, uri = uri)
-        chatinbox ->  SaveImage(context = context, parentDir = parentDirCI, uri = uri)
+    when (typeChat) {
+        chatglobal -> SaveImage(
+            context = context,
+            parentDir = parentDirCG,
+            uri = uri,
+            nameFile = nameFile
+        )
+
+        chatinbox -> SaveImage(
+            context = context,
+            parentDir = parentDirCI,
+            uri = uri,
+            nameFile = nameFile
+        )
     }
 }
 
-
-
-private fun SaveImage(context: Context, parentDir: File, uri: Uri) {
-    val newFile = File(parentDir, sampleFile)
+private fun SaveImage(
+    context: Context,
+    parentDir: File,
+    uri: Uri, nameFile: String
+) {
+    val newFile = File(parentDir, nameFile)
     if (!newFile.exists()) {
         try {
             newFile.createNewFile()
@@ -53,7 +72,7 @@ private fun SaveImage(context: Context, parentDir: File, uri: Uri) {
                 }
                 inputStream.close()
                 outputStream.close()
-                Log.d(TAG, "Se creó el archivo $sampleFile correctamente")
+                Log.d(TAG, "Se creó el archivo $nameFile correctamente")
             } else {
                 Log.e(TAG, "No se pudo abrir el InputStream de la URI")
             }

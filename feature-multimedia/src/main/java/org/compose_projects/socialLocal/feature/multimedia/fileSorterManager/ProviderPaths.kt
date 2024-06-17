@@ -16,38 +16,30 @@
 
 package org.compose_projects.socialLocal.feature.multimedia.fileSorterManager
 
-import android.content.Context
-import android.net.Uri
 import android.os.Environment
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.appname
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.chatglobal
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.chatinbox
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.images
-import org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add.Audio
-import org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add.Document
-import org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add.Image
-import org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add.Video
 import java.io.File
 
-internal class FileManager(
-    private val context: Context,
-    private val uri: Uri,
-    private val typeChat: String,
-    private val nameFile: String
-) {
+internal class ProviderPaths {
 
-    private val providerPaths: ProviderPaths = ProviderPaths()
-
-    fun addImage() = Image(
-        context = context,
-        uri = uri,
-        typeChat = typeChat,
-        parentDirCG = providerPaths.PathImagesCG(),
-        parentDirCI = providerPaths.PathImagesCI(),
-        nameFile = nameFile
+    private val baseDir = File(
+        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
+        appname
     )
+    
+    internal fun PathImagesCG(): File {
 
-    fun addVideo() = Video(uri, typeChat)
-    fun addDocument() = Document(uri, typeChat)
-    fun addAudio() = Audio(uri, typeChat)
+        val imagesDir = File(baseDir, images)
+        val chatGlobalDir = File(imagesDir, chatglobal)
+        return chatGlobalDir
+    }
+
+    internal fun PathImagesCI(): File {
+        val imagesDir = File(baseDir, images)
+        val chatInboxDir = File(imagesDir, chatinbox)
+        return chatInboxDir
+    }
 }

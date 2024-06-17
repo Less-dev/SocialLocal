@@ -1,4 +1,4 @@
-package org.compose_projects.socialLocal.core.data
+package org.compose_projects.socialLocal.core.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
