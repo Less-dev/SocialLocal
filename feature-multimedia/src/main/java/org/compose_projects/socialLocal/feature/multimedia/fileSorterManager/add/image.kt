@@ -68,13 +68,13 @@ private fun SaveImage(
                 }
                 inputStream.close()
                 outputStream.close()
-                Log.d(TAG, "Se creó el archivo $nameFile correctamente")
+                //Log.d(TAG, "Se creó el archivo $nameFile correctamente")
             } else {
-                Log.e(TAG, "No se pudo abrir el InputStream de la URI")
+                //Log.e(TAG, "No se pudo abrir el InputStream de la URI")
             }
         } catch (e: IOException) {
             e.printStackTrace()
-            Log.e(TAG, "Error: $e")
+            //Log.e(TAG, "Error: $e")
         }
     }
 }
