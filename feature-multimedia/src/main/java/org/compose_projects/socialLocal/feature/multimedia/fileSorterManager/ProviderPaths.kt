@@ -18,6 +18,7 @@ package org.compose_projects.socialLocal.feature.multimedia.fileSorterManager
 
 import android.os.Environment
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.appname
+import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.audios
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.chatglobal
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.chatinbox
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.images
@@ -53,6 +54,18 @@ internal class ProviderPaths {
     internal fun PathVideosCI(): File {
         val videosDir = File(baseDir, videos)
         val chatGlobalDir = File(videosDir, chatinbox)
+        return chatGlobalDir
+    }
+
+    internal fun PathAudiosCG(): File {
+        val audiosDir = File(baseDir, audios)
+        val chatGlobalDir = File(audiosDir, chatglobal)
+        return chatGlobalDir
+    }
+
+    internal fun PathAudiosCI(): File {
+        val audiosDir = File(baseDir, audios)
+        val chatGlobalDir = File(audiosDir, chatinbox)
         return chatGlobalDir
     }
 }

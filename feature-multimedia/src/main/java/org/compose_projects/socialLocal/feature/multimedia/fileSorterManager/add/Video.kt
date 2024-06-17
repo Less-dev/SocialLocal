@@ -25,27 +25,25 @@ import java.io.File
 import java.io.FileOutputStream
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.chatglobal
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.chatinbox
+import org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.FileProvider
 
 private const val TAG = "prueba4"
 internal fun Video(
-    context: Context, uri: Uri,
-    typeChat: String,
-    parentDirCG: File,
-    parentDirCI: File, nameFile: String
+    fileProvider: FileProvider
 ) {
-    when (typeChat) {
+    when (fileProvider.typeChat) {
         chatglobal -> SaveVideo(
-            context = context,
-            parentDir = parentDirCG,
-            uri = uri,
-            nameFile = nameFile
+            context = fileProvider.context,
+            parentDir = fileProvider.parentDirCG,
+            uri = fileProvider.uri,
+            nameFile = fileProvider.nameFile
         )
 
         chatinbox -> SaveVideo(
-            context = context,
-            parentDir = parentDirCI,
-            uri = uri,
-            nameFile = nameFile
+            context = fileProvider.context,
+            parentDir = fileProvider.parentDirCG,
+            uri = fileProvider.uri,
+            nameFile = fileProvider.nameFile
         )
     }
 }
