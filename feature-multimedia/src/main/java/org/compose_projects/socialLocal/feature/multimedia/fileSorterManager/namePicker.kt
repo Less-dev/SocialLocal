@@ -42,7 +42,7 @@ internal fun namePicker(uri: String): PickerNames {
     // name generated
     return PickerNames(
         type = type,
-        nameFile = "$type$documentPart.$extension"
+        nameFile = "$documentPart$extension".replace("%", "")
     )
 }
 

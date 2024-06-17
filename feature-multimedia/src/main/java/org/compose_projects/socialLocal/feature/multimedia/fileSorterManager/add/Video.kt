@@ -17,7 +17,10 @@
 package org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add
 
 import android.net.Uri
+import android.util.Log
 
-internal fun Video(uri: Uri, typeChat: String) {
+private const val TAG = "prueba4"
+internal fun Video(uri: Uri, typeChat: String, nameFile: String) {
+    Log.d(TAG, "uri fun Video -> $uri /n name -> $nameFile")
 
 }

@@ -17,7 +17,12 @@
 package org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.add
 
 import android.net.Uri
+import android.util.Log
 
-internal fun Audio(uri: Uri, typeChat: String) {
+
+private const val TAG = "prueba4"
+
+internal fun Audio(uri: Uri, typeChat: String, nameFile: String) {
+    Log.d(TAG, "uri fun Audio -> $uri /n name -> $nameFile")
 
 }

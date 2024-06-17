@@ -47,7 +47,21 @@ internal class FileManager(
         nameFile = nameFile
     )
 
-    fun addVideo() = Video(uri, typeChat)
-    fun addDocument() = Document(uri, typeChat)
-    fun addAudio() = Audio(uri, typeChat)
+    fun addVideo() = Video(
+        uri = uri,
+        typeChat = typeChat,
+        nameFile = nameFile
+    )
+
+    fun addDocument() = Document(
+        uri = uri,
+        typeChat = typeChat,
+        nameFile = nameFile
+    )
+
+    fun addAudio() = Audio(
+        uri = uri,
+        typeChat = typeChat,
+        nameFile = nameFile
+    )
 }
