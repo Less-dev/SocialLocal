@@ -76,8 +76,8 @@ internal class FileManager(
             context = context,
             uri = uri,
             typeChat = typeChat,
-            parentDirCG = providerPaths.PathImagesCG(),
-            parentDirCI = providerPaths.PathImagesCI(),
+            parentDirCG = providerPaths.PathDocumentsCG(),
+            parentDirCI = providerPaths.PathDocumentsCI(),
             nameFile = nameFile
         )
     )
