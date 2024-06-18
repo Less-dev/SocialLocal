@@ -31,7 +31,7 @@
 
       2.1 [Arquitectura](#arquitectura)
    
-      2.1.2 [Arquitectura de módulos](#-arquitectura-de-modulos-de-social-local-)
+      2.1.2 [Arquitectura de módulos](#-arquitectura-de-módulos-de-social-local-)
 
       2.1.2.1 [Diagrama de base de datos](#-Diagrama-de-base-de-datos-de-Social-Local-)
 
