@@ -24,8 +24,8 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.compose_projects.socialLocal.core.data.repository.DefaultUsersRepository
-import org.compose_projects.socialLocal.core.database.Users
-import org.compose_projects.socialLocal.core.database.UsersDao
+import org.compose_projects.socialLocal.core.database.daos.Users
+import org.compose_projects.socialLocal.core.database.daos.UsersDao
 
 /**
  * Unit tests for [DefaultUsersRepository].

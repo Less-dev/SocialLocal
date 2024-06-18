@@ -18,9 +18,23 @@ package org.compose_projects.socialLocal.core.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
+import org.compose_projects.socialLocal.core.database.daos.DataChat
+import org.compose_projects.socialLocal.core.database.daos.DataChatDao
+import org.compose_projects.socialLocal.core.database.daos.Multimedia
+import org.compose_projects.socialLocal.core.database.daos.MultimediaDao
+import org.compose_projects.socialLocal.core.database.daos.Users
+import org.compose_projects.socialLocal.core.database.daos.UsersDao
 
-@Database(entities = [Users::class, Multimedia::class], version = 1)
+@Database(
+    entities = [
+        Users::class,
+        Multimedia::class,
+        DataChat::class],
+    version = 1
+)
+
 abstract class AppDatabase : RoomDatabase() {
     abstract fun usersDao(): UsersDao
     abstract fun multimediaDao(): MultimediaDao
+    abstract fun dataChatDao(): DataChatDao
 }

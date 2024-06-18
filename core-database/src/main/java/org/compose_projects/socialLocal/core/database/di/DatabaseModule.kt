@@ -24,29 +24,36 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import org.compose_projects.socialLocal.core.database.AppDatabase
-import org.compose_projects.socialLocal.core.database.MultimediaDao
-import org.compose_projects.socialLocal.core.database.UsersDao
+import org.compose_projects.socialLocal.core.database.CONSTANTS.databaseName
+import org.compose_projects.socialLocal.core.database.daos.DataChatDao
+import org.compose_projects.socialLocal.core.database.daos.MultimediaDao
+import org.compose_projects.socialLocal.core.database.daos.UsersDao
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class DatabaseModule {
     @Provides
-    fun provideUsersDao(appDatabase: AppDatabase): UsersDao {
-        return appDatabase.usersDao()
-    }
+    fun provideUsersDao(appDatabase: AppDatabase): UsersDao =
+        appDatabase.usersDao()
+
 
     @Provides
-    fun provideMultimediaDao(appDatabase: AppDatabase): MultimediaDao {
-        return appDatabase.multimediaDao()
-    }
+    fun provideMultimediaDao(appDatabase: AppDatabase): MultimediaDao =
+        appDatabase.multimediaDao()
+
+
+    @Provides
+    fun provideChatDao(appDatabase: AppDatabase): DataChatDao =
+        appDatabase.dataChatDao()
+
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
-        return Room.databaseBuilder(
+    fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase =
+        Room.databaseBuilder(
             appContext,
             AppDatabase::class.java,
-            "Users"
+            databaseName
         ).build()
-    }
+
 }

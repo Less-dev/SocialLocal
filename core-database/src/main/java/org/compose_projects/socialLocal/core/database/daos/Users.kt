@@ -1,5 +1,3 @@
-package org.compose_projects.socialLocal.core.database
-
 /*
  * Copyright (C) 2022 The Android Open Source Project
  *
@@ -16,6 +14,8 @@ package org.compose_projects.socialLocal.core.database
  * limitations under the License.
  */
 
+package org.compose_projects.socialLocal.core.database.daos
+
 import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.Insert
@@ -24,18 +24,18 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Entity
-data class Multimedia(
-    val file: String
+data class Users(
+    val name: String
 ) {
     @PrimaryKey(autoGenerate = true)
     var uid: Int = 0
 }
 
 @Dao
-interface MultimediaDao {
-    @Query("SELECT * FROM Multimedia")
-    fun getMultimedia(): Flow<List<Multimedia>>
+interface UsersDao {
+    @Query("SELECT * FROM users ORDER BY uid DESC LIMIT 10")
+    fun getUserss(): Flow<List<Users>>
 
     @Insert
-    suspend fun insertMedia(item: Multimedia)
+    suspend fun insertUsers(item: Users)
 }

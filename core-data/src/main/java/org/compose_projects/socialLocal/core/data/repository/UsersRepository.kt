@@ -18,8 +18,8 @@ package org.compose_projects.socialLocal.core.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import org.compose_projects.socialLocal.core.database.Users
-import org.compose_projects.socialLocal.core.database.UsersDao
+import org.compose_projects.socialLocal.core.database.daos.Users
+import org.compose_projects.socialLocal.core.database.daos.UsersDao
 import javax.inject.Inject
 
 interface UsersRepository {
