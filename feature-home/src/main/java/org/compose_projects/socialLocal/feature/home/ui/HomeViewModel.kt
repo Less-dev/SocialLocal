@@ -77,8 +77,6 @@ class HomeViewModel @Inject constructor(
                 )
             )
         }
-
-
 }
 
 sealed interface HomeUiState {
