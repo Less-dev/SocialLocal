@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5ea3739c3874a405037a3d6dfec31fe3",
+    "identityHash": "2c233eea4ed71a1a983068a09d9a43bc",
     "entities": [
       {
         "tableName": "User",
@@ -135,12 +135,82 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "Profile",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`profileID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pathImageProfile` TEXT NOT NULL, `description` TEXT, `userID` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "profileID",
+            "columnName": "profileID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pathImageProfile",
+            "columnName": "pathImageProfile",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "userID",
+            "columnName": "userID",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "profileID"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Chat",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`chatID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `isChatGlobal` INTEGER NOT NULL, `profileID` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "chatID",
+            "columnName": "chatID",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isChatGlobal",
+            "columnName": "isChatGlobal",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "profileID",
+            "columnName": "profileID",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "chatID"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5ea3739c3874a405037a3d6dfec31fe3')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2c233eea4ed71a1a983068a09d9a43bc')"
     ]
   }
 }

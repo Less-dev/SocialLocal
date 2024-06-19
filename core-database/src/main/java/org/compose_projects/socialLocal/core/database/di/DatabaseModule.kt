@@ -25,6 +25,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import org.compose_projects.socialLocal.core.database.AppDatabase
 import org.compose_projects.socialLocal.core.database.CONSTANTS.databaseName
+import org.compose_projects.socialLocal.core.database.daos.ChatDao
 import org.compose_projects.socialLocal.core.database.daos.DataChatDao
 import org.compose_projects.socialLocal.core.database.daos.MultimediaDao
 import org.compose_projects.socialLocal.core.database.daos.UserDao
@@ -34,8 +35,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class DatabaseModule {
     @Provides
-    fun provideUsersDao(appDatabase: AppDatabase): UserDao =
-        appDatabase.usersDao()
+    fun provideUserDao(appDatabase: AppDatabase): UserDao =
+        appDatabase.userDao()
 
 
     @Provides
@@ -44,8 +45,13 @@ class DatabaseModule {
 
 
     @Provides
-    fun provideChatDao(appDatabase: AppDatabase): DataChatDao =
+    fun provideDataChatDao(appDatabase: AppDatabase): DataChatDao =
         appDatabase.dataChatDao()
+
+
+    @Provides
+    fun provideChatDao(appDatabase: AppDatabase): ChatDao =
+        appDatabase.chatDao()
 
     @Provides
     @Singleton
