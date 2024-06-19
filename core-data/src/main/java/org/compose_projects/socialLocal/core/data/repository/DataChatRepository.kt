@@ -10,12 +10,11 @@ import javax.inject.Inject
 interface DataChatRepository {
 
     val dataChat: Flow<List<DataChatProvider>>
-
-    suspend fun update(
+    suspend fun insert(
         dataChatProvider: DataChatProvider
     )
 
-    suspend fun insert(
+    suspend fun update(
         dataChatProvider: DataChatProvider
     )
 

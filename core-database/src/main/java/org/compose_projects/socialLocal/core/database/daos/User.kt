@@ -17,25 +17,37 @@
 package org.compose_projects.socialLocal.core.database.daos
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Entity
 import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
+import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 
 @Entity
-data class Users(
-    val name: String
-) {
+data class User(
     @PrimaryKey(autoGenerate = true)
-    var uid: Int = 0
-}
+    val userID: Int = 0,
+    val iAm: Boolean,
+    val isFriend: Boolean,
+    val dataChatID: Int = 0
+)
+
 
 @Dao
-interface UsersDao {
-    @Query("SELECT * FROM users ORDER BY uid DESC LIMIT 10")
-    fun getUserss(): Flow<List<Users>>
+interface UserDao {
+
+    @Query("SELECT * FROM User")
+    fun getUser(): Flow<List<User>>
+
+    @Update
+    fun updateUser(item: User)
 
     @Insert
-    suspend fun insertUsers(item: Users)
+    suspend fun insertUser(item: User)
+
+    @Delete
+    suspend fun deleteUser(item: User)
+
 }

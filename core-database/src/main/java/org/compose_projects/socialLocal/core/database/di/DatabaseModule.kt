@@ -27,14 +27,14 @@ import org.compose_projects.socialLocal.core.database.AppDatabase
 import org.compose_projects.socialLocal.core.database.CONSTANTS.databaseName
 import org.compose_projects.socialLocal.core.database.daos.DataChatDao
 import org.compose_projects.socialLocal.core.database.daos.MultimediaDao
-import org.compose_projects.socialLocal.core.database.daos.UsersDao
+import org.compose_projects.socialLocal.core.database.daos.UserDao
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 class DatabaseModule {
     @Provides
-    fun provideUsersDao(appDatabase: AppDatabase): UsersDao =
+    fun provideUsersDao(appDatabase: AppDatabase): UserDao =
         appDatabase.usersDao()
 
 

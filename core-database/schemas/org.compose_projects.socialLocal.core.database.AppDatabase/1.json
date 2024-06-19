@@ -2,21 +2,33 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "54a7754b5b5736c5049cc92650246472",
+    "identityHash": "5ea3739c3874a405037a3d6dfec31fe3",
     "entities": [
       {
-        "tableName": "Users",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "tableName": "User",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `iAm` INTEGER NOT NULL, `isFriend` INTEGER NOT NULL, `dataChatID` INTEGER NOT NULL)",
         "fields": [
           {
-            "fieldPath": "name",
-            "columnName": "name",
-            "affinity": "TEXT",
+            "fieldPath": "userID",
+            "columnName": "userID",
+            "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "uid",
-            "columnName": "uid",
+            "fieldPath": "iAm",
+            "columnName": "iAm",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isFriend",
+            "columnName": "isFriend",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dataChatID",
+            "columnName": "dataChatID",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -24,7 +36,7 @@
         "primaryKey": {
           "autoGenerate": true,
           "columnNames": [
-            "uid"
+            "userID"
           ]
         },
         "indices": [],
@@ -128,7 +140,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '54a7754b5b5736c5049cc92650246472')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5ea3739c3874a405037a3d6dfec31fe3')"
     ]
   }
 }
