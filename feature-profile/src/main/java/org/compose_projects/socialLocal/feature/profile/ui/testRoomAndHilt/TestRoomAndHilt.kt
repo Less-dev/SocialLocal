@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.compose_projects.socialLocal.core.data.data.ChatProvider
@@ -43,33 +44,6 @@ fun TestRoomAndHilt(testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltVie
         modifier = Modifier
             .fillMaxSize()
     ) {
-        Button(onClick = {
-            testRoomAndHiltViewModel.insertChat(
-                MultimediaProvider(
-                    pathImage = "/Documents/Media/ChatGlobal/images/image1.png",
-                    pathVideo = "/Documents/Media/ChatGlobal/videos/video.mp4",
-                    pathAudio = "/Documents/Media/ChatGlobal/audios/audio.mp3",
-                    pathDocument = "/Documents/Media/ChatGlobal/documents/document.dock",
-                    message = "Hi world, i am Less and this is a test de room and databases"
-                )
-            )
-        }) {
-            Text(text = "Insert Data")
-        }
-
-        Button(onClick = {
-            testRoomAndHiltViewModel.deleteChat(
-                ChatProvider(
-                    chatID = 0,
-                    isChatGlobal = false
-                )
-            )
-        }) {
-            Text(text = "Delete Data")
-        }
-
-        HorizontalDivider()
-
         when (chatState) {
             is ChatState.Loading -> {
                 // Show a loading indicator
@@ -85,11 +59,12 @@ fun TestRoomAndHilt(testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltVie
             is ChatState.Success -> {
                 // Show the list of ChatProviders
                 val chatProviders = (chatState as ChatState.Success).data
+                HorizontalDivider()
+                Text(text = "Chat Entity", color = Color.White, modifier = Modifier.align(Alignment.CenterHorizontally))
                 ChatProviderList(chatProviders)
             }
         }
 
-        HorizontalDivider()
 
         when (profileState) {
             is ProfileState.Loading -> {
@@ -106,11 +81,12 @@ fun TestRoomAndHilt(testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltVie
             is ProfileState.Success -> {
                 // Show the list of ChatProviders
                 val chatProviders = (profileState as ProfileState.Success).data
+                HorizontalDivider()
+                Text(text = "Profile Entity", color = Color.White, modifier = Modifier.align(Alignment.CenterHorizontally))
                 ProfileProviderList(chatProviders)
             }
         }
 
-        HorizontalDivider()
 
 
         when (userState) {
@@ -128,11 +104,12 @@ fun TestRoomAndHilt(testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltVie
             is UserState.Success -> {
                 // Show the list of ChatProviders
                 val chatProviders = (userState as UserState.Success).data
+                HorizontalDivider()
+                Text(text = "User Entity", color = Color.White, modifier = Modifier.align(Alignment.CenterHorizontally))
                 UserProviderList(chatProviders)
             }
         }
 
-        HorizontalDivider()
 
         when (dataChatState) {
             is DataChatState.Loading -> {
@@ -149,11 +126,12 @@ fun TestRoomAndHilt(testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltVie
             is DataChatState.Success -> {
                 // Show the list of ChatProviders
                 val chatProviders = (dataChatState as DataChatState.Success).data
+                HorizontalDivider()
+                Text(text = "Data Chat Entity", color = Color.White, modifier = Modifier.align(Alignment.CenterHorizontally))
                 DataChatProviderList(chatProviders)
             }
         }
 
-        HorizontalDivider()
 
         when (multimediaState) {
             is MultimediaState.Loading -> {
@@ -170,6 +148,8 @@ fun TestRoomAndHilt(testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltVie
             is MultimediaState.Success -> {
                 // Show the list of ChatProviders
                 val chatProviders = (multimediaState as MultimediaState.Success).data
+                HorizontalDivider()
+                Text(text = "Multimedia Entity", color = Color.White, modifier = Modifier.align(Alignment.CenterHorizontally))
                 MultimediaProviderList(chatProviders)
             }
         }
@@ -177,154 +157,6 @@ fun TestRoomAndHilt(testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltVie
 }
 
 
-@Composable
-fun ChatProviderList(chatProviders: List<ChatProvider>) {
-    LazyColumn {
-        items(chatProviders) { chatProvider ->
-            ChatProviderItem(chatProvider)
-        }
-    }
-}
-
-@Composable
-fun ProfileProviderList(chatProviders: List<ProfileProvider>) {
-    LazyColumn {
-        items(chatProviders) { chatProvider ->
-            ProfileProviderItem(chatProvider)
-        }
-    }
-}
-
-@Composable
-fun UserProviderList(chatProviders: List<UserProvider>) {
-    LazyColumn {
-        items(chatProviders) { chatProvider ->
-            UserProviderItem(chatProvider)
-        }
-    }
-}
-
-@Composable
-fun DataChatProviderList(chatProviders: List<DataChatProvider>) {
-    LazyColumn {
-        items(chatProviders) { chatProvider ->
-            DataChatProviderItem(chatProvider)
-        }
-    }
-}
 
 
-@Composable
-fun MultimediaProviderList(chatProviders: List<MultimediaProvider>) {
-    LazyColumn {
-        items(chatProviders) { chatProvider ->
-            MultimediaProviderItem(chatProvider)
-        }
-    }
-}
-
-
-@Composable
-fun ChatProviderItem(chatProvider: ChatProvider) {
-    // Customize the item UI as needed
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(90.dp)
-    ) {
-        Text(text = chatProvider.chatID.toString(), modifier = Modifier.align(Alignment.TopCenter))
-        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-            Row {
-                Text(text = chatProvider.isChatGlobal.toString())
-                Text(text = chatProvider.profileID.toString())
-            }
-        }
-    }
-}
-
-@Composable
-fun ProfileProviderItem(chatProvider: ProfileProvider) {
-    // Customize the item UI as needed
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(90.dp)
-    ) {
-        Text(
-            text = chatProvider.profileID.toString(),
-            modifier = Modifier.align(Alignment.TopCenter)
-        )
-        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-            Row {
-                Text(text = chatProvider.pathImageProfile)
-                Text(text = chatProvider.description ?: "")
-                Text(text = chatProvider.userID.toString())
-            }
-        }
-    }
-}
-
-@Composable
-fun UserProviderItem(chatProvider: UserProvider) {
-    // Customize the item UI as needed
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(90.dp)
-    ) {
-        Text(text = chatProvider.userID.toString(), modifier = Modifier.align(Alignment.TopCenter))
-        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-            Row {
-                Text(text = chatProvider.iAm.toString())
-                Text(text = chatProvider.isFriend.toString())
-                Text(text = chatProvider.dataChatID.toString())
-            }
-        }
-    }
-}
-
-@Composable
-fun DataChatProviderItem(chatProvider: DataChatProvider) {
-    // Customize the item UI as needed
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(90.dp)
-    ) {
-        Text(
-            text = chatProvider.dataChatID.toString(),
-            modifier = Modifier.align(Alignment.TopCenter)
-        )
-        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-            Row {
-                Text(text = chatProvider.dataChatID.toString())
-                Text(text = chatProvider.iSend.toString())
-                Text(text = chatProvider.contentType)
-                Text(text = chatProvider.multimediaID.toString())
-
-            }
-        }
-    }
-}
-
-@Composable
-fun MultimediaProviderItem(chatProvider: MultimediaProvider) {
-    // Customize the item UI as needed
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(90.dp)
-    ) {
-        Text(
-            text = chatProvider.multimediaID.toString(),
-            modifier = Modifier.align(Alignment.TopCenter)
-        )
-        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-            Text(text = chatProvider.pathImage)
-            Text(text = chatProvider.pathVideo)
-            Text(text = chatProvider.pathDocument)
-            Text(text = chatProvider.pathAudio)
-        }
-    }
-}
 

@@ -91,13 +91,16 @@ class TestRoomAndHiltViewModel @Inject constructor(
         }
 
 
-    fun deleteChat(chatProvider: ChatProvider) =
+    fun deleteChat(chatProvider: MultimediaProvider) =
         viewModelScope.launch(Dispatchers.IO) {
-            chatRepository.delete(
-                ChatProvider(
-                    chatID = chatProvider.chatID,
-                    isChatGlobal = chatProvider.isChatGlobal,
-                    profileID = chatProvider.chatID
+            multimediaRepository.delete(
+                MultimediaProvider(
+                    multimediaID = chatProvider.multimediaID,
+                    pathImage = chatProvider.pathImage,
+                    pathVideo = chatProvider.pathVideo,
+                    pathDocument = chatProvider.pathDocument,
+                    pathAudio = chatProvider.pathAudio,
+                    message = chatProvider.message
                 )
             )
         }
