@@ -1,6 +1,7 @@
 package org.compose_projects.socialLocal.feature.profile.ui.testRoomAndHilt
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -121,7 +123,7 @@ private fun ContentAdd(
     when (entity) {
         chatEntity -> {
 
-            var isChatGlobal by remember { mutableStateOf("true")}
+            var isChatGlobal by remember { mutableStateOf("true") }
 
             Column {
                 TextField(
@@ -142,6 +144,7 @@ private fun ContentAdd(
             }
 
         }
+
         profileEntity -> {
 
             var pathImageProfile by remember { mutableStateOf("") }
@@ -289,36 +292,175 @@ private fun ContentAdd(
     }
 }
 
+
 @Composable
-internal fun EditDelete(
-    value: String,
-    onValueChange: (String) -> Unit,
-    actionAdd: () -> Unit,
-    actionDelete: () -> Unit
-) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column {
-            TextField(value = value, onValueChange = { onValueChange(it) })
+internal fun DialogDelete(
+    state: Boolean,
+    title: String,
+    chatProvider: ChatProvider,
+    onDissmissRequest: () -> Unit,
 
-            Row(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = null,
-                    modifier = Modifier.clickable {
-                        actionAdd()
-                    }
-                )
-                Icon(
-                    imageVector = Icons.Filled.Delete,
-                    contentDescription = null,
-                    modifier = Modifier.clickable {
-                        actionDelete()
-                    }
-                )
-
+    ) {
+    if (state) {
+        Dialog(
+            onDismissRequest = { onDissmissRequest() },
+            properties = DialogProperties(
+                usePlatformDefaultWidth = false
+            )
+        ) {
+            Box(modifier = Modifier.fillMaxSize()) {
+                ContentDelete(
+                    chatProvider = chatProvider,
+                    entity = title,
+                    onDissmissRequest = { onDissmissRequest() })
             }
+        }
+    }
+}
+
+@Composable
+private fun ContentDelete(
+    chatProvider: ChatProvider,
+    entity: String,
+    onDissmissRequest: () -> Unit,
+    testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel()
+) {
+    val chatEntity = "Chat Entity"
+    val profileEntity = "Profile Entity"
+    val userEntity = "User Entity"
+    val dataChatEntity = "Data Chat Entity"
+    val multimediaEntity = "Multimedia Entity"
+
+    val modifier = Modifier
+        .fillMaxWidth()
+        .height(50.dp)
+
+    when (entity) {
+        chatEntity -> {
+
+            var idItem by remember { mutableIntStateOf(0) }
+            var showDialogEditItem by remember { mutableStateOf(false) }
+
+            Column(
+                Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                Row {
+                    Button(onClick = {
+                        showDialogEditItem = true
+                    }) {
+                        Text(text = "Edit item")
+                    }
+
+                    Button(onClick = {
+                        testRoomAndHiltViewModel.deleteChat(
+                            chatProvider
+                        )
+                        onDissmissRequest()
+                    }) {
+                        Text(text = "Delete item ${chatProvider.chatID}")
+                    }
+                }
+            }
+
+            DialogEditItem(
+                state = showDialogEditItem,
+                onDissmissRequest = { showDialogEditItem = false }) {
+                ContentEditItemForChat(chatProvider = chatProvider) {
+                    onDissmissRequest()
+                }
+            }
+        }
+
+        profileEntity -> {
+
+
+        }
+
+        userEntity -> {
+
+        }
+
+        dataChatEntity -> {
+
+
+        }
+
+        multimediaEntity -> {
 
         }
     }
+}
+
+
+@Composable
+private fun DialogEditItem(
+    state: Boolean,
+    onDissmissRequest: () -> Unit,
+    content: @Composable () -> Unit
+) {
+    if (state) {
+        Dialog(
+            onDismissRequest = { onDissmissRequest() }, properties = DialogProperties(
+                usePlatformDefaultWidth = false
+            )
+        ) {
+            content()
+        }
+    }
+}
+
+@Composable
+private fun ContentEditItemForChat(
+    chatProvider: ChatProvider,
+    testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel(),
+    onDissmissRequest: () -> Unit
+) {
+    var chatID by remember { mutableStateOf(chatProvider.chatID.toString()) }
+    var isChatGlobal by remember { mutableStateOf(chatProvider.isChatGlobal.toString()) }
+    var profileID by remember { mutableStateOf(chatProvider.profileID.toString()) }
+
+
+    Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+        TextField(
+            value = chatID,
+            onValueChange = { chatID = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = isChatGlobal,
+            onValueChange = { isChatGlobal = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = profileID,
+            onValueChange = { profileID = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        Button(onClick = {
+            testRoomAndHiltViewModel.updateChat(
+                ChatProvider(
+                    chatID = chatID.toInt(),
+                    isChatGlobal = if (isChatGlobal == "true") true else false,
+                    profileID = profileID.toInt()
+                )
+            )
+            onDissmissRequest()
+        }) {
+            Text(text = "Save changes")
+        }
+    }
+
+
 }
 

@@ -29,8 +29,7 @@ import org.compose_projects.socialLocal.feature.profile.ui.testRoomAndHilt.TestR
 fun ProfileScreen() {
     Box(Modifier.fillMaxSize(1F), contentAlignment = Alignment.TopCenter) {
         TestRoomAndHilt(configTest = ConfigTest(
-            userEntity = true,
-            multimediaEntity = true
+            chatEntity = true
         ))
     }
 }

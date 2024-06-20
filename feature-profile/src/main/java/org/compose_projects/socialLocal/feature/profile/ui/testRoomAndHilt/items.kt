@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -15,29 +17,53 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.compose_projects.socialLocal.core.data.data.ChatProvider
 import org.compose_projects.socialLocal.core.data.data.DataChatProvider
 import org.compose_projects.socialLocal.core.data.data.MultimediaProvider
 import org.compose_projects.socialLocal.core.data.data.ProfileProvider
 import org.compose_projects.socialLocal.core.data.data.UserProvider
+import androidx.compose.ui.text.TextStyle
+
+private val textStyle = TextStyle(
+    color = Color.White.copy(alpha = 0.7F),
+    fontSize = 16.sp,
+    fontFamily = FontFamily.Monospace
+)
+
 
 @Composable
 fun ChatProviderItem(chatProvider: ChatProvider) {
-    // Customize the item UI as needed
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(90.dp)
-    ) {
-        Text(text = chatProvider.chatID.toString(), modifier = Modifier.align(Alignment.TopCenter))
-        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-            Row {
-                Text(text = chatProvider.isChatGlobal.toString())
-                Text(text = chatProvider.profileID.toString())
+
+    var showDialogDelete by remember { mutableStateOf(false)}
+
+    CampousItems(contentItem = {
+        // Customize the item UI as needed
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(90.dp)
+        ) {
+            Text(text = chatProvider.chatID.toString(), modifier = Modifier.align(Alignment.TopCenter))
+            Column(modifier = Modifier.align(Alignment.BottomCenter)) {
+                Row {
+                    Text(text = chatProvider.isChatGlobal.toString(), style = textStyle)
+                    Text(text = chatProvider.profileID.toString(), style = textStyle)
+                }
             }
         }
+    }) {
+            Button(onClick = {showDialogDelete = true}) {
+                Text(text = "Edir or Delete")
+            }
+    }
+
+    DialogDelete(state = showDialogDelete, title = "Chat Entity", chatProvider = chatProvider) {
+        showDialogDelete = false
     }
 }
 
@@ -51,13 +77,13 @@ fun ProfileProviderItem(chatProvider: ProfileProvider) {
     ) {
         Text(
             text = chatProvider.profileID.toString(),
-            modifier = Modifier.align(Alignment.TopCenter)
+            modifier = Modifier.align(Alignment.TopCenter), style = textStyle
         )
         Column(modifier = Modifier.align(Alignment.BottomCenter)) {
             Row {
-                Text(text = chatProvider.pathImageProfile)
-                Text(text = chatProvider.description ?: "")
-                Text(text = chatProvider.userID.toString())
+                Text(text = chatProvider.pathImageProfile, style = textStyle)
+                Text(text = chatProvider.description ?: "", style = textStyle)
+                Text(text = chatProvider.userID.toString(), style = textStyle)
             }
         }
     }
@@ -71,12 +97,12 @@ fun UserProviderItem(chatProvider: UserProvider) {
             .fillMaxWidth()
             .height(90.dp)
     ) {
-        Text(text = chatProvider.userID.toString(), modifier = Modifier.align(Alignment.TopCenter))
+        Text(text = chatProvider.userID.toString(), modifier = Modifier.align(Alignment.TopCenter), style = textStyle)
         Column(modifier = Modifier.align(Alignment.BottomCenter)) {
             Row {
-                Text(text = chatProvider.iAm.toString())
-                Text(text = chatProvider.isFriend.toString())
-                Text(text = chatProvider.dataChatID.toString())
+                Text(text = chatProvider.iAm.toString(), style = textStyle)
+                Text(text = chatProvider.isFriend.toString(), style = textStyle)
+                Text(text = chatProvider.dataChatID.toString(), style = textStyle)
             }
         }
     }
@@ -84,20 +110,31 @@ fun UserProviderItem(chatProvider: UserProvider) {
 
 @Composable
 fun DataChatProviderItem(chatProvider: DataChatProvider) {
-    // Customize the item UI as needed
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(90.dp)
-    ) {
-        Column(modifier = Modifier.align(Alignment.TopCenter)) {
-                Text(text = chatProvider.dataChatID.toString())
-                Text(text = chatProvider.dateTime)
-                Text(text = chatProvider.iSend.toString())
-                Text(text = chatProvider.contentType)
-                Text(text = chatProvider.multimediaID.toString())
+    CampousItems(contentItem = {    // Customize the item UI as needed
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(90.dp)
+        ) {
+            Column(modifier = Modifier
+                .align(Alignment.TopStart)
+                .padding(start = 5.dp)
+                .verticalScroll(rememberScrollState())
+            ) {
+                Text(text = "Chat ID: ${chatProvider.dataChatID}", style = textStyle)
+                Text(text = "Date Time ${chatProvider.dateTime}", style = textStyle)
+                Text(text = "Yo lo envie: ${chatProvider.iSend}", style = textStyle)
+                Text(text = "Tipo de Contenido: ${chatProvider.contentType}", style = textStyle)
+                Text(text = "Multimedia ID: ${chatProvider.multimediaID}", style = textStyle)
+
+            }
+        }
+    }) {
+        /*
+        EditDelete(value = "", onValueChange = {}, actionAdd = { /*TODO*/ }) {
 
         }
+         */
     }
 }
 
@@ -107,7 +144,7 @@ fun MultimediaProviderItem(
     testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel()
 ) {
 
-    var valueMultimedia by remember { mutableStateOf("") }
+    var showDialogDelete by remember { mutableStateOf(false) }
 
     CampousItems(contentItem = {
         Box(
@@ -124,36 +161,15 @@ fun MultimediaProviderItem(
                     )
             ) {
 
-                Text(text = chatProvider.multimediaID.toString())
-                Text(text = chatProvider.pathImage)
-                Text(text = chatProvider.pathVideo)
-                Text(text = chatProvider.pathDocument)
-                Text(text = chatProvider.pathAudio)
-                Text(text = chatProvider.message)
+                Text(text = chatProvider.multimediaID.toString(), style = textStyle)
+                Text(text = chatProvider.pathImage, style = textStyle)
+                Text(text = chatProvider.pathVideo, style = textStyle)
+                Text(text = chatProvider.pathDocument, style = textStyle)
+                Text(text = chatProvider.pathAudio, style = textStyle)
+                Text(text = chatProvider.message, style = textStyle)
             }
         }
     }) {
-        EditDelete(value = valueMultimedia, onValueChange = { valueMultimedia = it }, actionAdd = {
-            testRoomAndHiltViewModel.insertMultimedia(
-                MultimediaProvider(
-                    pathImage = chatProvider.pathImage,
-                    pathVideo = chatProvider.pathVideo,
-                    pathDocument = chatProvider.pathDocument,
-                    pathAudio = chatProvider.pathAudio,
-                    message = valueMultimedia
-                )
-            )
-        }, actionDelete = {
-            testRoomAndHiltViewModel.deleteMultimedia(
-                MultimediaProvider(
-                    multimediaID = chatProvider.multimediaID,
-                    pathImage = chatProvider.pathImage,
-                    pathVideo = chatProvider.pathVideo,
-                    pathDocument = chatProvider.pathDocument,
-                    pathAudio = chatProvider.pathAudio,
-                    message = chatProvider.message
-                )
-            )
-        })
+
     }
 }
