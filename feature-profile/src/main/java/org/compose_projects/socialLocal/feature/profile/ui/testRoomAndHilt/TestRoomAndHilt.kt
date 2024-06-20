@@ -19,7 +19,10 @@ import org.compose_projects.socialLocal.feature.profile.ui.testRoomAndHilt.state
 
 
 @Composable
-fun TestRoomAndHilt(testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel()) {
+fun TestRoomAndHilt(
+    configTest: ConfigTest,
+    testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel()
+) {
     //states
     val chatState = testRoomAndHiltViewModel.chatState.collectAsState().value
     val profileState = testRoomAndHiltViewModel.profileState.collectAsState().value
@@ -31,128 +34,168 @@ fun TestRoomAndHilt(testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltVie
         modifier = Modifier
             .fillMaxSize()
     ) {
-        when (chatState) {
-            is ChatState.Loading -> {
-                // Show a loading indicator
-                CircularProgressIndicator()
-            }
-
-            is ChatState.Error -> {
-                // Show an error message
-                val error = (chatState as ChatState.Error).throwable
-                Text(text = "Error: ${error.message}")
-            }
-
-            is ChatState.Success -> {
-                // Show the list of ChatProviders
-                val chatProviders = (chatState as ChatState.Success).data
-                val title = "Chat Entity"
-                HorizontalDivider()
-                CampousItems(contentItem = {Text(text = title, color = Color.White, modifier = Modifier.align(Alignment.CenterHorizontally))}) {
-                    Add(title = title)
+        if (configTest.chatEntity) {
+            when (chatState) {
+                is ChatState.Loading -> {
+                    // Show a loading indicator
+                    CircularProgressIndicator()
                 }
-                ChatProviderList(chatProviders)
+
+                is ChatState.Error -> {
+                    // Show an error message
+                    val error = (chatState as ChatState.Error).throwable
+                    Text(text = "Error: ${error.message}")
+                }
+
+                is ChatState.Success -> {
+                    // Show the list of ChatProviders
+                    val chatProviders = (chatState as ChatState.Success).data
+                    val title = "Chat Entity"
+                    HorizontalDivider()
+                    CampousItems(contentItem = {
+                        Text(
+                            text = title,
+                            color = Color.White,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }) {
+                        Add(title = title)
+                    }
+                    ChatProviderList(chatProviders)
+                }
             }
         }
 
 
-        when (profileState) {
-            is ProfileState.Loading -> {
-                // Show a loading indicator
-                CircularProgressIndicator()
-            }
-
-            is ProfileState.Error -> {
-                // Show an error message
-                val error = (profileState as ProfileState.Error).throwable
-                Text(text = "Error: ${error.message}")
-            }
-
-            is ProfileState.Success -> {
-                // Show the list of ChatProviders
-                val chatProviders = (profileState as ProfileState.Success).data
-                val title = "Profile Entity"
-                HorizontalDivider()
-                CampousItems(contentItem = { Text(text = title, color = Color.White, modifier = Modifier.align(Alignment.CenterHorizontally))}) {
-                    Add(title = title)
+        if (configTest.profileEntity) {
+            when (profileState) {
+                is ProfileState.Loading -> {
+                    // Show a loading indicator
+                    CircularProgressIndicator()
                 }
-                ProfileProviderList(chatProviders)
+
+                is ProfileState.Error -> {
+                    // Show an error message
+                    val error = (profileState as ProfileState.Error).throwable
+                    Text(text = "Error: ${error.message}")
+                }
+
+                is ProfileState.Success -> {
+                    // Show the list of ChatProviders
+                    val chatProviders = (profileState as ProfileState.Success).data
+                    val title = "Profile Entity"
+                    HorizontalDivider()
+                    CampousItems(contentItem = {
+                        Text(
+                            text = title,
+                            color = Color.White,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }) {
+                        Add(title = title)
+                    }
+                    ProfileProviderList(chatProviders)
+                }
             }
         }
 
 
 
-        when (userState) {
-            is UserState.Loading -> {
-                // Show a loading indicator
-                CircularProgressIndicator()
-            }
-
-            is UserState.Error -> {
-                // Show an error message
-                val error = (userState as UserState.Error).throwable
-                Text(text = "Error: ${error.message}")
-            }
-
-            is UserState.Success -> {
-                // Show the list of ChatProviders
-                val chatProviders = (userState as UserState.Success).data
-                val title = "User Entity"
-                HorizontalDivider()
-                CampousItems(contentItem = {Text(text = title, color = Color.White, modifier = Modifier.align(Alignment.CenterHorizontally))}) {
-                    Add(title = title)
+        if (configTest.userEntity) {
+            when (userState) {
+                is UserState.Loading -> {
+                    // Show a loading indicator
+                    CircularProgressIndicator()
                 }
-                UserProviderList(chatProviders)
+
+                is UserState.Error -> {
+                    // Show an error message
+                    val error = (userState as UserState.Error).throwable
+                    Text(text = "Error: ${error.message}")
+                }
+
+                is UserState.Success -> {
+                    // Show the list of ChatProviders
+                    val chatProviders = (userState as UserState.Success).data
+                    val title = "User Entity"
+                    HorizontalDivider()
+                    CampousItems(contentItem = {
+                        Text(
+                            text = title,
+                            color = Color.White,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }) {
+                        Add(title = title)
+                    }
+                    UserProviderList(chatProviders)
+                }
             }
         }
 
 
-        when (dataChatState) {
-            is DataChatState.Loading -> {
-                // Show a loading indicator
-                CircularProgressIndicator()
-            }
-
-            is DataChatState.Error -> {
-                // Show an error message
-                val error = (dataChatState as DataChatState.Error).throwable
-                Text(text = "Error: ${error.message}")
-            }
-
-            is DataChatState.Success -> {
-                // Show the list of ChatProviders
-                val chatProviders = (dataChatState as DataChatState.Success).data
-                val title = "Data Chat Entity"
-                HorizontalDivider()
-                CampousItems(contentItem = {Text(text = title, color = Color.White, modifier = Modifier.align(Alignment.CenterHorizontally))}) {
-                    Add(title = title)
+        if (configTest.dataChatEntity){
+            when (dataChatState) {
+                is DataChatState.Loading -> {
+                    // Show a loading indicator
+                    CircularProgressIndicator()
                 }
-                DataChatProviderList(chatProviders)
+
+                is DataChatState.Error -> {
+                    // Show an error message
+                    val error = (dataChatState as DataChatState.Error).throwable
+                    Text(text = "Error: ${error.message}")
+                }
+
+                is DataChatState.Success -> {
+                    // Show the list of ChatProviders
+                    val chatProviders = (dataChatState as DataChatState.Success).data
+                    val title = "Data Chat Entity"
+                    HorizontalDivider()
+                    CampousItems(contentItem = {
+                        Text(
+                            text = title,
+                            color = Color.White,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }) {
+                        Add(title = title)
+                    }
+                    DataChatProviderList(chatProviders)
+                }
             }
         }
 
 
-        when (multimediaState) {
-            is MultimediaState.Loading -> {
-                // Show a loading indicator
-                CircularProgressIndicator()
-            }
-
-            is MultimediaState.Error -> {
-                // Show an error message
-                val error = (multimediaState as MultimediaState.Error).throwable
-                Text(text = "Error: ${error.message}")
-            }
-
-            is MultimediaState.Success -> {
-                // Show the list of ChatProviders
-                val chatProviders = (multimediaState as MultimediaState.Success).data
-                val title = "Multimedia Entity"
-                HorizontalDivider()
-                CampousItems(contentItem = {Text(text = title, color = Color.White, modifier = Modifier.align(Alignment.CenterHorizontally))}) {
-                    Add(title = title)
+        if (configTest.multimediaEntity){
+            when (multimediaState) {
+                is MultimediaState.Loading -> {
+                    // Show a loading indicator
+                    CircularProgressIndicator()
                 }
-                MultimediaProviderList(chatProviders)
+
+                is MultimediaState.Error -> {
+                    // Show an error message
+                    val error = (multimediaState as MultimediaState.Error).throwable
+                    Text(text = "Error: ${error.message}")
+                }
+
+                is MultimediaState.Success -> {
+                    // Show the list of ChatProviders
+                    val chatProviders = (multimediaState as MultimediaState.Success).data
+                    val title = "Multimedia Entity"
+                    HorizontalDivider()
+                    CampousItems(contentItem = {
+                        Text(
+                            text = title,
+                            color = Color.White,
+                            modifier = Modifier.align(Alignment.CenterHorizontally)
+                        )
+                    }) {
+                        Add(title = title)
+                    }
+                    MultimediaProviderList(chatProviders)
+                }
             }
         }
     }
