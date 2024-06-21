@@ -65,7 +65,11 @@ fun ChatProviderItem(chatProvider: ChatProvider) {
         }
     }
 
-    DialogDelete(state = showDialogDelete, title = "Chat Entity", chatProvider = chatProvider) {
+    DialogDelete(
+        state = showDialogDelete,
+        title = "Chat Entity",
+        providers = providers(chatProvider)
+    ) {
         showDialogDelete = false
     }
 }
@@ -98,7 +102,11 @@ fun ProfileProviderItem(chatProvider: ProfileProvider) {
             Text(text = "Edir or Delete")
         }
     }
-    DialogDelete(state = showDialogDelete, title = "Profile Entity", chatProvider = chatProvider) {
+    DialogDelete(
+        state = showDialogDelete,
+        title = "Profile Entity",
+        providers = providers(profileProvider = chatProvider)
+    ) {
         showDialogDelete = false
     }
 }

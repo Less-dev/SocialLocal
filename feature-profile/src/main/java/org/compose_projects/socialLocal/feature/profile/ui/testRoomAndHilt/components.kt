@@ -698,26 +698,10 @@ private fun ContentEditItemForProfile(
 
     var profileID by remember { mutableStateOf(profileProvider.profileID.toString()) }
     var pathImageProfile by remember { mutableStateOf(profileProvider.pathImageProfile) }
-    var description by remember { mutableStateOf(profileProvider.description) }
+    var description by remember { mutableStateOf(profileProvider.description.toString()) }
     var userID by remember { mutableStateOf(profileProvider.userID.toString()) }
 
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-        /*
-                TextField(
-            value = chatID,
-            onValueChange = { chatID = it },
-            modifier = Modifier
-                .fillMaxWidth(1F)
-                .height(50.dp)
-        )
-
-        TextField(
-            value = isChatGlobal,
-            onValueChange = { isChatGlobal = it },
-            modifier = Modifier
-                .fillMaxWidth(1F)
-                .height(50.dp)
-        )
 
         TextField(
             value = profileID,
@@ -726,7 +710,30 @@ private fun ContentEditItemForProfile(
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
-         */
+
+        TextField(
+            value = pathImageProfile,
+            onValueChange = { pathImageProfile = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = description,
+            onValueChange = { description = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = userID,
+            onValueChange = { userID = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
 
         Button(onClick = {
             testRoomAndHiltViewModel.updateProfile(
@@ -758,37 +765,44 @@ private fun ContentEditItemForUser(
     var dataChatID by remember { mutableStateOf(userProvider.dataChatID.toString()) }
 
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-        /*
-                TextField(
-            value = chatID,
-            onValueChange = { chatID = it },
+
+        TextField(
+            value = userId,
+            onValueChange = { userId = it },
             modifier = Modifier
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
 
         TextField(
-            value = isChatGlobal,
-            onValueChange = { isChatGlobal = it },
+            value = iAm,
+            onValueChange = { iAm = it },
             modifier = Modifier
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
 
         TextField(
-            value = profileID,
-            onValueChange = { profileID = it },
+            value = isFriend,
+            onValueChange = { isFriend = it },
             modifier = Modifier
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
-         */
+
+        TextField(
+            value = dataChatID,
+            onValueChange = { dataChatID = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
 
         Button(onClick = {
             testRoomAndHiltViewModel.updateUser(
                 UserProvider(
                     userID = userId.toInt(),
-                    iAm = if (iAm == "true") true else false ,
+                    iAm = if (iAm == "true") true else false,
                     isFriend = if (isFriend == "true") true else false,
                     dataChatID = dataChatID.toInt()
                 )
@@ -808,50 +822,55 @@ private fun ContentEditItemForDataChat(
     onDissmissRequest: () -> Unit
 ) {
     var dataChatID by remember { mutableStateOf(dataChatProvider.dataChatID.toString()) }
-    var dateTime by remember { mutableStateOf(dataChatProvider.dateTime)}
+    var dateTime by remember { mutableStateOf(dataChatProvider.dateTime) }
     var iSend by remember { mutableStateOf(dataChatProvider.iSend.toString()) }
     var contentType by remember { mutableStateOf(dataChatProvider.contentType) }
     var multimediaID by remember { mutableStateOf(dataChatProvider.multimediaID.toString()) }
 
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-        /*
-                TextField(
-            value = chatID,
-            onValueChange = { chatID = it },
+
+        TextField(
+            value = dataChatID,
+            onValueChange = { dataChatID = it },
             modifier = Modifier
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
 
         TextField(
-            value = isChatGlobal,
-            onValueChange = { isChatGlobal = it },
+            value = dateTime,
+            onValueChange = { dateTime = it },
             modifier = Modifier
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
 
         TextField(
-            value = profileID,
-            onValueChange = { profileID = it },
+            value = iSend,
+            onValueChange = { iSend = it },
             modifier = Modifier
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
-         */
+
+        TextField(
+            value = contentType,
+            onValueChange = { contentType = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = multimediaID,
+            onValueChange = { multimediaID = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
 
         Button(onClick = {
-            /*
-                   testRoomAndHiltViewModel.updateChat(
-                ChatProvider(
-                    chatID = chatID.toInt(),
-                    isChatGlobal = if (isChatGlobal == "true") true else false,
-                    profileID = profileID.toInt()
-                )
-            )
-
-             */
-
             testRoomAndHiltViewModel.updatedataChat(
                 DataChatProvider(
                     dataChatID = dataChatID.toInt(),
@@ -876,39 +895,62 @@ private fun ContentEditItemForMultimedia(
     onDissmissRequest: () -> Unit
 ) {
 
-    var multimediaID by remember { mutableStateOf(multimediaProvider.multimediaID.toString())}
+    var multimediaID by remember { mutableStateOf(multimediaProvider.multimediaID.toString()) }
     var pathImage by remember { mutableStateOf(multimediaProvider.pathImage) }
     var pathVideo by remember { mutableStateOf(multimediaProvider.pathVideo) }
     var pathDocument by remember { mutableStateOf(multimediaProvider.pathDocument) }
     var pathAudio by remember { mutableStateOf(multimediaProvider.pathAudio) }
-    var message by remember { mutableStateOf(multimediaProvider.message)}
+    var message by remember { mutableStateOf(multimediaProvider.message) }
 
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-        /*
-                TextField(
-            value = chatID,
-            onValueChange = { chatID = it },
+
+        TextField(
+            value = multimediaID,
+            onValueChange = { multimediaID = it },
             modifier = Modifier
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
 
         TextField(
-            value = isChatGlobal,
-            onValueChange = { isChatGlobal = it },
+            value = pathImage,
+            onValueChange = { pathImage = it },
             modifier = Modifier
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
 
         TextField(
-            value = profileID,
-            onValueChange = { profileID = it },
+            value = pathVideo,
+            onValueChange = { pathVideo = it },
             modifier = Modifier
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
-         */
+
+        TextField(
+            value = pathVideo,
+            onValueChange = { pathVideo = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = pathDocument,
+            onValueChange = { pathDocument = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+        TextField(
+            value = message,
+            onValueChange = { message = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
 
         Button(onClick = {
             testRoomAndHiltViewModel.updateMultimedia(
