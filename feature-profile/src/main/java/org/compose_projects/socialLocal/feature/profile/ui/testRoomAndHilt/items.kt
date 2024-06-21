@@ -113,29 +113,47 @@ fun ProfileProviderItem(chatProvider: ProfileProvider) {
 
 @Composable
 fun UserProviderItem(chatProvider: UserProvider) {
-    // Customize the item UI as needed
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(90.dp)
-    ) {
-        Text(
-            text = chatProvider.userID.toString(),
-            modifier = Modifier.align(Alignment.TopCenter),
-            style = textStyle
-        )
-        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-            Row {
-                Text(text = chatProvider.iAm.toString(), style = textStyle)
-                Text(text = chatProvider.isFriend.toString(), style = textStyle)
-                Text(text = chatProvider.dataChatID.toString(), style = textStyle)
+
+    var showDialogDelete by remember { mutableStateOf(false) }
+
+    CampousItems(contentItem = {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(90.dp)
+        ) {
+            Text(
+                text = chatProvider.userID.toString(),
+                modifier = Modifier.align(Alignment.TopCenter),
+                style = textStyle
+            )
+            Column(modifier = Modifier.align(Alignment.BottomCenter)) {
+                Row {
+                    Text(text = chatProvider.iAm.toString(), style = textStyle)
+                    Text(text = chatProvider.isFriend.toString(), style = textStyle)
+                    Text(text = chatProvider.dataChatID.toString(), style = textStyle)
+                }
             }
         }
+    }) {
+
+        Button(onClick = { showDialogDelete = true }) {
+            Text(text = "Edir or Delete")
+        }
+    }
+    DialogDelete(
+        state = showDialogDelete,
+        title = "Profile Entity",
+        providers = providers(userProvider = chatProvider)
+    ) {
+        showDialogDelete = false
     }
 }
 
 @Composable
 fun DataChatProviderItem(chatProvider: DataChatProvider) {
+    var showDialogDelete by remember { mutableStateOf(false) }
+
     CampousItems(contentItem = {    // Customize the item UI as needed
         Box(
             modifier = Modifier
@@ -157,11 +175,17 @@ fun DataChatProviderItem(chatProvider: DataChatProvider) {
             }
         }
     }) {
-        /*
-        EditDelete(value = "", onValueChange = {}, actionAdd = { /*TODO*/ }) {
 
+        Button(onClick = { showDialogDelete = true }) {
+            Text(text = "Edir or Delete")
         }
-         */
+    }
+    DialogDelete(
+        state = showDialogDelete,
+        title = "Profile Entity",
+        providers = providers(dataChatProvider = chatProvider)
+    ) {
+        showDialogDelete = false
     }
 }
 
@@ -198,5 +222,15 @@ fun MultimediaProviderItem(
         }
     }) {
 
+        Button(onClick = { showDialogDelete = true }) {
+            Text(text = "Edir or Delete")
+        }
+    }
+    DialogDelete(
+        state = showDialogDelete,
+        title = "Profile Entity",
+        providers = providers(multimediaProvider = chatProvider)
+    ) {
+        showDialogDelete = false
     }
 }
