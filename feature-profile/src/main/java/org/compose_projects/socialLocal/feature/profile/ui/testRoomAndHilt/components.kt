@@ -460,7 +460,214 @@ private fun ContentEditItemForChat(
             Text(text = "Save changes")
         }
     }
-
-
 }
 
+
+
+
+@Composable
+private fun ContentEditItemForProfile(
+    chatProvider: ChatProvider,
+    testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel(),
+    onDissmissRequest: () -> Unit
+) {
+    var chatID by remember { mutableStateOf(chatProvider.chatID.toString()) }
+    var isChatGlobal by remember { mutableStateOf(chatProvider.isChatGlobal.toString()) }
+    var profileID by remember { mutableStateOf(chatProvider.profileID.toString()) }
+
+
+    Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+        TextField(
+            value = chatID,
+            onValueChange = { chatID = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = isChatGlobal,
+            onValueChange = { isChatGlobal = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = profileID,
+            onValueChange = { profileID = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        Button(onClick = {
+            testRoomAndHiltViewModel.updateChat(
+                ChatProvider(
+                    chatID = chatID.toInt(),
+                    isChatGlobal = if (isChatGlobal == "true") true else false,
+                    profileID = profileID.toInt()
+                )
+            )
+            onDissmissRequest()
+        }) {
+            Text(text = "Save changes")
+        }
+    }
+}
+
+
+@Composable
+private fun ContentEditItemForUser(
+    chatProvider: ChatProvider,
+    testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel(),
+    onDissmissRequest: () -> Unit
+) {
+    var chatID by remember { mutableStateOf(chatProvider.chatID.toString()) }
+    var isChatGlobal by remember { mutableStateOf(chatProvider.isChatGlobal.toString()) }
+    var profileID by remember { mutableStateOf(chatProvider.profileID.toString()) }
+
+
+    Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+        TextField(
+            value = chatID,
+            onValueChange = { chatID = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = isChatGlobal,
+            onValueChange = { isChatGlobal = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = profileID,
+            onValueChange = { profileID = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        Button(onClick = {
+            testRoomAndHiltViewModel.updateChat(
+                ChatProvider(
+                    chatID = chatID.toInt(),
+                    isChatGlobal = if (isChatGlobal == "true") true else false,
+                    profileID = profileID.toInt()
+                )
+            )
+            onDissmissRequest()
+        }) {
+            Text(text = "Save changes")
+        }
+    }
+}
+
+
+@Composable
+private fun ContentEditItemForDataChat(
+    chatProvider: ChatProvider,
+    testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel(),
+    onDissmissRequest: () -> Unit
+) {
+    var chatID by remember { mutableStateOf(chatProvider.chatID.toString()) }
+    var isChatGlobal by remember { mutableStateOf(chatProvider.isChatGlobal.toString()) }
+    var profileID by remember { mutableStateOf(chatProvider.profileID.toString()) }
+
+
+    Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+        TextField(
+            value = chatID,
+            onValueChange = { chatID = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = isChatGlobal,
+            onValueChange = { isChatGlobal = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = profileID,
+            onValueChange = { profileID = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        Button(onClick = {
+            testRoomAndHiltViewModel.updateChat(
+                ChatProvider(
+                    chatID = chatID.toInt(),
+                    isChatGlobal = if (isChatGlobal == "true") true else false,
+                    profileID = profileID.toInt()
+                )
+            )
+            onDissmissRequest()
+        }) {
+            Text(text = "Save changes")
+        }
+    }
+}
+
+
+@Composable
+private fun ContentEditItemForMultimedia(
+    chatProvider: ChatProvider,
+    testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel(),
+    onDissmissRequest: () -> Unit
+) {
+    var chatID by remember { mutableStateOf(chatProvider.chatID.toString()) }
+    var isChatGlobal by remember { mutableStateOf(chatProvider.isChatGlobal.toString()) }
+    var profileID by remember { mutableStateOf(chatProvider.profileID.toString()) }
+
+
+    Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+        TextField(
+            value = chatID,
+            onValueChange = { chatID = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = isChatGlobal,
+            onValueChange = { isChatGlobal = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = profileID,
+            onValueChange = { profileID = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        Button(onClick = {
+            testRoomAndHiltViewModel.updateChat(
+                ChatProvider(
+                    chatID = chatID.toInt(),
+                    isChatGlobal = if (isChatGlobal == "true") true else false,
+                    profileID = profileID.toInt()
+                )
+            )
+            onDissmissRequest()
+        }) {
+            Text(text = "Save changes")
+        }
+    }
+}
