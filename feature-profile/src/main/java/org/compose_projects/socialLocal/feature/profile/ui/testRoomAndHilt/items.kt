@@ -39,7 +39,7 @@ private val textStyle = TextStyle(
 @Composable
 fun ChatProviderItem(chatProvider: ChatProvider) {
 
-    var showDialogDelete by remember { mutableStateOf(false)}
+    var showDialogDelete by remember { mutableStateOf(false) }
 
     CampousItems(contentItem = {
         // Customize the item UI as needed
@@ -48,7 +48,10 @@ fun ChatProviderItem(chatProvider: ChatProvider) {
                 .fillMaxWidth()
                 .height(90.dp)
         ) {
-            Text(text = chatProvider.chatID.toString(), modifier = Modifier.align(Alignment.TopCenter))
+            Text(
+                text = chatProvider.chatID.toString(),
+                modifier = Modifier.align(Alignment.TopCenter)
+            )
             Column(modifier = Modifier.align(Alignment.BottomCenter)) {
                 Row {
                     Text(text = chatProvider.isChatGlobal.toString(), style = textStyle)
@@ -57,9 +60,9 @@ fun ChatProviderItem(chatProvider: ChatProvider) {
             }
         }
     }) {
-            Button(onClick = {showDialogDelete = true}) {
-                Text(text = "Edir or Delete")
-            }
+        Button(onClick = { showDialogDelete = true }) {
+            Text(text = "Edir or Delete")
+        }
     }
 
     DialogDelete(state = showDialogDelete, title = "Chat Entity", chatProvider = chatProvider) {
@@ -69,23 +72,34 @@ fun ChatProviderItem(chatProvider: ChatProvider) {
 
 @Composable
 fun ProfileProviderItem(chatProvider: ProfileProvider) {
-    // Customize the item UI as needed
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(90.dp)
-    ) {
-        Text(
-            text = chatProvider.profileID.toString(),
-            modifier = Modifier.align(Alignment.TopCenter), style = textStyle
-        )
-        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-            Row {
-                Text(text = chatProvider.pathImageProfile, style = textStyle)
-                Text(text = chatProvider.description ?: "", style = textStyle)
-                Text(text = chatProvider.userID.toString(), style = textStyle)
+
+    var showDialogDelete by remember { mutableStateOf(false) }
+
+    CampousItems(contentItem = {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(90.dp)
+        ) {
+            Text(
+                text = chatProvider.profileID.toString(),
+                modifier = Modifier.align(Alignment.TopCenter), style = textStyle
+            )
+            Column(modifier = Modifier.align(Alignment.BottomCenter)) {
+                Row {
+                    Text(text = chatProvider.pathImageProfile, style = textStyle)
+                    Text(text = chatProvider.description ?: "", style = textStyle)
+                    Text(text = chatProvider.userID.toString(), style = textStyle)
+                }
             }
         }
+    }) {
+        Button(onClick = { showDialogDelete = true }) {
+            Text(text = "Edir or Delete")
+        }
+    }
+    DialogDelete(state = showDialogDelete, title = "Profile Entity", chatProvider = chatProvider) {
+        showDialogDelete = false
     }
 }
 
@@ -97,7 +111,11 @@ fun UserProviderItem(chatProvider: UserProvider) {
             .fillMaxWidth()
             .height(90.dp)
     ) {
-        Text(text = chatProvider.userID.toString(), modifier = Modifier.align(Alignment.TopCenter), style = textStyle)
+        Text(
+            text = chatProvider.userID.toString(),
+            modifier = Modifier.align(Alignment.TopCenter),
+            style = textStyle
+        )
         Column(modifier = Modifier.align(Alignment.BottomCenter)) {
             Row {
                 Text(text = chatProvider.iAm.toString(), style = textStyle)
@@ -116,10 +134,11 @@ fun DataChatProviderItem(chatProvider: DataChatProvider) {
                 .fillMaxWidth()
                 .height(90.dp)
         ) {
-            Column(modifier = Modifier
-                .align(Alignment.TopStart)
-                .padding(start = 5.dp)
-                .verticalScroll(rememberScrollState())
+            Column(
+                modifier = Modifier
+                    .align(Alignment.TopStart)
+                    .padding(start = 5.dp)
+                    .verticalScroll(rememberScrollState())
             ) {
                 Text(text = "Chat ID: ${chatProvider.dataChatID}", style = textStyle)
                 Text(text = "Date Time ${chatProvider.dateTime}", style = textStyle)

@@ -28,9 +28,11 @@ import org.compose_projects.socialLocal.feature.profile.ui.testRoomAndHilt.TestR
 @Composable
 fun ProfileScreen() {
     Box(Modifier.fillMaxSize(1F), contentAlignment = Alignment.TopCenter) {
-        TestRoomAndHilt(configTest = ConfigTest(
-            chatEntity = true
-        ))
+        TestRoomAndHilt(
+            configTest = ConfigTest(
+                profileEntity = true
+            )
+        )
     }
 }
 

@@ -1,6 +1,5 @@
 package org.compose_projects.socialLocal.feature.profile.ui.testRoomAndHilt
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,12 +7,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -293,105 +288,325 @@ private fun ContentAdd(
 }
 
 
+internal data class providers(
+    val chatProvider: ChatProvider? = null,
+    val profileProvider: ProfileProvider? = null,
+    val userProvider: UserProvider? = null,
+    val dataChatProvider: DataChatProvider? = null,
+    val multimediaProvider: MultimediaProvider? = null
+)
+
 @Composable
 internal fun DialogDelete(
     state: Boolean,
     title: String,
-    chatProvider: ChatProvider,
+    providers: providers,
     onDissmissRequest: () -> Unit,
 
     ) {
     if (state) {
-        Dialog(
-            onDismissRequest = { onDissmissRequest() },
-            properties = DialogProperties(
-                usePlatformDefaultWidth = false
-            )
-        ) {
-            Box(modifier = Modifier.fillMaxSize()) {
-                ContentDelete(
-                    chatProvider = chatProvider,
+
+        val chatEntity = "Chat Entity"
+        val profileEntity = "Profile Entity"
+        val userEntity = "User Entity"
+        val dataChatEntity = "Data Chat Entity"
+        val multimediaEntity = "Multimedia Entity"
+        if (providers.chatProvider != null) {
+            DialogSL(onDissmissRequest = { onDissmissRequest() }) {
+                ContentDeleteChat(
+                    chatProvider = providers.chatProvider,
                     entity = title,
                     onDissmissRequest = { onDissmissRequest() })
+            }
+
+        } else if (providers.profileProvider != null) {
+            DialogSL(onDissmissRequest = { onDissmissRequest() }) {
+
+            }
+        } else if (providers.userProvider != null) {
+            DialogSL(onDissmissRequest = { onDissmissRequest() }) {
+
+            }
+        } else if (providers.dataChatProvider != null) {
+            DialogSL(onDissmissRequest = { onDissmissRequest() }) {
+
+            }
+        } else if (providers.multimediaProvider != null) {
+            DialogSL(onDissmissRequest = { onDissmissRequest() }) {
+
             }
         }
     }
 }
 
+
 @Composable
-private fun ContentDelete(
+private fun DialogSL(onDissmissRequest: () -> Unit, content: @Composable () -> Unit) {
+    Dialog(
+        onDismissRequest = { onDissmissRequest() },
+        properties = DialogProperties(
+            usePlatformDefaultWidth = false
+        )
+    ) {
+        Box(modifier = Modifier.fillMaxSize()) {
+            content()
+        }
+    }
+}
+
+
+@Composable
+private fun ContentDeleteChat(
     chatProvider: ChatProvider,
     entity: String,
     onDissmissRequest: () -> Unit,
     testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel()
 ) {
-    val chatEntity = "Chat Entity"
-    val profileEntity = "Profile Entity"
-    val userEntity = "User Entity"
-    val dataChatEntity = "Data Chat Entity"
-    val multimediaEntity = "Multimedia Entity"
+
 
     val modifier = Modifier
         .fillMaxWidth()
         .height(50.dp)
 
-    when (entity) {
-        chatEntity -> {
 
-            var idItem by remember { mutableIntStateOf(0) }
-            var showDialogEditItem by remember { mutableStateOf(false) }
+    var idItem by remember { mutableIntStateOf(0) }
+    var showDialogEditItem by remember { mutableStateOf(false) }
 
-            Column(
-                Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
-            ) {
-                Row {
-                    Button(onClick = {
-                        showDialogEditItem = true
-                    }) {
-                        Text(text = "Edit item")
-                    }
-
-                    Button(onClick = {
-                        testRoomAndHiltViewModel.deleteChat(
-                            chatProvider
-                        )
-                        onDissmissRequest()
-                    }) {
-                        Text(text = "Delete item ${chatProvider.chatID}")
-                    }
-                }
+    Column(
+        Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Row {
+            Button(onClick = {
+                showDialogEditItem = true
+            }) {
+                Text(text = "Edit item")
             }
 
-            DialogEditItem(
-                state = showDialogEditItem,
-                onDissmissRequest = { showDialogEditItem = false }) {
-                ContentEditItemForChat(chatProvider = chatProvider) {
-                    onDissmissRequest()
-                }
+            Button(onClick = {
+                testRoomAndHiltViewModel.deleteChat(
+                    chatProvider
+                )
+                onDissmissRequest()
+            }) {
+                Text(text = "Delete item ${chatProvider.chatID}")
             }
         }
+    }
 
-        profileEntity -> {
-
-
-        }
-
-        userEntity -> {
-
-        }
-
-        dataChatEntity -> {
-
-
-        }
-
-        multimediaEntity -> {
-
+    DialogEditItem(
+        state = showDialogEditItem,
+        onDissmissRequest = { showDialogEditItem = false }) {
+        ContentEditItemForChat(chatProvider = chatProvider) {
+            onDissmissRequest()
         }
     }
 }
+
+
+@Composable
+private fun ContentDeleteProfile(
+    chatProvider: ChatProvider,
+    entity: String,
+    onDissmissRequest: () -> Unit,
+    testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel()
+) {
+
+
+    val modifier = Modifier
+        .fillMaxWidth()
+        .height(50.dp)
+
+
+    var idItem by remember { mutableIntStateOf(0) }
+    var showDialogEditItem by remember { mutableStateOf(false) }
+
+    Column(
+        Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Row {
+            Button(onClick = {
+                showDialogEditItem = true
+            }) {
+                Text(text = "Edit item")
+            }
+
+            Button(onClick = {
+                testRoomAndHiltViewModel.deleteChat(
+                    chatProvider
+                )
+                onDissmissRequest()
+            }) {
+                Text(text = "Delete item ${chatProvider.chatID}")
+            }
+        }
+    }
+
+    DialogEditItem(
+        state = showDialogEditItem,
+        onDissmissRequest = { showDialogEditItem = false }) {
+        ContentEditItemForChat(chatProvider = chatProvider) {
+            onDissmissRequest()
+        }
+    }
+}
+
+
+
+@Composable
+private fun ContentDeleteUser(
+    chatProvider: ChatProvider,
+    entity: String,
+    onDissmissRequest: () -> Unit,
+    testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel()
+) {
+
+
+    val modifier = Modifier
+        .fillMaxWidth()
+        .height(50.dp)
+
+
+    var idItem by remember { mutableIntStateOf(0) }
+    var showDialogEditItem by remember { mutableStateOf(false) }
+
+    Column(
+        Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Row {
+            Button(onClick = {
+                showDialogEditItem = true
+            }) {
+                Text(text = "Edit item")
+            }
+
+            Button(onClick = {
+                testRoomAndHiltViewModel.deleteChat(
+                    chatProvider
+                )
+                onDissmissRequest()
+            }) {
+                Text(text = "Delete item ${chatProvider.chatID}")
+            }
+        }
+    }
+
+    DialogEditItem(
+        state = showDialogEditItem,
+        onDissmissRequest = { showDialogEditItem = false }) {
+        ContentEditItemForChat(chatProvider = chatProvider) {
+            onDissmissRequest()
+        }
+    }
+}
+
+
+
+@Composable
+private fun ContentDeleteDataChat(
+    chatProvider: ChatProvider,
+    entity: String,
+    onDissmissRequest: () -> Unit,
+    testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel()
+) {
+
+
+    val modifier = Modifier
+        .fillMaxWidth()
+        .height(50.dp)
+
+
+    var idItem by remember { mutableIntStateOf(0) }
+    var showDialogEditItem by remember { mutableStateOf(false) }
+
+    Column(
+        Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Row {
+            Button(onClick = {
+                showDialogEditItem = true
+            }) {
+                Text(text = "Edit item")
+            }
+
+            Button(onClick = {
+                testRoomAndHiltViewModel.deleteChat(
+                    chatProvider
+                )
+                onDissmissRequest()
+            }) {
+                Text(text = "Delete item ${chatProvider.chatID}")
+            }
+        }
+    }
+
+    DialogEditItem(
+        state = showDialogEditItem,
+        onDissmissRequest = { showDialogEditItem = false }) {
+        ContentEditItemForChat(chatProvider = chatProvider) {
+            onDissmissRequest()
+        }
+    }
+}
+
+
+
+@Composable
+private fun ContentDeleteMultimedia(
+    chatProvider: ChatProvider,
+    entity: String,
+    onDissmissRequest: () -> Unit,
+    testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel()
+) {
+
+
+    val modifier = Modifier
+        .fillMaxWidth()
+        .height(50.dp)
+
+
+    var idItem by remember { mutableIntStateOf(0) }
+    var showDialogEditItem by remember { mutableStateOf(false) }
+
+    Column(
+        Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Row {
+            Button(onClick = {
+                showDialogEditItem = true
+            }) {
+                Text(text = "Edit item")
+            }
+
+            Button(onClick = {
+                testRoomAndHiltViewModel.deleteChat(
+                    chatProvider
+                )
+                onDissmissRequest()
+            }) {
+                Text(text = "Delete item ${chatProvider.chatID}")
+            }
+        }
+    }
+
+    DialogEditItem(
+        state = showDialogEditItem,
+        onDissmissRequest = { showDialogEditItem = false }) {
+        ContentEditItemForChat(chatProvider = chatProvider) {
+            onDissmissRequest()
+        }
+    }
+}
+
 
 
 @Composable
