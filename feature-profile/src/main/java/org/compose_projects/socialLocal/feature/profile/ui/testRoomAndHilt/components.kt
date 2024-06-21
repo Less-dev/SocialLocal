@@ -321,19 +321,31 @@ internal fun DialogDelete(
 
         } else if (providers.profileProvider != null) {
             DialogSL(onDissmissRequest = { onDissmissRequest() }) {
-
+                ContentDeleteProfile(
+                    profileProvider = providers.profileProvider,
+                    entity = title,
+                    onDissmissRequest = { onDissmissRequest() })
             }
         } else if (providers.userProvider != null) {
             DialogSL(onDissmissRequest = { onDissmissRequest() }) {
-
+                ContentDeleteUser(
+                    userProvider = providers.userProvider,
+                    entity = title,
+                    onDissmissRequest = { onDissmissRequest() })
             }
         } else if (providers.dataChatProvider != null) {
             DialogSL(onDissmissRequest = { onDissmissRequest() }) {
-
+                ContentDeleteDataChat(
+                    dataChatProvider = providers.dataChatProvider,
+                    entity = title,
+                    onDissmissRequest = { onDissmissRequest() })
             }
         } else if (providers.multimediaProvider != null) {
             DialogSL(onDissmissRequest = { onDissmissRequest() }) {
-
+                ContentDeleteMultimedia(
+                    multimediaProvider = providers.multimediaProvider,
+                    entity = title,
+                    onDissmissRequest = { onDissmissRequest() })
             }
         }
     }
@@ -407,7 +419,7 @@ private fun ContentDeleteChat(
 
 @Composable
 private fun ContentDeleteProfile(
-    chatProvider: ChatProvider,
+    profileProvider: ProfileProvider,
     entity: String,
     onDissmissRequest: () -> Unit,
     testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel()
@@ -435,12 +447,12 @@ private fun ContentDeleteProfile(
             }
 
             Button(onClick = {
-                testRoomAndHiltViewModel.deleteChat(
-                    chatProvider
+                testRoomAndHiltViewModel.deleteProfile(
+                    profileProvider
                 )
                 onDissmissRequest()
             }) {
-                Text(text = "Delete item ${chatProvider.chatID}")
+                Text(text = "Delete item ${profileProvider.profileID}")
             }
         }
     }
@@ -448,17 +460,16 @@ private fun ContentDeleteProfile(
     DialogEditItem(
         state = showDialogEditItem,
         onDissmissRequest = { showDialogEditItem = false }) {
-        ContentEditItemForChat(chatProvider = chatProvider) {
+        ContentEditItemForProfile(profileProvider = profileProvider) {
             onDissmissRequest()
         }
     }
 }
-
 
 
 @Composable
 private fun ContentDeleteUser(
-    chatProvider: ChatProvider,
+    userProvider: UserProvider,
     entity: String,
     onDissmissRequest: () -> Unit,
     testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel()
@@ -486,12 +497,12 @@ private fun ContentDeleteUser(
             }
 
             Button(onClick = {
-                testRoomAndHiltViewModel.deleteChat(
-                    chatProvider
+                testRoomAndHiltViewModel.deleteUser(
+                    userProvider
                 )
                 onDissmissRequest()
             }) {
-                Text(text = "Delete item ${chatProvider.chatID}")
+                Text(text = "Delete item ${userProvider.userID}")
             }
         }
     }
@@ -499,17 +510,17 @@ private fun ContentDeleteUser(
     DialogEditItem(
         state = showDialogEditItem,
         onDissmissRequest = { showDialogEditItem = false }) {
-        ContentEditItemForChat(chatProvider = chatProvider) {
+
+        ContentEditItemForUser(userProvider = userProvider) {
             onDissmissRequest()
         }
     }
 }
-
 
 
 @Composable
 private fun ContentDeleteDataChat(
-    chatProvider: ChatProvider,
+    dataChatProvider: DataChatProvider,
     entity: String,
     onDissmissRequest: () -> Unit,
     testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel()
@@ -537,12 +548,12 @@ private fun ContentDeleteDataChat(
             }
 
             Button(onClick = {
-                testRoomAndHiltViewModel.deleteChat(
-                    chatProvider
+                testRoomAndHiltViewModel.deleteDataChat(
+                    dataChatProvider
                 )
                 onDissmissRequest()
             }) {
-                Text(text = "Delete item ${chatProvider.chatID}")
+                Text(text = "Delete item ${dataChatProvider.dataChatID}")
             }
         }
     }
@@ -550,17 +561,17 @@ private fun ContentDeleteDataChat(
     DialogEditItem(
         state = showDialogEditItem,
         onDissmissRequest = { showDialogEditItem = false }) {
-        ContentEditItemForChat(chatProvider = chatProvider) {
+
+        ContentEditItemForDataChat(dataChatProvider = dataChatProvider) {
             onDissmissRequest()
         }
     }
 }
-
 
 
 @Composable
 private fun ContentDeleteMultimedia(
-    chatProvider: ChatProvider,
+    multimediaProvider: MultimediaProvider,
     entity: String,
     onDissmissRequest: () -> Unit,
     testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel()
@@ -588,12 +599,12 @@ private fun ContentDeleteMultimedia(
             }
 
             Button(onClick = {
-                testRoomAndHiltViewModel.deleteChat(
-                    chatProvider
+                testRoomAndHiltViewModel.deleteMultimedia(
+                    multimediaProvider
                 )
                 onDissmissRequest()
             }) {
-                Text(text = "Delete item ${chatProvider.chatID}")
+                Text(text = "Delete item ${multimediaProvider.multimediaID}")
             }
         }
     }
@@ -601,12 +612,12 @@ private fun ContentDeleteMultimedia(
     DialogEditItem(
         state = showDialogEditItem,
         onDissmissRequest = { showDialogEditItem = false }) {
-        ContentEditItemForChat(chatProvider = chatProvider) {
+
+        ContentEditItemForMultimedia(multimediaProvider = multimediaProvider) {
             onDissmissRequest()
         }
     }
 }
-
 
 
 @Composable
@@ -680,17 +691,19 @@ private fun ContentEditItemForChat(
 
 @Composable
 private fun ContentEditItemForProfile(
-    chatProvider: ChatProvider,
+    profileProvider: ProfileProvider,
     testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel(),
     onDissmissRequest: () -> Unit
 ) {
-    var chatID by remember { mutableStateOf(chatProvider.chatID.toString()) }
-    var isChatGlobal by remember { mutableStateOf(chatProvider.isChatGlobal.toString()) }
-    var profileID by remember { mutableStateOf(chatProvider.profileID.toString()) }
 
+    var profileID by remember { mutableStateOf(profileProvider.profileID.toString()) }
+    var pathImageProfile by remember { mutableStateOf(profileProvider.pathImageProfile) }
+    var description by remember { mutableStateOf(profileProvider.description) }
+    var userID by remember { mutableStateOf(profileProvider.userID.toString()) }
 
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-        TextField(
+        /*
+                TextField(
             value = chatID,
             onValueChange = { chatID = it },
             modifier = Modifier
@@ -713,13 +726,15 @@ private fun ContentEditItemForProfile(
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
+         */
 
         Button(onClick = {
-            testRoomAndHiltViewModel.updateChat(
-                ChatProvider(
-                    chatID = chatID.toInt(),
-                    isChatGlobal = if (isChatGlobal == "true") true else false,
-                    profileID = profileID.toInt()
+            testRoomAndHiltViewModel.updateProfile(
+                ProfileProvider(
+                    profileID = profileID.toInt(),
+                    pathImageProfile = pathImageProfile,
+                    description = description,
+                    userID = userID.toInt()
                 )
             )
             onDissmissRequest()
@@ -732,17 +747,19 @@ private fun ContentEditItemForProfile(
 
 @Composable
 private fun ContentEditItemForUser(
-    chatProvider: ChatProvider,
+    userProvider: UserProvider,
     testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel(),
     onDissmissRequest: () -> Unit
 ) {
-    var chatID by remember { mutableStateOf(chatProvider.chatID.toString()) }
-    var isChatGlobal by remember { mutableStateOf(chatProvider.isChatGlobal.toString()) }
-    var profileID by remember { mutableStateOf(chatProvider.profileID.toString()) }
 
+    var userId by remember { mutableStateOf(userProvider.userID.toString()) }
+    var iAm by remember { mutableStateOf(userProvider.iAm.toString()) }
+    var isFriend by remember { mutableStateOf(userProvider.isFriend.toString()) }
+    var dataChatID by remember { mutableStateOf(userProvider.dataChatID.toString()) }
 
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-        TextField(
+        /*
+                TextField(
             value = chatID,
             onValueChange = { chatID = it },
             modifier = Modifier
@@ -765,13 +782,15 @@ private fun ContentEditItemForUser(
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
+         */
 
         Button(onClick = {
-            testRoomAndHiltViewModel.updateChat(
-                ChatProvider(
-                    chatID = chatID.toInt(),
-                    isChatGlobal = if (isChatGlobal == "true") true else false,
-                    profileID = profileID.toInt()
+            testRoomAndHiltViewModel.updateUser(
+                UserProvider(
+                    userID = userId.toInt(),
+                    iAm = if (iAm == "true") true else false ,
+                    isFriend = if (isFriend == "true") true else false,
+                    dataChatID = dataChatID.toInt()
                 )
             )
             onDissmissRequest()
@@ -784,17 +803,19 @@ private fun ContentEditItemForUser(
 
 @Composable
 private fun ContentEditItemForDataChat(
-    chatProvider: ChatProvider,
+    dataChatProvider: DataChatProvider,
     testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel(),
     onDissmissRequest: () -> Unit
 ) {
-    var chatID by remember { mutableStateOf(chatProvider.chatID.toString()) }
-    var isChatGlobal by remember { mutableStateOf(chatProvider.isChatGlobal.toString()) }
-    var profileID by remember { mutableStateOf(chatProvider.profileID.toString()) }
-
+    var dataChatID by remember { mutableStateOf(dataChatProvider.dataChatID.toString()) }
+    var dateTime by remember { mutableStateOf(dataChatProvider.dateTime)}
+    var iSend by remember { mutableStateOf(dataChatProvider.iSend.toString()) }
+    var contentType by remember { mutableStateOf(dataChatProvider.contentType) }
+    var multimediaID by remember { mutableStateOf(dataChatProvider.multimediaID.toString()) }
 
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-        TextField(
+        /*
+                TextField(
             value = chatID,
             onValueChange = { chatID = it },
             modifier = Modifier
@@ -817,13 +838,27 @@ private fun ContentEditItemForDataChat(
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
+         */
 
         Button(onClick = {
-            testRoomAndHiltViewModel.updateChat(
+            /*
+                   testRoomAndHiltViewModel.updateChat(
                 ChatProvider(
                     chatID = chatID.toInt(),
                     isChatGlobal = if (isChatGlobal == "true") true else false,
                     profileID = profileID.toInt()
+                )
+            )
+
+             */
+
+            testRoomAndHiltViewModel.updatedataChat(
+                DataChatProvider(
+                    dataChatID = dataChatID.toInt(),
+                    dateTime = dateTime,
+                    iSend = if (iSend == "true") true else false,
+                    contentType = contentType,
+                    multimediaID = multimediaID.toInt()
                 )
             )
             onDissmissRequest()
@@ -836,17 +871,21 @@ private fun ContentEditItemForDataChat(
 
 @Composable
 private fun ContentEditItemForMultimedia(
-    chatProvider: ChatProvider,
+    multimediaProvider: MultimediaProvider,
     testRoomAndHiltViewModel: TestRoomAndHiltViewModel = hiltViewModel(),
     onDissmissRequest: () -> Unit
 ) {
-    var chatID by remember { mutableStateOf(chatProvider.chatID.toString()) }
-    var isChatGlobal by remember { mutableStateOf(chatProvider.isChatGlobal.toString()) }
-    var profileID by remember { mutableStateOf(chatProvider.profileID.toString()) }
 
+    var multimediaID by remember { mutableStateOf(multimediaProvider.multimediaID.toString())}
+    var pathImage by remember { mutableStateOf(multimediaProvider.pathImage) }
+    var pathVideo by remember { mutableStateOf(multimediaProvider.pathVideo) }
+    var pathDocument by remember { mutableStateOf(multimediaProvider.pathDocument) }
+    var pathAudio by remember { mutableStateOf(multimediaProvider.pathAudio) }
+    var message by remember { mutableStateOf(multimediaProvider.message)}
 
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-        TextField(
+        /*
+                TextField(
             value = chatID,
             onValueChange = { chatID = it },
             modifier = Modifier
@@ -869,15 +908,20 @@ private fun ContentEditItemForMultimedia(
                 .fillMaxWidth(1F)
                 .height(50.dp)
         )
+         */
 
         Button(onClick = {
-            testRoomAndHiltViewModel.updateChat(
-                ChatProvider(
-                    chatID = chatID.toInt(),
-                    isChatGlobal = if (isChatGlobal == "true") true else false,
-                    profileID = profileID.toInt()
+            testRoomAndHiltViewModel.updateMultimedia(
+                MultimediaProvider(
+                    multimediaID = multimediaID.toInt(),
+                    pathImage = pathImage,
+                    pathVideo = pathVideo,
+                    pathDocument = pathDocument,
+                    pathAudio = pathAudio,
+                    message = message
                 )
             )
+
             onDissmissRequest()
         }) {
             Text(text = "Save changes")
