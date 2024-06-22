@@ -42,6 +42,9 @@ interface UserDao {
     @Query("SELECT * FROM User")
     fun getUser(): Flow<List<User>>
 
+    @Query("SELECT * FROM User WHERE userID = :id")
+    fun getProfileById(id: Int): Flow<User>
+
     @Update
     fun updateUser(item: User)
 

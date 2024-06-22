@@ -38,6 +38,9 @@ interface MultimediaDao {
     @Query("SELECT * FROM Multimedia")
     fun getMultimedia(): Flow<List<Multimedia>>
 
+    @Query("SELECT * FROM Multimedia WHERE multimediaID = :id")
+    fun getMultimediaById(id: Int): Flow<Multimedia>
+
     @Update
     fun updateMultimedia(item: Multimedia)
 

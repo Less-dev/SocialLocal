@@ -24,6 +24,9 @@ interface DataChatDao {
     @Query("SELECT * FROM DataChat")
     fun getDataChat(): Flow<List<DataChat>>
 
+    @Query("SELECT * FROM DataChat WHERE dataChatID = :id")
+    fun getDataChatById(id: Int): Flow<DataChat>
+
     @Update
     fun updateDataChat(item: DataChat)
 

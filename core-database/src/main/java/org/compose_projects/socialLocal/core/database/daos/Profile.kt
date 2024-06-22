@@ -40,6 +40,9 @@ interface ProfileDao {
     @Query("SELECT * FROM Profile")
     fun getProfile(): Flow<List<Profile>>
 
+    @Query("SELECT * FROM Profile WHERE profileID = :id")
+    fun getProfileById(id: Int): Flow<Profile>
+
     @Update
     fun updateProfile(item: Profile)
 
