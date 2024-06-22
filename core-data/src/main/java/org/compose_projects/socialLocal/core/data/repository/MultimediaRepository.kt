@@ -48,10 +48,7 @@ class MultimediaRepositoryImp @Inject constructor(
             items.map {
                 MultimediaProvider(
                     multimediaID = it.multimediaID,
-                    pathImage = it.pathImage ?: "",
-                    pathVideo = it.pathVideo ?: "",
-                    pathDocument = it.pathDocument ?: "",
-                    pathAudio = it.pathAudio ?: "",
+                    pathFile = it.pathFile ?: "",
                     message = it.message ?: ""
                 )
             }
@@ -62,10 +59,7 @@ class MultimediaRepositoryImp @Inject constructor(
         multimediaDao.insertMultimedia(
             Multimedia(
                 multimediaID = multimediaProvider.multimediaID,
-                pathImage = multimediaProvider.pathImage,
-                pathVideo = multimediaProvider.pathVideo,
-                pathDocument = multimediaProvider.pathDocument,
-                pathAudio = multimediaProvider.pathAudio,
+                pathFile = multimediaProvider.pathFile,
                 message = multimediaProvider.message
             )
         )
@@ -75,10 +69,7 @@ class MultimediaRepositoryImp @Inject constructor(
         multimediaDao.updateMultimedia(
             Multimedia(
                 multimediaID = multimediaProvider.multimediaID,
-                pathImage = multimediaProvider.pathImage,
-                pathVideo = multimediaProvider.pathVideo,
-                pathDocument = multimediaProvider.pathDocument,
-                pathAudio = multimediaProvider.pathAudio,
+                pathFile = multimediaProvider.pathFile,
                 message = multimediaProvider.message
             )
         )
@@ -90,10 +81,7 @@ class MultimediaRepositoryImp @Inject constructor(
         multimediaDao.deleteMultimedia(
             Multimedia(
                 multimediaID = multimediaProvider.multimediaID,
-                pathImage = multimediaProvider.pathImage,
-                pathVideo = multimediaProvider.pathVideo,
-                pathDocument = multimediaProvider.pathDocument,
-                pathAudio = multimediaProvider.pathAudio,
+                pathFile = multimediaProvider.pathFile,
                 message = multimediaProvider.message
             )
         )

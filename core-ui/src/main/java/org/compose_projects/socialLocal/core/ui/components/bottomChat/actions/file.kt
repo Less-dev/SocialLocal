@@ -71,14 +71,16 @@ fun FileAction(
             uri.value = result
             multimediaManager.apply {
                 this.saveFile(uri = result, typeChat = typeChat)
-                this.addMultimedia(
-                    MultimediaProvider(
-                        pathImage = "Juegputa",
-                        pathVideo = "Hp FUnciona",
-                        pathDocument = "Malparido",
-                        pathAudio = "JAJAJAJ",
-                        message = "IDIOTAS SOY UN CRAK"
-                    )
+                this.newChat(
+                    user = "Daniel",
+                    pathImageProfile = "/images/jaja/ajaj/image.jpeg",
+                    iSend = true,
+                    dateTime = "22:00:11",
+                    typeData = "image",
+                    message = "Hola mundo",
+                    isChatGlobal = true,
+                    idChat = 23
+
                 )
             }
             onDismissRequest()

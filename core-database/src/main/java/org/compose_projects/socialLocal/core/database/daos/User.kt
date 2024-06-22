@@ -29,6 +29,7 @@ import kotlinx.coroutines.flow.Flow
 data class User(
     @PrimaryKey(autoGenerate = true)
     val userID: Int = 0,
+    val userName: String,
     val iAm: Boolean,
     val isFriend: Boolean,
     val dataChatID: Int = 0

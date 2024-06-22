@@ -2,16 +2,22 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "2c233eea4ed71a1a983068a09d9a43bc",
+    "identityHash": "9edb30c033904df05b18fcb3ad74bad1",
     "entities": [
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `iAm` INTEGER NOT NULL, `isFriend` INTEGER NOT NULL, `dataChatID` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `userName` TEXT NOT NULL, `iAm` INTEGER NOT NULL, `isFriend` INTEGER NOT NULL, `dataChatID` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "userID",
             "columnName": "userID",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userName",
+            "columnName": "userName",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -44,7 +50,7 @@
       },
       {
         "tableName": "Multimedia",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`multimediaID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pathImage` TEXT, `pathVideo` TEXT, `pathDocument` TEXT, `pathAudio` TEXT, `message` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`multimediaID` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pathFile` TEXT, `message` TEXT)",
         "fields": [
           {
             "fieldPath": "multimediaID",
@@ -53,26 +59,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "pathImage",
-            "columnName": "pathImage",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "pathVideo",
-            "columnName": "pathVideo",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "pathDocument",
-            "columnName": "pathDocument",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "pathAudio",
-            "columnName": "pathAudio",
+            "fieldPath": "pathFile",
+            "columnName": "pathFile",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -210,7 +198,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2c233eea4ed71a1a983068a09d9a43bc')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9edb30c033904df05b18fcb3ad74bad1')"
     ]
   }
 }

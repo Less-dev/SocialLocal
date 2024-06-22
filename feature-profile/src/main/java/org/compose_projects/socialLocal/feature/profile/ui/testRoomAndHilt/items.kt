@@ -214,11 +214,8 @@ fun MultimediaProviderItem(
             ) {
 
                 Text(text = chatProvider.multimediaID.toString(), style = textStyle)
-                Text(text = chatProvider.pathImage, style = textStyle)
-                Text(text = chatProvider.pathVideo, style = textStyle)
-                Text(text = chatProvider.pathDocument, style = textStyle)
-                Text(text = chatProvider.pathAudio, style = textStyle)
-                Text(text = chatProvider.message, style = textStyle)
+                Text(text = chatProvider.pathFile.toString(), style = textStyle)
+                Text(text = chatProvider.message.toString(), style = textStyle)
             }
         }
     }) {

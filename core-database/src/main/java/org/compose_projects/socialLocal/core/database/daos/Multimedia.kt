@@ -29,10 +29,7 @@ import kotlinx.coroutines.flow.Flow
 data class Multimedia(
     @PrimaryKey(autoGenerate = true)
     var multimediaID: Int = 0,
-    val pathImage: String? = null,
-    val pathVideo: String? = null,
-    val pathDocument: String? = null,
-    val pathAudio: String? = null,
+    val pathFile: String? = null,
     val message: String? = null
 )
 

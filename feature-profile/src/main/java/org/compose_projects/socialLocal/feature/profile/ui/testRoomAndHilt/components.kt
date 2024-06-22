@@ -172,6 +172,7 @@ private fun ContentAdd(
         }
 
         userEntity -> {
+            var userName by remember { mutableStateOf("") }
             var iAm by remember { mutableStateOf("true") }
             var isFriend by remember { mutableStateOf("true") }
             Column {
@@ -188,6 +189,7 @@ private fun ContentAdd(
                 Button(onClick = {
                     multimediaViewModel.insertUser(
                         UserProvider(
+                            userName = userName,
                             iAm = if (iAm == "true") true else false,
                             isFriend = if (isFriend == "true") true else false
                         )
@@ -237,32 +239,13 @@ private fun ContentAdd(
         }
 
         multimediaEntity -> {
-
-            var pathImage by remember { mutableStateOf("") }
-            var pathVideo by remember { mutableStateOf("") }
-            var pathDocument by remember { mutableStateOf("") }
-            var pathAudio by remember { mutableStateOf("") }
+            var pathFile by remember { mutableStateOf("") }
             var message by remember { mutableStateOf("") }
 
             Column {
                 TextField(
-                    value = pathImage,
-                    onValueChange = { pathImage = it },
-                    modifier = modifier
-                )
-                TextField(
-                    value = pathVideo,
-                    onValueChange = { pathVideo = it },
-                    modifier = modifier
-                )
-                TextField(
-                    value = pathDocument,
-                    onValueChange = { pathDocument = it },
-                    modifier = modifier
-                )
-                TextField(
-                    value = pathAudio,
-                    onValueChange = { pathAudio = it },
+                    value = pathFile,
+                    onValueChange = { pathFile = it },
                     modifier = modifier
                 )
                 TextField(
@@ -273,10 +256,7 @@ private fun ContentAdd(
                 Button(onClick = {
                     multimediaViewModel.insertMultimedia(
                         MultimediaProvider(
-                            pathImage = pathImage,
-                            pathVideo = pathVideo,
-                            pathDocument = pathDocument,
-                            pathAudio = pathAudio,
+                            pathFile = pathFile,
                             message = message
                         )
                     )
@@ -761,6 +741,7 @@ private fun ContentEditItemForUser(
 ) {
 
     var userId by remember { mutableStateOf(userProvider.userID.toString()) }
+    var userName by remember { mutableStateOf(userProvider.userName) }
     var iAm by remember { mutableStateOf(userProvider.iAm.toString()) }
     var isFriend by remember { mutableStateOf(userProvider.isFriend.toString()) }
     var dataChatID by remember { mutableStateOf(userProvider.dataChatID.toString()) }
@@ -770,6 +751,14 @@ private fun ContentEditItemForUser(
         TextField(
             value = userId,
             onValueChange = { userId = it },
+            modifier = Modifier
+                .fillMaxWidth(1F)
+                .height(50.dp)
+        )
+
+        TextField(
+            value = userName,
+            onValueChange = { userName = it },
             modifier = Modifier
                 .fillMaxWidth(1F)
                 .height(50.dp)
@@ -803,6 +792,7 @@ private fun ContentEditItemForUser(
             multimediaViewModel.updateUser(
                 UserProvider(
                     userID = userId.toInt(),
+                    userName = userName,
                     iAm = if (iAm == "true") true else false,
                     isFriend = if (isFriend == "true") true else false,
                     dataChatID = dataChatID.toInt()
@@ -897,11 +887,8 @@ private fun ContentEditItemForMultimedia(
 ) {
 
     var multimediaID by remember { mutableStateOf(multimediaProvider.multimediaID.toString()) }
-    var pathImage by remember { mutableStateOf(multimediaProvider.pathImage) }
-    var pathVideo by remember { mutableStateOf(multimediaProvider.pathVideo) }
-    var pathDocument by remember { mutableStateOf(multimediaProvider.pathDocument) }
-    var pathAudio by remember { mutableStateOf(multimediaProvider.pathAudio) }
-    var message by remember { mutableStateOf(multimediaProvider.message) }
+    var pathFile by remember { mutableStateOf(multimediaProvider.pathFile) }
+    var message by remember { mutableStateOf(multimediaProvider.message.toString()) }
 
     Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
 
@@ -913,37 +900,7 @@ private fun ContentEditItemForMultimedia(
                 .height(50.dp)
         )
 
-        TextField(
-            value = pathImage,
-            onValueChange = { pathImage = it },
-            modifier = Modifier
-                .fillMaxWidth(1F)
-                .height(50.dp)
-        )
 
-        TextField(
-            value = pathVideo,
-            onValueChange = { pathVideo = it },
-            modifier = Modifier
-                .fillMaxWidth(1F)
-                .height(50.dp)
-        )
-
-        TextField(
-            value = pathAudio,
-            onValueChange = { pathAudio = it },
-            modifier = Modifier
-                .fillMaxWidth(1F)
-                .height(50.dp)
-        )
-
-        TextField(
-            value = pathDocument,
-            onValueChange = { pathDocument = it },
-            modifier = Modifier
-                .fillMaxWidth(1F)
-                .height(50.dp)
-        )
         TextField(
             value = message,
             onValueChange = { message = it },
@@ -957,10 +914,7 @@ private fun ContentEditItemForMultimedia(
             multimediaViewModel.updateMultimedia(
                 MultimediaProvider(
                     multimediaID = multimediaID.toInt(),
-                    pathImage = pathImage,
-                    pathVideo = pathVideo,
-                    pathDocument = pathDocument,
-                    pathAudio = pathAudio,
+                    pathFile = pathFile,
                     message = message
                 )
             )

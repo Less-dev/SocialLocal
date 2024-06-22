@@ -48,6 +48,7 @@ class UserRepositoryImp @Inject constructor(
             items.map {
                 UserProvider(
                     userID = it.userID,
+                    userName = it.userName,
                     iAm = it.iAm,
                     isFriend = it.isFriend,
                     //dataChatID = it.dataChatID
@@ -59,6 +60,7 @@ class UserRepositoryImp @Inject constructor(
         userDao.insertUser(
             User(
                 userID = userProvider.userID,
+                userName = userProvider.userName,
                 iAm = userProvider.iAm,
                 isFriend = userProvider.isFriend,
                 //dataChatID = userProvider.dataChatID
@@ -70,6 +72,7 @@ class UserRepositoryImp @Inject constructor(
         userDao.updateUser(
             User(
                 userID = userProvider.userID,
+                userName = userProvider.userName,
                 iAm = userProvider.iAm,
                 isFriend = userProvider.isFriend,
                 //dataChatID = userProvider.dataChatID
@@ -81,6 +84,7 @@ class UserRepositoryImp @Inject constructor(
         userDao.deleteUser(
             User(
                 userID = userProvider.userID,
+                userName = userProvider.userName,
                 iAm = userProvider.iAm,
                 isFriend = userProvider.isFriend,
                 //dataChatID = userProvider.dataChatID

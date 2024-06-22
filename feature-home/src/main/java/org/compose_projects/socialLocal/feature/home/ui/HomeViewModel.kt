@@ -37,46 +37,6 @@ class HomeViewModel @Inject constructor(
     private val userRepository: UserRepository
 ) : ViewModel() {
 
-    val uiState: StateFlow<HomeUiState> = userRepository
-        .user.map<List<UserProvider>, HomeUiState> { Success(data = it) }
-        .catch { emit(Error(it)) }
-        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), Loading)
-
-    fun insertUser(iAm: Boolean, isFriend: Boolean, dataChatID: Int) =
-        viewModelScope.launch {
-            userRepository.insert(
-                userProvider = UserProvider(
-                    userID = 0,
-                    iAm = iAm,
-                    isFriend = isFriend,
-                    dataChatID = dataChatID
-                )
-            )
-        }
-
-    fun deleteUser(iAm: Boolean, isFriend: Boolean, dataChatID: Int) =
-        viewModelScope.launch {
-            userRepository.delete(
-                userProvider = UserProvider(
-                    userID = 0,
-                    iAm = iAm,
-                    isFriend = isFriend,
-                    dataChatID = dataChatID
-                )
-            )
-        }
-
-    fun updateUser(userID: Int, iAm: Boolean, isFriend: Boolean, dataChatID: Int) =
-        viewModelScope.launch {
-            userRepository.update(
-                userProvider = UserProvider(
-                    userID = userID,
-                    iAm = iAm,
-                    isFriend = isFriend,
-                    dataChatID = dataChatID
-                )
-            )
-        }
 }
 
 sealed interface HomeUiState {
