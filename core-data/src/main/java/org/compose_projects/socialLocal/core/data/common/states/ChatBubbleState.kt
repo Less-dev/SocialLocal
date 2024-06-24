@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-package org.compose_projects.socialLocal.core.data.data
+package org.compose_projects.socialLocal.core.data.common.states
 
-data class MultimediaProvider(
-    val multimediaID: Int = 0,
-    val pathFile: String? = null,
-    val message: String? = null
-)
+import org.compose_projects.socialLocal.core.data.data.ChatBubbleProvider
+
+sealed interface ChatBubbleState {
+    data object Loading : ChatBubbleState
+    data class Error(val throwable: Throwable) : ChatBubbleState
+    data class Success(val data: List<ChatBubbleProvider>) : ChatBubbleState
+}

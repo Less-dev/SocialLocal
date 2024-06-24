@@ -17,30 +17,11 @@
 package org.compose_projects.socialLocal.feature.home.ui
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.launch
-import org.compose_projects.socialLocal.core.data.data.UserProvider
-import org.compose_projects.socialLocal.core.data.repository.UserRepository
 import javax.inject.Inject
-import org.compose_projects.socialLocal.feature.home.ui.HomeUiState.Loading
-import org.compose_projects.socialLocal.feature.home.ui.HomeUiState.Error
-import org.compose_projects.socialLocal.feature.home.ui.HomeUiState.Success
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val userRepository: UserRepository
 ) : ViewModel() {
 
-}
-
-sealed interface HomeUiState {
-    data object Loading : HomeUiState
-    data class Error(val throwable: Throwable) : HomeUiState
-    data class Success(val data: List<UserProvider>) : HomeUiState
 }

@@ -29,7 +29,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import kotlinx.coroutines.launch
 import org.compose_projects.socialLocal.core.data.common.MultimediaViewModel
-import org.compose_projects.socialLocal.core.data.data.MultimediaProvider
 import org.compose_projects.socialLocal.feature.multimedia.MultimediaManager
 
 
@@ -71,17 +70,6 @@ fun FileAction(
             uri.value = result
             multimediaManager.apply {
                 this.saveFile(uri = result, typeChat = typeChat)
-                this.newChat(
-                    user = "Daniel",
-                    pathImageProfile = "/images/jaja/ajaj/image.jpeg",
-                    iSend = true,
-                    dateTime = "22:00:11",
-                    typeData = "image",
-                    message = "Hola mundo",
-                    isChatGlobal = true,
-                    idChat = 23
-
-                )
             }
             onDismissRequest()
 

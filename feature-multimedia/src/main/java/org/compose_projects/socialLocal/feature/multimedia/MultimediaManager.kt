@@ -50,6 +50,7 @@ class MultimediaManager(
         Log.e(TAG, "Error guardando archivo: $e")
     }
 
+   /*
     fun newChat(
         user: String,
         pathImageProfile: String,
@@ -76,6 +77,7 @@ class MultimediaManager(
     } catch (e: Exception) {
         Log.e(TAG, "Error guardando Chat: $e")
     }
+    */
 
 }
 

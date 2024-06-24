@@ -17,15 +17,11 @@
 package org.compose_projects.socialLocal.feature.multimedia.saveInfoInRoomManager
 
 import org.compose_projects.socialLocal.core.data.common.MultimediaViewModel
-import org.compose_projects.socialLocal.core.data.data.ChatProvider
-import org.compose_projects.socialLocal.core.data.data.DataChatProvider
-import org.compose_projects.socialLocal.core.data.data.MultimediaProvider
-import org.compose_projects.socialLocal.core.data.data.ProfileProvider
-import org.compose_projects.socialLocal.core.data.data.UserProvider
 
 class SIRManager(private val multimediaViewModel: MultimediaViewModel) {
 
 
+   /*
     fun insertChatBubble(
         user: String,
         pathImageProfile: String,
@@ -79,6 +75,7 @@ class SIRManager(private val multimediaViewModel: MultimediaViewModel) {
     ){
 
     }
+    */
 
 
 }
