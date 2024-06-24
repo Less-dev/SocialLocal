@@ -72,6 +72,7 @@ internal fun  SaveFile(context: Context, uri: Uri, typeChat: String) {
                 typeChat = typeChat,
                 nameFile = namePicker.nameFile
             )
+            Toast.makeText(context, "Imagen ${namePicker.nameFile} guardada exitosamente.", Toast.LENGTH_SHORT).show()
         }
 
         video -> {

@@ -123,7 +123,8 @@ fun ChatBubbles(
                         imageProfile = "/media/socialLocal/chat_global/profile_juan/image.png",
                         nameProfile = chatProvider.userName,
                         left = if (chatProvider.iSend) true else false,
-                        message = chatProvider.message
+                        message = chatProvider.message,
+                        image = chatProvider.pathFile
                     ) {
                         onClickProfile(chatProvider.userName, "/media/socialLocal/chat_global/profile_juan/image.png", if (chatProvider.description != null) chatProvider.description.toString() else "Sin Descripción")
                     }
