@@ -27,8 +27,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,11 +44,15 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
+import org.compose_projects.socialLocal.core.data.common.MultimediaViewModel
+import org.compose_projects.socialLocal.core.data.common.states.ChatBubbleState
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.BottomChat
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.BottomChatViewModel
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.actions.EmojiAction
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.actions.FileAction
+import org.compose_projects.socialLocal.core.ui.components.bottomChat.actions.SendAction
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.Bubbles
+import org.compose_projects.socialLocal.core.ui.components.chatBubbles.ChatBubbles
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages_example
 import org.compose_projects.socialLocal.core.ui.components.prev_profile.ContentProfile
@@ -98,6 +105,8 @@ fun HomeScreen(
         messages.message8,
         messages.message9,
     )
+
+
     val listState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
 
@@ -134,6 +143,7 @@ fun HomeScreen(
         modifier = Modifier
             .fillMaxSize()
     ) {
+        /*
         LazyColumn(
             state = listState,
             modifier = Modifier
@@ -163,6 +173,14 @@ fun HomeScreen(
                 Spacer(modifier = Modifier.height(10.dp))
             }
         }
+         */
+
+        ChatBubbles { name, image, description ->
+            showProfile = true
+            nameProfile = name
+            imageProfile = image
+            descriptionProfile = description
+        }
 
         //add: updated the actions for each item
         BottomChat(modifier = Modifier
@@ -177,6 +195,8 @@ fun HomeScreen(
             microphoneAction = { microphoneState = true },
             sendAction = { sendState = true }
         )
+
+        val message = bottomChatViewModel.text.collectAsState().value
 
 
         //Actions for bottomChat
@@ -196,7 +216,22 @@ fun HomeScreen(
             keyboardController?.show()
         }
 
-        FileAction(state = fileState, typeChat = chatglobal, onDismissRequest = {fileState = false})
+        FileAction(state = fileState,
+            typeChat = chatglobal,
+            onDismissRequest = { fileState = false })
+
+        SendAction(
+            state = sendState,
+            userName = "Pedro",
+            dateTime = "00:00",
+            contentType = "message",
+            message = message,
+            onDissmissRequest = {
+                sendState = false
+                keyboardController?.hide()
+                bottomChatViewModel.changeText("") //clean the input
+            }
+        )
 
     }
 
