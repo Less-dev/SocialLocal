@@ -25,6 +25,7 @@ import javax.inject.Inject
 
 interface UserRepository {
     val user: Flow<List<UserProvider>>
+    suspend fun getUserById(id: Int): Flow<UserProvider>
 
     suspend fun insert(
         userProvider: UserProvider
@@ -55,6 +56,17 @@ class UserRepositoryImp @Inject constructor(
                 )
             }
         }
+
+    override suspend fun getUserById(id: Int): Flow<UserProvider> =
+        userDao.getUserById(id).map { items ->
+            UserProvider(
+                userID = items.userID,
+                userName = items.userName,
+                iAm = items.iAm,
+                isFriend = items.isFriend
+            )
+        }
+
 
     override suspend fun insert(userProvider: UserProvider) {
         userDao.insertUser(

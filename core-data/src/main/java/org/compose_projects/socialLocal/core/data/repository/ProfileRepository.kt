@@ -26,6 +26,8 @@ import javax.inject.Inject
 
 interface ProfileRepository {
     val profile: Flow<List<ProfileProvider>>
+
+    suspend fun getProfilebyId(id: Int): Flow<ProfileProvider>
     suspend fun insert(
         profileProvider: ProfileProvider
     )
@@ -54,6 +56,17 @@ class ProfileRepositoryImp @Inject constructor(
                 )
             }
         }
+
+    override suspend fun getProfilebyId(id: Int): Flow<ProfileProvider> =
+        profileDao.getProfileById(id).map { items ->
+            ProfileProvider(
+                profileID = items.profileID,
+                pathImageProfile = items.pathImageProfile,
+                description = items.description,
+                //userID = it.userID
+            )
+        }
+
 
     override suspend fun insert(profileProvider: ProfileProvider) {
         profileDao.insertProfile(

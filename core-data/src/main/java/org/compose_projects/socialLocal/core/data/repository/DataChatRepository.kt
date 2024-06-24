@@ -10,6 +10,9 @@ import javax.inject.Inject
 interface DataChatRepository {
 
     val dataChat: Flow<List<DataChatProvider>>
+
+    suspend fun getDataChatbyId(id: Int): Flow<DataChatProvider>
+
     suspend fun insert(
         dataChatProvider: DataChatProvider
     )
@@ -38,6 +41,16 @@ class DataChatRepositoryImp @Inject constructor(
                     contentType = it.contentType,
                 )
             }
+        }
+
+    override suspend fun getDataChatbyId(id: Int): Flow<DataChatProvider> =
+        dataChatDao.getDataChatById(id).map { items ->
+            DataChatProvider(
+                dataChatID = items.dataChatID,
+                dateTime = items.dateTime,
+                iSend = items.iSend,
+                contentType = items.contentType
+            )
         }
 
     override suspend fun update(dataChatProvider: DataChatProvider) {

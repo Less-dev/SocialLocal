@@ -25,6 +25,9 @@ import javax.inject.Inject
 
 interface MultimediaRepository {
     val multimedia: Flow<List<MultimediaProvider>>
+
+    suspend fun getMultimediabyId(id: Int): Flow<MultimediaProvider>
+
     suspend fun insert(
         multimediaProvider: MultimediaProvider
     )
@@ -52,6 +55,15 @@ class MultimediaRepositoryImp @Inject constructor(
                     message = it.message ?: ""
                 )
             }
+        }
+
+    override suspend fun getMultimediabyId(id: Int): Flow<MultimediaProvider> =
+        multimediaDao.getMultimediaById(id).map { items ->
+            MultimediaProvider(
+                multimediaID = items.multimediaID,
+                pathFile = items.pathFile,
+                message = items.message
+            )
         }
 
 

@@ -29,6 +29,9 @@ import javax.inject.Inject
 interface ChatRepository {
 
     val chat: Flow<List<ChatProvider>>
+
+    suspend fun getChatbyId(id: Int): Flow<ChatProvider>
+
     suspend fun insert(
         chatProvider: ChatProvider
     )
@@ -56,6 +59,13 @@ class ChatRepositoryImp @Inject constructor(
             }
         }
 
+    override suspend fun getChatbyId(id: Int): Flow<ChatProvider> =
+        chatDao.getChatById(id).map { items ->
+            ChatProvider(
+                chatID = items.chatID,
+                isChatGlobal = items.isChatGlobal
+            )
+        }
     override suspend fun insert(chatProvider: ChatProvider) {
         chatDao.insertChat(
             Chat(
