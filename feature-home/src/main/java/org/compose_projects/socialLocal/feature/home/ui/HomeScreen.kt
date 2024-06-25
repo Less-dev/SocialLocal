@@ -17,6 +17,7 @@
 package org.compose_projects.socialLocal.feature.home.ui
 
 import android.os.Build
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -41,12 +42,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 import org.compose_projects.socialLocal.core.data.common.MultimediaViewModel
+import org.compose_projects.socialLocal.core.data.common.NameManager
 import org.compose_projects.socialLocal.core.data.common.states.ChatBubbleState
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.BottomChat
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.BottomChatViewModel
@@ -114,16 +117,12 @@ fun HomeScreen(
     val coroutineScope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
+        /*
         coroutineScope.launch {
             listState.scrollToItem(messages.lastIndex)
         }
-        /*
-             homeViewModel.insertUser(
-            iAm = true,
-            isFriend = false,
-            dataChatID = 0
-        )
          */
+
     }
 
     var showProfile by remember { mutableStateOf(false) }
