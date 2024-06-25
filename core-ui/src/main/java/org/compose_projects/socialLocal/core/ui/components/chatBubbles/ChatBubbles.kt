@@ -104,7 +104,7 @@ fun ChatBubbles(
 
             LaunchedEffect(Unit, chatProviders) {
                 coroutineScope.launch {
-                    listState.scrollToItem(chatProviders.lastIndex)
+                    if (chatProviders.isNotEmpty()) listState.scrollToItem(chatProviders.lastIndex)
                 }
             }
 

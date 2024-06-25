@@ -227,7 +227,7 @@ fun HomeScreen(
 
         SendAction(
             state = sendState,
-            userName = "Pedro",
+            userName = "Less",
             contentType = "message",
             message = message,
             onDissmissRequest = {
