@@ -23,6 +23,7 @@ import dagger.hilt.components.SingletonComponent
 import org.compose_projects.socialLocal.core.data.repository.ChatBubbleRepository
 import org.compose_projects.socialLocal.core.data.repository.ChatBubbleRepositoryImp
 import org.compose_projects.socialLocal.core.data.repository.SLPreferencesRepository
+import org.compose_projects.socialLocal.core.data.repository.SLPreferencesRepositoryImp
 import javax.inject.Singleton
 
 @Module
@@ -39,7 +40,7 @@ interface DataModule {
     @Singleton
     @Binds
     fun bindsSLPreferencesRepository(
-        slPreferencesRepositoryImp: ChatBubbleRepositoryImp
+        slPreferencesRepositoryImp: SLPreferencesRepositoryImp
     ): SLPreferencesRepository
 
 }

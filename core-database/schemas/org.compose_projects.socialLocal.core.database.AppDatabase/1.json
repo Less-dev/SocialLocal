@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0d6af1a6f81e1deaaa3f4c595935344c",
+    "identityHash": "5c721d0d5d7f9bd6d737a313ad5724e0",
     "entities": [
       {
         "tableName": "ChatBubble",
@@ -83,12 +83,56 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "SLPreferences",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `theme` TEXT NOT NULL, `userName` TEXT NOT NULL, `description` TEXT, `pathImageProfile` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "theme",
+            "columnName": "theme",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userName",
+            "columnName": "userName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "pathImageProfile",
+            "columnName": "pathImageProfile",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0d6af1a6f81e1deaaa3f4c595935344c')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5c721d0d5d7f9bd6d737a313ad5724e0')"
     ]
   }
 }

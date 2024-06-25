@@ -27,6 +27,7 @@ class MultimediaViewModel @Inject constructor(
         .catch { emit(ChatBubbleState.Error(it)) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), ChatBubbleState.Loading)
 
+
     //Inserts
     fun insertChat(chatBubbleProvider: ChatBubbleProvider) =
         viewModelScope.launch(Dispatchers.IO) {
