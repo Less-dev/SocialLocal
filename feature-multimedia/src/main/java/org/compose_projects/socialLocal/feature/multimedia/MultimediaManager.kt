@@ -45,7 +45,7 @@ class MultimediaManager(
     }
 
     fun saveFile(uri: Uri, typeChat: String) = try {
-        SaveFile(context = context, uri = uri, typeChat = typeChat)
+        SaveFile(context = context, uri = uri, typeChat = typeChat, multimediaViewModel = multimediaViewModel)
     } catch (e: Exception) {
         Log.e(TAG, "Error guardando archivo: $e")
     }
