@@ -3,17 +3,12 @@ package org.compose_projects.socialLocal.feature.profile.ui.testRoomAndHilt
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
-import kotlinx.coroutines.isActive
-import org.compose_projects.socialLocal.core.data.common.MultimediaViewModel
+import org.compose_projects.socialLocal.core.data.common.viewModels.MultimediaViewModel
 import org.compose_projects.socialLocal.core.data.common.states.ChatBubbleState
 import org.compose_projects.socialLocal.core.data.data.ChatBubbleProvider
 

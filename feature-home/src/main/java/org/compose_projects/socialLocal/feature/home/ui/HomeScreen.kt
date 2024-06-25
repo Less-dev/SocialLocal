@@ -17,21 +17,13 @@
 package org.compose_projects.socialLocal.feature.home.ui
 
 import android.os.Build
-import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -42,21 +34,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import kotlinx.coroutines.launch
-import org.compose_projects.socialLocal.core.data.common.MultimediaViewModel
-import org.compose_projects.socialLocal.core.data.common.NameManager
-import org.compose_projects.socialLocal.core.data.common.states.ChatBubbleState
+import org.compose_projects.socialLocal.core.ui.colorPreferences.SLChangeTheme
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.BottomChat
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.BottomChatViewModel
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.actions.EmojiAction
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.actions.FileAction
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.actions.SendAction
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.Bubbles
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.ChatBubbles
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages
 import org.compose_projects.socialLocal.core.ui.components.chatBubbles.messages_example
@@ -73,6 +60,7 @@ fun HomeScreen(
     bottomChatViewModel: BottomChatViewModel = viewModel(),
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
+    SLChangeTheme()
     val messages: List<messages_example> = listOf(
         messages.message1,
         messages.message2,

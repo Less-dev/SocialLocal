@@ -16,7 +16,7 @@
 
 package org.compose_projects.socialLocal.feature.multimedia.saveInfoInRoomManager
 
-import org.compose_projects.socialLocal.core.data.common.MultimediaViewModel
+import org.compose_projects.socialLocal.core.data.common.viewModels.MultimediaViewModel
 
 class SIRManager(private val multimediaViewModel: MultimediaViewModel) {
 

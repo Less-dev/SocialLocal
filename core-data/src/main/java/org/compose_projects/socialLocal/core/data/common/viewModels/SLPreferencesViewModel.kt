@@ -1,4 +1,4 @@
-package org.compose_projects.socialLocal.core.data.common
+package org.compose_projects.socialLocal.core.data.common.viewModels
 
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

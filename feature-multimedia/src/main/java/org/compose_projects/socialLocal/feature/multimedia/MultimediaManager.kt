@@ -18,12 +18,8 @@ package org.compose_projects.socialLocal.feature.multimedia
 
 import android.content.Context
 import android.net.Uri
-import android.os.Build
 import android.util.Log
-import android.widget.Toast
-import androidx.annotation.RequiresApi
-import org.compose_projects.socialLocal.core.data.common.MultimediaViewModel
-import org.compose_projects.socialLocal.core.data.common.TimeManager
+import org.compose_projects.socialLocal.core.data.common.viewModels.MultimediaViewModel
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.appname
 import org.compose_projects.socialLocal.feature.multimedia.directoryManager.configDirectories
 import org.compose_projects.socialLocal.feature.multimedia.directoryManager.listAppDirectories

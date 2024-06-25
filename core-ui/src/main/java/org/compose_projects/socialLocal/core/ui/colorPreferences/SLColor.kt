@@ -21,6 +21,8 @@ import androidx.compose.runtime.mutableStateOf
 
 var SLColor = mutableStateOf(SLTheme.defaultStyle)
 
+
+
 object SLThemesList {
     val default = SLTheme.defaultStyle
     val black = SLTheme.blackStyle

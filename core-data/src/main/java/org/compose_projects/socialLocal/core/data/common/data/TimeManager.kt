@@ -1,4 +1,4 @@
-package org.compose_projects.socialLocal.core.data.common
+package org.compose_projects.socialLocal.core.data.common.data
 
 import android.os.Build
 import androidx.annotation.RequiresApi

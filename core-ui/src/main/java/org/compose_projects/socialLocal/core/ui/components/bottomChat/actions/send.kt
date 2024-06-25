@@ -5,10 +5,8 @@ import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import org.compose_projects.socialLocal.core.data.common.MultimediaViewModel
-import org.compose_projects.socialLocal.core.data.common.TimeManager
+import org.compose_projects.socialLocal.core.data.common.viewModels.MultimediaViewModel
+import org.compose_projects.socialLocal.core.data.common.data.TimeManager
 import org.compose_projects.socialLocal.core.data.data.ChatBubbleProvider
 
 @RequiresApi(Build.VERSION_CODES.O)

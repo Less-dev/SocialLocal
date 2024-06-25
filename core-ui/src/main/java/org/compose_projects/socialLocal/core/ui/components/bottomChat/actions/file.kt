@@ -17,11 +17,9 @@
 package org.compose_projects.socialLocal.core.ui.components.bottomChat.actions
 
 import android.net.Uri
-import android.os.Build
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -34,7 +32,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -61,10 +58,9 @@ import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import kotlinx.coroutines.launch
-import org.compose_projects.socialLocal.core.data.common.MultimediaViewModel
+import org.compose_projects.socialLocal.core.data.common.viewModels.MultimediaViewModel
 import org.compose_projects.socialLocal.core.ui.R
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor
-import org.compose_projects.socialLocal.core.ui.components.chatBubbles.images_profiles
 import org.compose_projects.socialLocal.feature.multimedia.MultimediaManager
 import androidx.compose.material3.TopAppBar
 import androidx.compose.ui.draw.clip

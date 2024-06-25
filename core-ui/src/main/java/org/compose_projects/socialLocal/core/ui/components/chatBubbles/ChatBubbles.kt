@@ -69,7 +69,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
-import org.compose_projects.socialLocal.core.data.common.MultimediaViewModel
+import org.compose_projects.socialLocal.core.data.common.viewModels.MultimediaViewModel
 import org.compose_projects.socialLocal.core.data.common.states.ChatBubbleState
 import org.compose_projects.socialLocal.core.ui.R
 import org.compose_projects.socialLocal.core.ui.colorPreferences.SLColor

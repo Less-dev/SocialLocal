@@ -2,7 +2,7 @@ package org.compose_projects.socialLocal.core.ui.colorPreferences
 
 //backgrounds app
 val backgroundAppColorDefault = 0xFF00343B
-val backgroundAppColorBlack = 0xFF00343B
+val backgroundAppColorBlack = 0xFF02040E
 
 //bottom app bar
 val backgroundBottomAppBarColor = 0xFF02040E

@@ -19,7 +19,7 @@ package org.compose_projects.socialLocal.feature.multimedia.fileSorterManager
 import android.content.Context
 import android.net.Uri
 import android.widget.Toast
-import org.compose_projects.socialLocal.core.data.common.MultimediaViewModel
+import org.compose_projects.socialLocal.core.data.common.viewModels.MultimediaViewModel
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.audio
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.document
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.image
