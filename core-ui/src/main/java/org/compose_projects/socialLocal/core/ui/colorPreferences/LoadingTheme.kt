@@ -6,9 +6,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import org.compose_projects.socialLocal.core.data.common.states.SLPreferencesState
 import org.compose_projects.socialLocal.core.data.common.themes
 import org.compose_projects.socialLocal.core.data.common.viewModels.SLPreferencesViewModel
+import org.compose_projects.socialLocal.core.data.data.SLPreferencesProvider
 
 @Composable
-fun SLChangeTheme(slPreferencesViewModel: SLPreferencesViewModel = hiltViewModel()) {
+fun LoadingTheme(slPreferencesViewModel: SLPreferencesViewModel = hiltViewModel()) {
     val state = slPreferencesViewModel.preferencesState.collectAsState().value
 
     when (state) {
@@ -23,15 +24,27 @@ fun SLChangeTheme(slPreferencesViewModel: SLPreferencesViewModel = hiltViewModel
         is SLPreferencesState.Success -> {
             val data = (state as SLPreferencesState.Success).data
             data.map {
-                when(it.theme) {
-                    themes.DEFAULT -> SLColor.value = SLThemesList.default
-                    themes.BLACK -> SLColor.value = SLThemesList.black
-                    else -> SLColor.value = SLThemesList.default
-                }
+                ToWithData(data = it, slPreferencesViewModel = slPreferencesViewModel)
             }
         }
     }
-
 }
+
+@Composable
+private fun ToWithData(
+    data: SLPreferencesProvider,
+    slPreferencesViewModel: SLPreferencesViewModel
+) {
+    when (data.theme) {
+        themes.DEFAULT -> SLColor.value = SLThemesList.default
+        themes.BLACK -> SLColor.value = SLThemesList.black
+        else -> SLColor.value = SLThemesList.default
+    }
+
+    slPreferencesViewModel.updateUserName(data.userName)
+    slPreferencesViewModel.updateDescription(data.description ?: "SIN")
+    slPreferencesViewModel.updatePathImageProfile(data.pathImageProfile ?: "SIN")
+}
+
 
 

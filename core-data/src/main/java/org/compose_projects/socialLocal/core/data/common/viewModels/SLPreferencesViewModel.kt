@@ -12,6 +12,7 @@ import org.compose_projects.socialLocal.core.data.repository.SLPreferencesReposi
 import javax.inject.Inject
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
@@ -26,6 +27,32 @@ class SLPreferencesViewModel @Inject constructor(
         .catch { emit(SLPreferencesState.Error(it)) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), SLPreferencesState.Loading)
 
+
+    private val _userName = MutableStateFlow("")
+    val userName: StateFlow<String> get() = _userName
+
+    private val _description = MutableStateFlow("")
+    val description: StateFlow<String> get() = _description
+
+    private val _pathImageProfile = MutableStateFlow("")
+    val pathImageProfile: StateFlow<String> get() = _pathImageProfile
+
+    fun updateUserName(userName: String) =
+        viewModelScope.launch(Dispatchers.IO) {
+            _userName.value = userName
+        }
+
+    fun updateDescription(description: String) =
+        viewModelScope.launch(Dispatchers.IO) {
+            _description.value = description
+        }
+
+    fun updatePathImageProfile(path: String) =
+        viewModelScope.launch(Dispatchers.IO) {
+            _pathImageProfile.value = path
+        }
+
+    // this of down is from the room
 
     fun insertPreferences(preferences: SLPreferencesProvider) =
         viewModelScope.launch(Dispatchers.IO) {

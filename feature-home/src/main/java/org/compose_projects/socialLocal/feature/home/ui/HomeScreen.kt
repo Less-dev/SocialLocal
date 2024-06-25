@@ -38,7 +38,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
-import org.compose_projects.socialLocal.core.ui.colorPreferences.SLChangeTheme
+import org.compose_projects.socialLocal.core.ui.colorPreferences.LoadingTheme
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.BottomChat
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.BottomChatViewModel
 import org.compose_projects.socialLocal.core.ui.components.bottomChat.actions.EmojiAction
@@ -60,7 +60,7 @@ fun HomeScreen(
     bottomChatViewModel: BottomChatViewModel = viewModel(),
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
-    SLChangeTheme()
+    LoadingTheme()
     val messages: List<messages_example> = listOf(
         messages.message1,
         messages.message2,
