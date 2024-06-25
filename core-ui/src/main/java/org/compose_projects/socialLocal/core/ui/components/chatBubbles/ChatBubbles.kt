@@ -102,7 +102,7 @@ fun ChatBubbles(
             // Show the list of ChatProviders
             val chatProviders = (chatState as ChatBubbleState.Success).data
 
-            LaunchedEffect(Unit) {
+            LaunchedEffect(Unit, chatProviders) {
                 coroutineScope.launch {
                     listState.scrollToItem(chatProviders.lastIndex)
                 }
