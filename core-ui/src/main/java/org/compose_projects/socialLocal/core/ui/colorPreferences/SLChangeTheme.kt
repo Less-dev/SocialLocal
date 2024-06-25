@@ -2,11 +2,6 @@ package org.compose_projects.socialLocal.core.ui.colorPreferences
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import org.compose_projects.socialLocal.core.data.common.states.SLPreferencesState
 import org.compose_projects.socialLocal.core.data.common.themes
@@ -15,16 +10,14 @@ import org.compose_projects.socialLocal.core.data.common.viewModels.SLPreference
 @Composable
 fun SLChangeTheme(slPreferencesViewModel: SLPreferencesViewModel = hiltViewModel()) {
     val state = slPreferencesViewModel.preferencesState.collectAsState().value
-    val context = LocalContext.current
-    var text by remember { mutableStateOf("") }
 
     when (state) {
         is SLPreferencesState.Loading -> {
-            text = "Cargando"
+            //loading
         }
 
         is SLPreferencesState.Error -> {
-            text = SLThemesList.black.toString()
+            SLColor.value = SLThemesList.default
         }
 
         is SLPreferencesState.Success -> {
