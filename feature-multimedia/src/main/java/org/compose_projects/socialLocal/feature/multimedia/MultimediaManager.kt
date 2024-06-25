@@ -19,12 +19,14 @@ package org.compose_projects.socialLocal.feature.multimedia
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import org.compose_projects.socialLocal.core.data.common.MultimediaViewModel
 import org.compose_projects.socialLocal.feature.multimedia.CONSTANTS.appname
 import org.compose_projects.socialLocal.feature.multimedia.directoryManager.configDirectories
 import org.compose_projects.socialLocal.feature.multimedia.directoryManager.listAppDirectories
 import org.compose_projects.socialLocal.feature.multimedia.fileSorterManager.SaveFile
 import org.compose_projects.socialLocal.feature.multimedia.saveInfoInRoomManager.SIRManager
+import org.compose_projects.socialLocal.feature.multimedia.timeManager.TimeManager
 
 
 class MultimediaManager(
@@ -43,6 +45,9 @@ class MultimediaManager(
     } catch (e: Exception) {
         Log.e(TAG, "Error listando directorios: $e")
     }
+
+    fun getDateTime() =
+        Toast.makeText(context, TimeManager().getDateTime(), Toast.LENGTH_SHORT).show()
 
     fun saveFile(uri: Uri, typeChat: String) = try {
         SaveFile(context = context, uri = uri, typeChat = typeChat, multimediaViewModel = multimediaViewModel)

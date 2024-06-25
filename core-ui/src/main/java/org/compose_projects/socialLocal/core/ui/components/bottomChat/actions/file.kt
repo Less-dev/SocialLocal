@@ -72,6 +72,7 @@ private const val TAG = "prueba1"
 @Composable
 fun FileAction(
     state: Boolean,
+    userName: String,
     typeChat: String,
     multimediaViewModel: MultimediaViewModel = hiltViewModel(),
     onDismissRequest: () -> Unit
@@ -91,6 +92,7 @@ fun FileAction(
         this.launch {
             multimediaManager.apply {
                 this.createDirectories()
+                this.getDateTime()
                 //directories = this.treeOfDirectories()
             }
             //Log.d(TAG, directories)
@@ -138,6 +140,7 @@ fun FileAction(
 
     PreviewImageLoaded(
         state = previewImageState,
+        userName = userName,
         multimediaManager = multimediaManager,
         typeChat = typeChat,
         imageUri = Uri.parse(uri.value.toString())
@@ -150,6 +153,7 @@ fun FileAction(
 @Composable
 fun PreviewImageLoaded(
     state: Boolean,
+    userName: String,
     multimediaManager: MultimediaManager,
     imageUri: Uri,
     typeChat: String,
@@ -178,7 +182,6 @@ fun PreviewImageLoaded(
             Scaffold(
                 topBar = {
                     TopAppBar(
-                        userName = "Juan",
                         onDismissImage = { onDismiss() }
                     )
                 },
@@ -217,12 +220,12 @@ fun PreviewImageLoaded(
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun TopAppBar(userName: String, onDismissImage: () -> Unit) {
+private fun TopAppBar( onDismissImage: () -> Unit) {
 
     val currentColor by SLColor
 
     TopAppBar(
-        title = { Text(text = userName) },
+        title = { },
         navigationIcon = {
             IconButton(onClick = { onDismissImage() }) {
                 Icon(

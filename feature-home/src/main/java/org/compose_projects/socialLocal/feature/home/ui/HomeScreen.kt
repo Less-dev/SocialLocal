@@ -198,7 +198,6 @@ fun HomeScreen(
 
         val message = bottomChatViewModel.text.collectAsState().value
 
-
         //Actions for bottomChat
         EmojiAction(
             modifier = Modifier
@@ -216,9 +215,12 @@ fun HomeScreen(
             keyboardController?.show()
         }
 
-        FileAction(state = fileState,
+        FileAction(
+            state = fileState,
+            userName = nameProfile,
             typeChat = chatglobal,
-            onDismissRequest = { fileState = false })
+            onDismissRequest = { fileState = false }
+        )
 
         SendAction(
             state = sendState,
