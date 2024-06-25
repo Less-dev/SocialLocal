@@ -242,7 +242,7 @@ private fun CurrentTitle(
         Spacer(modifier = Modifier.width(15.dp))
 
         Text(
-            "martes - $hour",
+            hour,
             color = currentColor.ColorTitles,
             fontSize = 9.5.sp,
             fontWeight = FontWeight.Light

@@ -17,9 +17,11 @@
 package org.compose_projects.socialLocal.core.ui.components.bottomChat.actions
 
 import android.net.Uri
+import android.os.Build
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -92,7 +94,6 @@ fun FileAction(
         this.launch {
             multimediaManager.apply {
                 this.createDirectories()
-                this.getDateTime()
                 //directories = this.treeOfDirectories()
             }
             //Log.d(TAG, directories)

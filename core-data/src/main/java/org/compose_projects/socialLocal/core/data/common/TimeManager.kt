@@ -1,4 +1,4 @@
-package org.compose_projects.socialLocal.feature.multimedia.timeManager
+package org.compose_projects.socialLocal.core.data.common
 
 import android.os.Build
 import androidx.annotation.RequiresApi
@@ -35,6 +35,6 @@ class TimeManager {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun getDateTime() =
-        "${getDayOfMonth()} de ${getMonthOfYear()} ${getHour()}"
+        "${getDay()} - ${getDayOfMonth()} de ${getMonthOfYear()} ${getHour()}"
 
 }

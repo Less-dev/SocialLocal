@@ -16,6 +16,8 @@
 
 package org.compose_projects.socialLocal.feature.home.ui
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
@@ -62,6 +64,7 @@ import org.compose_projects.socialLocal.core.ui.components.prev_profile.PreviewP
 private const val chatglobal = "Chat Global"
 private const val chatinbox = "Chats Privados"
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun HomeScreen(
     bottomChatViewModel: BottomChatViewModel = viewModel(),
@@ -225,7 +228,6 @@ fun HomeScreen(
         SendAction(
             state = sendState,
             userName = "Pedro",
-            dateTime = "00:00",
             contentType = "message",
             message = message,
             onDissmissRequest = {
